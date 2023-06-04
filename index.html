@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OECD Municipal Atlas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- load leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+
+    <!-- load JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+    <!-- load VectorGrid extension -->
+    <script src="https://unpkg.com/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js"></script> 
+    <!-- load Geotiff extension -->
+    <!-- <script src="https://unpkg.com/georaster"></script> -->
+    <script src="https://unpkg.com/chroma-js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="fontawesome/css/brands.css">
+    <link rel="stylesheet" href="fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="fontawesome/css/regular.css">
+    <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://www.unpkg.com/papaparse@5.4.1/papaparse.js"></script>
+
+</head>
+
+<body>
+    <div id="app" data-v-app="">
+        <div class="relative flex min-h-screen flex-col bg-white">
+            <nav class="top-0 border-b border-gray-200 bg-gray-100 sm:sticky sm:z-20 sm:shadow-lg print:!hidden">
+                <div class="ml-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex h-16 items-center justify-start">
+                        <a class="flex shrink-0 items-center mr-4 ml-0">
+                            <img src="img/OECD_logo_new.svg.png" class="h-12 w-auto sm:h-14" />
+                        </a>
+                        <div class="font-bold text-2xl text-gray-700" style="padding: 20px;">
+                            Municipal Atlas
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </nav>
+            <div class="grow">
+                <div class="relative flex h-[calc(100vh-3.5rem-1px)] flex-col sm:flex-row">
+                    <div
+                        class="z-20 flex w-full shrink-0 flex-col gap-12 overflow-auto border-gray-200 bg-white py-5 px-4 sm:z-10 sm:flex sm:w-[380px] sm:border-r sm:px-6 xl:w-[460px] hidden">
+                        <div class="flex flex-col gap-5">
+                            <div class="flex items-center gap-2">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
+                                    style="background: rgb(77, 82, 168);"><i
+                                        class="fa-fw fa-regular fa-building-columns"></i>
+                                    </div>
+                                <div class="text-lg font-bold">Economy and labour</div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                    style="background: rgb(77, 82, 168);"><i
+                                        class="fa-fw fa-regular fa-dollar-sign"></i></div>
+                                <div class="font-bold">Income distribution</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-median-income">
+                                        <div class="font-medium text-gray-600">Median disposable income</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-poverty">
+                                        <div class="font-medium text-gray-600">Relative poverty rate (60% of median income)</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-gini">
+                                        <div class="font-medium text-gray-600" >Gini coefficient</div><!---->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                    style="background: rgb(77, 82, 168);"><i
+                                        class="fa-fw fa-regular fa-briefcase"></i></div>
+                                <div class="font-bold">Labour</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-unempl-rate">
+                                        <div class="font-medium text-gray-600" >Unemployment rate</div><!---->
+                                    </div>
+                                
+                                </div>
+                                
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(77, 82, 168);"><i
+                                            class="fa-fw fa-regular fa-house"></i></div>
+                                    <div class="font-bold">Housing</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-rent">
+                                        <div class="font-medium text-gray-600" >Rent per sq. m</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-housing-price">
+                                        <div class="font-medium text-gray-600">Price per sq. m</div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col gap-5">
+                            <div class="flex items-center gap-2">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
+                                    style="background: rgb(178, 82, 144);"><i
+                                        class="fa-fw fa-regular fa-people"></i>
+                                    </div>
+                                <div class="text-lg font-bold">Demography</div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                    style="background: rgb(178, 82, 144);"><i
+                                        class="fa-fw fa-regular fa-person-cane"></i></div>
+                                <div class="font-bold">Age groups</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-youngsh">
+                                        <div class="font-medium text-gray-600" >Share of young population (- 14 years old) </div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-workagesh">
+                                        <div class="font-medium text-gray-600">Share of working age population (15 to 64 years old)</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-oldsh">
+                                        <div class="font-medium text-gray-600">Share of elderly population (+ 65 years old)</div><!---->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                    style="background: rgb(178, 82, 144);"><i
+                                        class="fa-fw fa-regular fa-venus-mars"></i></div>
+                                <div class="font-bold">Sex ratio</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-sex-ratio">
+                                        <div class="font-medium text-gray-600" >Sex ratio (total population)</div><!---->
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(178, 82, 144);"><i
+                                            class="fa-fw fa-regular fa-chart-line-up"></i></div>
+                                    <div class="font-bold">Population change</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-popch">
+                                        <div class="font-medium text-gray-600" >Population change in the last 5 years</div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(178, 82, 144);"><i
+                                            class="fa-fw fa-regular fa-baby"></i></div>
+                                    <div class="font-bold">Natural change</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-natch">
+                                        <div class="font-medium text-gray-600" >Natural change in the last 5 years</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-birth">
+                                        <div class="font-medium text-gray-600" >Birth rate</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-death">
+                                        <div class="font-medium text-gray-600" >Death rate</div><!---->
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(178, 82, 144);"><i
+                                            class="fa-fw fa-regular fa-globe"></i></div>
+                                    <div class="font-bold">Migration</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-foreign-born">
+                                        <div class="font-medium text-gray-600" >Share of foreign-born population</div><!---->
+                                    </div>
+                                    
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-netmobmig">
+                                        <div class="font-medium text-gray-600" >Net migration rate (internal and international)</div><!---->
+                                    </div>
+                                    
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-netmob">
+                                        <div class="font-medium text-gray-600" >Net internal migration rate</div><!---->
+                                    </div>
+                                    
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-netmig">
+                                        <div class="font-medium text-gray-600" >Net international migration rate</div><!---->
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-5">
+                            <div class="flex items-center gap-2">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
+                                    style="background: rgb(16, 149, 76);"><i class="fa-fw fa-regular fa-seedling"></i>
+                                </div>
+                                <div class="text-lg font-bold">Environment</div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(16, 149, 76);"><i
+                                            class="fa-fw fa-regular fa-seedling"></i></div>
+                                    <div class="font-bold">Green areas</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-green-sh">
+                                        <div class="font-medium text-gray-600">Share of green areas</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-green-capita">
+                                        <div class="font-medium text-gray-600"> Green areas per capita</div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(16, 149, 76);"><i
+                                            class="fa-fw fa-regular fa-trees"></i></div>
+                                    <div class="font-bold">Tree cover change</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-forestch">
+                                        <div class="font-medium text-gray-600">Tree cover change 2000-2020</div><!---->
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-5">
+                            <div class="flex items-center gap-2">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
+                                    style="background: darkred;"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
+                                </div>
+                                <div class="text-lg font-bold">Climate</div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: darkred;"><i
+                                            class="fa-fw fa-regular fa-temperature-sun"></i></div>
+                                    <div class="font-bold">Heat stress</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-lst-day">
+                                        <div class="font-medium text-gray-600" >Daytime summer land surface temperature</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-lst-night">
+                                        <div class="font-medium text-gray-600" >Nighttime summer land surface temperature
+                                        </div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: darkred;"><i
+                                            class="fa-fw fa-regular fa-fan"></i></div>
+                                    <div class="font-bold">Cooling degree days</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-cdd">
+                                        <div class="font-medium text-gray-600" >Cooling degree days in the last 5 years</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-cdd-ch">
+                                        <div class="font-medium text-gray-600" >Change in cooling degree days compared to 1981-2010
+                                        </div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: darkred;"><i
+                                            class="fa-fw fa-regular fa-heat"></i></div>
+                                    <div class="font-bold">Heating degree days</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-hdd">
+                                        <div class="font-medium text-gray-600" >Heating degree days in the last 5 years</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-hdd-ch">
+                                        <div class="font-medium text-gray-600" >Change in heating degree days compared to 1981-2010
+                                        </div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: darkred;"><i
+                                            class="fa-fw fa-regular fa-house-flood-water"></i></div>
+                                    <div class="font-bold">River flooding</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-river-flood">
+                                        <div class="font-medium text-gray-600" id="button-lst-day">Share of population exposed to 100-year river flooding</div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: darkred;"><i
+                                            class="fa-fw fa-regular fa-house-tsunami"></i></div>
+                                    <div class="font-bold">Coastal flooding</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-coastal-flood">
+                                        <div class="font-medium text-gray-600" id="button-lst-day">Share of population exposed to 100-year coastal flooding</div><!---->
+                                    <!-- </div>
+                                </div>
+                            </div> --> 
+                            
+                        </div>
+                        <div class="flex flex-col gap-5">
+                            <div class="flex items-center gap-2">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
+                                    style="background: rgb(255, 130, 0);"><i class="fa-fw fa-regular fa-shop"></i>
+                                </div>
+                                <div class="text-lg font-bold">Services</div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-start gap-2">
+                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                        style="background: rgb(255, 130, 0);"><i
+                                            class="fa-fw fa-regular fa-wifi"></i></div>
+                                    <div class="font-bold">Digitalisation</div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-download">
+                                        <div class="font-medium text-gray-600">Average download speed (% deviation from national average)</div><!---->
+                                    </div>
+                                    <div
+                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                        id="button-upload">
+                                        <div class="font-medium text-gray-600">Average upload speed (% deviation from national average)</div><!---->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="flex flex-1 flex-col">
+                        <div class="absolute inset-0 h-full w-full sm:relative">
+                            <div class="h-full w-full transition" data-v-a6618553="">
+                                <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 100%; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    
+</div>
+
+<!-- <div id="map" style="width: 100vw; height: 100vh; background: #fdfdfd"></div> -->
+
+
+<script>
+
+var currentLayer;
+var currentLegend;
+var currentButton;
+var currentChartControl;
+// create map
+var map = L.map('map', {
+        center: [48.8566, 2.3522],
+        minZoom: 3,
+        maxZoom: 12,
+        zoomControl: true,
+        zoom: 7,
+});
+
+// other map specifications
+
+// add background basemap
+var mapBaseLayer = L.tileLayer(
+    'https://api.mapbox.com/styles/v1/abanquet/clhdysd99015e01qu5g79cvxj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWJhbnF1ZXQiLCJhIjoiY2tuZWR0czllMXFsOTJ4bXI0YTJkYXh0NyJ9.5fHw32nqi29CNuM4oEF3AA', 
+).addTo(map);
+
+mapBaseLayer.addTo(map);
+
+var fuaData;
+fetch('data_fua_gp.csv')
+  .then(response => response.text())
+  .then(csvData => {
+    // Parse the CSV data using Papaparse
+    fuaData = Papa.parse(csvData, { header: true });
+    console.log(fuaData);
+  }
+  )
+
+function normalizeData(val, valMin, valMax) {
+    var valNorm = (Math.min(val, valMax) - valMin) / (valMax - valMin);
+    return valNorm;
+    }
+// get vector tiles URL
+var mapDataTilesUrl = "tiles/{z}/{x}/{y}.pbf";
+
+function clickHandler(e){
+    var radarLabels = [];
+    var radarSauData = [];
+    var radarFuaData = [];
+    var fuacode = e.layer.properties.fuacode;
+    var sauname = e.layer.properties.launame;
+    if (sauname == undefined) {
+        var sauInfo = ''
+    } else {
+        // var sauInfo = `<b>Commune:</b> ${sauname} <br>`
+        var sauInfo = `${sauname}`
+    };
+    var fuaname = e.layer.properties.fuaname_en;
+    if (fuaname == undefined) {
+        var fuaInfo = ''
+    } else {
+        var fuaInfo = `FUA of ${fuaname}`
+        var selectedFuaData = fuaData.data.find(row => row.fuacode === fuacode);
+    };
+    var cityname = e.layer.properties.cityname_en;
+    if (cityname == undefined) {
+        var cityInfo = ''
+    } else {
+        var cityInfo = `City of ${cityname}`
+    };
+    var rent = e.layer.properties.RENT_M2;
+    if (rent == undefined) {
+        var rentInfo = ''
+    } else {
+        var rentInfo = `<b>Rent per m²: </b> ${Math.round(rent * 100) / 100} €/m² <br>`;
+        radarLabels.push('Rent');
+        radarSauData.push(normalizeData(rent, 5, 25));
+        if (fuaname != undefined) {
+            var rentFua = selectedFuaData['RENT_M2'];
+            radarFuaData.push(normalizeData(rentFua, 5, 25));
+        }
+        
+    };
+    var housingPrice = e.layer.properties.HOUSING_PRICE_M2;
+    if (housingPrice == undefined) {
+        var housingPriceInfo = ''
+    } else {
+        var housingPriceInfo = `<b>Housing price per m²: </b> ${Math.round(housingPrice * 100) / 100} €/m² <br>`;
+        radarLabels.push('Housing price');
+        radarSauData.push(normalizeData(housingPrice, 2000, 12000));
+        if (fuaname != undefined) {
+            var housingPriceFua = selectedFuaData['HOUSING_PRICE_M2'];
+            radarFuaData.push(normalizeData(housingPriceFua, 2000, 12000));
+        }
+        
+    };
+    var income = e.layer.properties.MEDIAN_DISP_INC;
+    if (income == undefined) {
+        var incomeInfo = ''
+    } else {
+        var incomeInfo = `<b>Median disposable income: </b> ${income} €<br>`
+        radarLabels.push('Income');
+        radarSauData.push(normalizeData(income, 10000, 50000));
+        if (fuaname != undefined) {
+            var incomeFua = selectedFuaData['MEDIAN_DISP_INC'];
+            radarFuaData.push(normalizeData(incomeFua, 10000, 50000));
+        }
+        
+    };
+    var gini = e.layer.properties.GINI;
+    if (gini == undefined) {
+        var giniInfo = ''
+    } else {
+        var giniInfo = `<b>Gini coefficient: </b> ${gini} <br>`;
+        radarLabels.push('Gini');
+        radarSauData.push(normalizeData(gini, 0.2, 0.5));
+        if (fuaname != undefined) {
+            var giniFua = selectedFuaData['GINI'];
+            radarFuaData.push(normalizeData(giniFua, 0.2, 0.5));
+        }
+        
+    };
+    var pov = e.layer.properties.POV_RATE_60;
+    if (pov == undefined) {
+        var povInfo = ''
+    } else {
+        var povInfo = `<b>Poverty rate: </b> ${pov} <br>`;
+        radarLabels.push('Poverty');
+        radarSauData.push(normalizeData(pov, 5, 30));
+        if (fuaname != undefined) {
+            var povFua = selectedFuaData['POV_RATE_60'];
+            radarFuaData.push(normalizeData(povFua, 5, 30));
+        }
+        
+    };
+    var unemp = e.layer.properties['UNEMP_RATE_15+'];
+    if (unemp == undefined) {
+        var unempInfo = ''
+    } else {
+        var unempInfo = `<b>Unemployment rate: </b> ${unemp} <br>`;
+        radarLabels.push('Unemployment');
+        radarSauData.push(normalizeData(unemp, 5, 50));
+        if (fuaname != undefined) {
+            var unempFua = selectedFuaData['UNEMP_RATE_15+'];
+            radarFuaData.push(normalizeData(unempFua, 5, 50));
+        }
+        
+    };
+    var popch = e.layer.properties.POP_CH;
+    if (popch == undefined) {
+        var popchInfo = ''
+    } else {
+        var popchInfo = `<b>Population change in the last 5 years: </b> ${Math.round(popch * 100) / 100} % <br>`;
+        // radarLabels.push('Population change');
+        // radarSauData.push(normalizeData(popch, -10, 10));
+        // if (fuaname != undefined) {
+        //     var popchFua = selectedFuaData['POP_CH'];
+        //     radarFuaData.push(normalizeData(popchFua, -10, 10));
+        // }
+        
+    };
+    var youthsh = e.layer.properties.YOUTH_SH;
+    if (youthsh == undefined) {
+        var youthshInfo = ''
+    } else {
+        var youthshInfo = `<b>Share of young population: </b> ${Math.round(youthsh * 100) / 100} % <br>`;
+        radarLabels.push('Youth');
+        radarSauData.push(normalizeData(youthsh, 0, 40));
+        if (fuaname != undefined) {
+            var youthshFua = selectedFuaData['YOUTH_SH'];
+            radarFuaData.push(normalizeData(youthshFua, 0, 40));
+        }
+        
+    };
+    var workagesh = e.layer.properties.WORKAGE_SH;
+    if (workagesh == undefined) {
+        var workageshInfo = ''
+    } else {
+        var workageshInfo = `<b>Share of working age population: </b> ${Math.round(workagesh * 100) / 100} % <br>`;
+        // radarLabels.push('Share of working age population');
+        // radarSauData.push(normalizeData(workagesh, 0, 40));
+        // if (fuaname != undefined) {
+        //     var workageshFua = selectedFuaData['WORKAGE_SH'];
+        //     radarFuaData.push(normalizeData(workageshFua, 0, 40));
+        // }
+        
+    };
+    var oldsh = e.layer.properties.OLD_SH;
+    if (youthsh == undefined) {
+        var oldshInfo = ''
+    } else {
+        var oldshInfo = `<b>Share of elderly population: </b> ${Math.round(oldsh * 100) / 100} % <br>`;
+        radarLabels.push('Elderly');
+        radarSauData.push(normalizeData(oldsh, 0, 40));
+        if (fuaname != undefined) {
+            var oldshFua = selectedFuaData['OLD_SH'];
+            radarFuaData.push(normalizeData(oldshFua, 0, 40));
+        }
+        
+    };
+    var natch = e.layer.properties.NETNAT_RATE;
+    if (natch == undefined) {
+        var natchInfo = ''
+    } else {
+        var natchInfo = `<b>Natural change rate in the last 5 years: </b> ${Math.round(natch * 100) / 100} % <br>`;
+        // radarLabels.push('Natural change');
+        // radarSauData.push(normalizeData(natch, -10, 10));
+        // if (fuaname != undefined) {
+        //     var natchFua = selectedFuaData['NETNAT_RATE'];
+        //     radarFuaData.push(normalizeData(natchFua, -10, 10));
+        // }
+        
+    };
+    var births = e.layer.properties.BIRTH_RATE;
+    if (births == undefined) {
+        var birthsInfo = ''
+    } else {
+        var birthsInfo = `<b>Birth rate: </b> ${Math.round(births * 100) / 100} per 1000 people <br>`;
+        // radarLabels.push('Birth rate');
+        // radarSauData.push(normalizeData(births, 0, 10));
+        // if (fuaname != undefined) {
+        //     var birthsFua = selectedFuaData['BIRTH_RATE'];
+        //     radarFuaData.push(normalizeData(birthsFua, 0, 10));
+        // }
+        
+    };
+    var deaths = e.layer.properties.DEATH_RATE;
+    if (deaths == undefined) {
+        var deathsInfo = ''
+    } else {
+        var deathsInfo = `<b>Death rate: </b> ${Math.round(deaths * 100) / 100} per 1000 people <br>`;
+        // radarLabels.push('Death rate');
+        // radarSauData.push(normalizeData(births, 0, 10));
+        // if (fuaname != undefined) {
+        //     var deathsFua = selectedFuaData['DEATH_RATE'];
+        //     radarFuaData.push(normalizeData(deathsFua, 0, 10));
+        // }
+        
+    };
+    var netmobmig = e.layer.properties.NETMOBMIG_RATE;
+    if (netmobmig == undefined) {
+        var netmobmigInfo = ''
+    } else {
+        var netmobmigInfo = `<b>Net migration rate: </b> ${Math.round(netmobmig * 100) / 100} % <br>`;
+        // radarLabels.push('Net migration rate');
+        // radarSauData.push(normalizeData(netmobmig, -10, 10));
+        // if (fuaname != undefined) {
+        //     var netmobmigFua = selectedFuaData['NETMOBMIG_RATE'];
+        //     radarFuaData.push(normalizeData(netmobmigFua, -10, 10));
+        // }
+        
+    };
+    var netmob = e.layer.properties.NETMOB_RATE;
+    if (netmob == undefined) {
+        var netmobInfo = ''
+    } else {
+        var netmobInfo = `<b>Net internal migration rate: </b> ${Math.round(netmob * 100) / 100} % <br>`;
+        // radarLabels.push('Net internal migration rate');
+        // radarSauData.push(normalizeData(netmob, -10, 10));
+        // if (fuaname != undefined) {
+        //     var netmobFua = selectedFuaData['NETMOB_RATE'];
+        //     radarFuaData.push(normalizeData(netmobFua, -10, 10));
+        // }
+        
+    };
+    var netmig = e.layer.properties.NETMIG_RATE;
+    if (netmig == undefined) {
+        var netmigInfo = ''
+    } else {
+        var netmigInfo = `<b>Net international migration rate: </b> ${Math.round(netmig * 100) / 100} % <br>`;
+        // radarLabels.push('Net international migration rate');
+        // radarSauData.push(normalizeData(netmig, -10, 10));
+        // if (fuaname != undefined) {
+        //     var netmigFua = selectedFuaData['NETMIG_RATE'];
+        //     radarFuaData.push(normalizeData(netmigFua, -10, 10));
+        // }
+        
+    };
+    var migrants = e.layer.properties.MIGRANT_SH;
+    if (migrants == undefined) {
+        var migrantsInfo = ''
+    } else {
+        var migrantsInfo = `<b>Share of foreign-born population: </b> ${Math.round(migrants * 100) / 100} % <br>`;
+        radarLabels.push('Foreign-born');
+        radarSauData.push(normalizeData(migrants, 0, 50));
+        if (fuaname != undefined) {
+            var migrantsFua = selectedFuaData['MIGRANT_SH'];
+            radarFuaData.push(normalizeData(migrantsFua, 0, 50));
+        }
+        
+    };
+    var sexratio = e.layer.properties.SEX_RATIO_TOT;
+    if (sexratio == undefined) {
+        var sexratioInfo = ''
+    } else {
+        var sexratioInfo = `<b>Sex ratio: </b> ${Math.round(sexratio * 100) / 100} <br>`;
+        radarLabels.push('Sex ratio');
+        radarSauData.push(normalizeData(sexratio, 90, 110));
+        if (fuaname != undefined) {
+            var sexratioFua = selectedFuaData['SEX_RATIO_TOT'];
+            radarFuaData.push(normalizeData(sexratioFua, 90, 110));
+        }
+        
+    };
+    var daylst = e.layer.properties.LST_DAY_SUMMER;
+    if (daylst == undefined) {
+        var daylstInfo = ''
+    } else {
+        var daylstInfo = `<b>Daytime LST: </b> ${Math.round(daylst * 100) / 100} °C<br>`;
+        radarLabels.push('Summer temperatures');
+        radarSauData.push(normalizeData(daylst, 20, 40));
+        if (fuaname != undefined) {
+            var daylstFua = selectedFuaData['LST_DAY_SUMMER'];
+            radarFuaData.push(normalizeData(daylstFua, 20, 40));
+        }
+        
+    };
+    var nightlst = e.layer.properties.LST_NIGHT_SUMMER;
+    if (nightlst == undefined) {
+        var nightlstInfo = ''
+    } else {
+        var nightlstInfo = `<b>Nighttime LST: </b> ${Math.round(nightlst * 100) / 100} °C<br>`;
+        // radarLabels.push('Nighttime LST');
+        // radarSauData.push(normalizeData(nightlst, 10, 25));
+        // if (fuaname != undefined) {
+        //     var nightlstFua = selectedFuaData['LST_NIGHT_SUMMER'];
+        //     radarFuaData.push(normalizeData(nightlstFua, 10, 25));
+        // }
+        
+    };
+
+    var cdd = e.layer.properties.CDD_T_22C;
+    if (cdd == undefined) {
+        var cddInfo = ''
+    } else {
+        var cddInfo = `<b>Cooling Degree Days: </b> ${Math.round(cdd)}<br>`;
+        // radarLabels.push('Cooling Degree Days');
+        // radarSauData.push(normalizeData(cdd, 0, 3000));
+        // if (fuaname != undefined) {
+        //     var cddFua = selectedFuaData['CDD_T_22C'];
+        //     radarFuaData.push(normalizeData(cddFua, 0, 3000));
+        // }
+        
+    };
+
+    var cddch = e.layer.properties.CDD_T_22C_CH;
+    if (cddch == undefined) {
+        var cddchInfo = ''
+    } else {
+        var cddchInfo = `<b>Change in Cooling Degree Days: </b> ${Math.round(cddch)}<br>`;
+        // radarLabels.push('Change in Cooling Degree Days');
+        // radarSauData.push(normalizeData(cddchInfo, 0, 100));
+        // if (fuaname != undefined) {
+        //     var cddchFua = selectedFuaData['CDD_T_22C_CH'];
+        //     radarFuaData.push(normalizeData(cddchFua, 0, 100));
+        // }
+        
+    };
+
+    var hdd = e.layer.properties.HDD_T_15C;
+    if (hdd == undefined) {
+        var hddInfo = ''
+    } else {
+        var hddInfo = `<b>Heating Degree Days: </b> ${Math.round(hdd)}<br>`;
+        // radarLabels.push('Heating Degree Days');
+        // radarSauData.push(normalizeData(hdd, 0, 3000));
+        // if (fuaname != undefined) {
+        //     var hddFua = selectedFuaData['HDD_T_15C'];
+        //     radarFuaData.push(normalizeData(hddFua, 0, 3000));
+        // }
+        
+    };
+
+    var hddch = e.layer.properties.HDD_T_15C_CH;
+    if (hddch == undefined) {
+        var hddchInfo = ''
+    } else {
+        var hddchInfo = `<b>Change in Heating Degree Days: </b> ${Math.round(hddch)}<br>`;
+        // radarLabels.push('Change in Heating Degree Days');
+        // radarSauData.push(normalizeData(hddchInfo, -500, 0));
+        // if (fuaname != undefined) {
+        //     var hddchFua = selectedFuaData['HDD_T_15C_CH'];
+        //     radarFuaData.push(normalizeData(hddchFua, -500, 0));
+        // }
+        
+    };
+
+    var riverFlood = e.layer.properties.RIVER_FLOOD_RP100_POP_SH;
+    if (riverFlood == undefined) {
+        var riverFloodInfo = ''
+    } else {
+        var riverFloodInfo = `<b>Population exposed to river flooding: </b> ${Math.round(riverFlood * 100) / 100} % <br>`;
+        radarLabels.push('River flooding');
+        radarSauData.push(normalizeData(riverFlood, 0, 50));
+        if (fuaname != undefined) {
+            var riverFloodFua = selectedFuaData['RIVER_FLOOD_RP100_POP_SH'];
+            radarFuaData.push(normalizeData(riverFloodFua, 0, 50));
+        }
+        
+    };
+    // var coastalFlood = e.layer.properties.COASTALFLOOD_RP100_POP_SH;
+    // if (coastalFlood == undefined) {
+    //     var coastalFloodInfo = ''
+    // } else {
+    //     var coastalFloodInfo = `<b>Population exposed to coastal flooding:</b> ${Math.round(coastalFlood * 100) / 100} %<br>`;
+    //     radarLabels.push('Coastal flooding');
+    //     radarSauData.push(normalizeData(coastalFlood, 0, 50));
+    //     if (fuaname != undefined) {
+    //         var coastalFloodFua = selectedFuaData['COASTALFLOOD_RP100_POP_SH'];
+    //         radarFuaData.push(normalizeData(coastalFloodFua, 0, 50));
+    //     }
+        
+    // };
+
+    var greenAreasSh = e.layer.properties.GREEN_AREA_SHARE;
+    if (greenAreasSh == undefined) {
+        var greenAreasShInfo = ''
+    } else {
+        var greenAreasShInfo = `<b>Share of green areas: </b> ${Math.round(greenAreasSh * 100) / 100} %<br>`;
+        radarLabels.push('Green areas');
+        radarSauData.push(normalizeData(greenAreasSh, 0, 100));
+        if (fuaname != undefined) {
+            var greenAreasShFua = selectedFuaData['GREEN_AREA_SHARE'];
+            radarFuaData.push(normalizeData(greenAreasShFua, 0, 100));
+        }
+        
+    };
+    var greenAreasCap = e.layer.properties.GREEN_AREA_CAPITA;
+    if (greenAreasCap == undefined) {
+        var greenAreasCapInfo = ''
+    } else {
+        var greenAreasCapInfo = `<b>Green areas per capita: </b> ${Math.round(greenAreasCap * 100) / 100} m2/cap.<br>`;
+        // radarLabels.push('Green areas per capita');
+        // radarSauData.push(normalizeData(greenAreasCap, 10, 1000));
+        // if (fuaname != undefined) {
+        //     var greenAreasCapFUA = selectedFuaData['GREEN_AREA_CAPITA'];
+        //     radarFuaData.push(normalizeData(greenAreasCapFUA, 10, 1000));
+        // }
+        
+    };
+    var forestCh = e.layer.properties.FOREST_CH;
+    if (forestCh == undefined) {
+        var forestChInfo = ''
+    } else {
+        var forestChInfo = `<b>Tree cover change: </b> ${Math.round(forestCh * 100) / 100} %<br>`;
+        // radarLabels.push('Tree cover change');
+        // radarSauData.push(normalizeData(forestCh, -20, 20));
+        // if (fuaname != undefined) {
+        //     var forestChFUA = selectedFuaData['FOREST_CH'];
+        //     radarFuaData.push(normalizeData(forestChFUA, -20, 20));
+        // }
+        
+    };
+
+    var ooklaDownload = e.layer.properties.OOKLA_FIXED_DOWNLOAD_DEV;
+    if (ooklaDownload == undefined) {
+        var ooklaDownloadInfo = ''
+    } else {
+        var ooklaDownloadInfo = `<b>Download speed: </b> ${Math.round(ooklaDownload * 100) / 100} %<br>`;
+        radarLabels.push('Internet speed');
+        radarSauData.push(normalizeData(ooklaDownload, -100, 100));
+        if (fuaname != undefined) {
+            var ooklaDownloadFUA = selectedFuaData['OOKLA_FIXED_DOWNLOAD_DEV'];
+            radarFuaData.push(normalizeData(ooklaDownloadFUA, -100, 100));
+        }
+        
+    };
+
+    var ooklaUpload = e.layer.properties.OOKLA_FIXED_UPLOAD_DEV;
+    if (ooklaUpload == undefined) {
+        var ooklaUploadInfo = ''
+    } else {
+        var ooklaUploadInfo = `<b>Upload speed: </b> ${Math.round(ooklaUpload * 100) / 100} %<br>`;
+        // radarLabels.push('Upload speed');
+        // radarSauData.push(normalizeData(ooklaUpload, -100, 100));
+        // if (fuaname != undefined) {
+        //     var ooklaUploadFUA = selectedFuaData['OOKLA_FIXED_UPLOAD_DEV'];
+        //     radarFuaData.push(normalizeData(ooklaUploadFUA, -100, 100));
+        // }
+        
+    };
+    
+
+    var radarDataSets = [{
+                label: sauname,
+                data: radarSauData,
+                backgroundColor: "rgba(75, 192, 192, 0.4)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1,
+            }];
+    if (fuaname != undefined) {
+        radarDataSets.push({
+                label: `FUA of ${fuaname}`,
+                data: radarFuaData,
+                backgroundColor: "rgba(255, 99, 132, 0.4)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 1,
+            });
+    }
+    // L.popup()
+    //     .setContent(`${sauInfo} 
+    //                 ${fuaInfo} 
+    //                 ${cityInfo} 
+    //                 ${incomeInfo} 
+    //                 ${giniInfo} 
+    //                 ${povInfo}
+    //                 ${rentInfo}
+    //                 ${housingPriceInfo}
+    //                 ${youthshInfo}
+    //                 ${workageshInfo}
+    //                 ${oldshInfo}
+    //                 ${popchInfo}
+    //                 ${natchInfo}
+    //                 ${birthsInfo}
+    //                 ${deathsInfo}
+    //                 ${netmobmigInfo}
+    //                 ${migrantsInfo}
+    //                 ${daylstInfo} 
+    //                 ${nightlstInfo}
+    //                 ${riverFloodInfo}
+    //                 ${coastalFloodInfo}
+    //                 ${greenAreasShInfo}
+    //                 ${greenAreasCapInfo}
+    //                 ${forestChInfo}` )
+    L.popup({maxHeight: 300})
+        .setContent(`
+            <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-start text-xl font-bold">${sauInfo}</div>
+                            <div class="flex items-start text-sm font-bold sm\:ml-2">${fuaInfo}</div>
+                            <div class="flex items-start text-sm font-bold sm\:ml-2">${cityInfo}</div>
+                        </div>
+                        
+                        <div class="flex flex-col gap-1 ">
+                            <div class="flex items-start gap-1">
+                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                style="background: rgb(77, 82, 168);"><i
+                                    class="fa-fw fa-regular fa-dollar"></i></div>
+                            <div class="font-bold">Economy and labour</div>
+                            </div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${incomeInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${unempInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${giniInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${unempInfo}</div>
+                        </div>
+                        
+                        
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-start gap-1">
+                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                style="background: rgb(178, 82, 144);"><i
+                                    class="fa-fw fa-regular fa-people"></i></div>
+                            <div class="font-bold">Demography</div>
+                            </div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${oldshInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${workageshInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${youthshInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${sexratioInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${popchInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${natchInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${birthsInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${deathsInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${migrantsInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${netmobmigInfo}</div>
+
+                        </div>
+
+                    
+
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-start gap-1">
+                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                style="background: rgb(16, 149, 76);"><i
+                                    class="fa-fw fa-regular fa-seedling"></i></div>
+                            <div class="font-bold">Environment</div>
+                            </div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${greenAreasShInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${forestChInfo}</div>
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-start gap-1">
+                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                style="background: darkred;"><i
+                                    class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
+                            <div class="font-bold">Climate</div>
+                            </div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${daylstInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${nightlstInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${cddInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${hddInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${riverFloodInfo}</div>
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-start gap-1">
+                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                style="background: rgb(255, 130, 0);"><i
+                                    class="fa-fw fa-regular fa-shop"></i></div>
+                            <div class="font-bold">Services</div>
+                            </div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${ooklaDownloadInfo}</div>
+                            <div class="flex items-start gap-1 sm\:ml-6">${ooklaUploadInfo}</div>
+                        </div>
+                        
+                    </div>
+                    ` )
+        .setLatLng(e.latlng)
+        .openOn(map);
+
+    if (currentChartControl != undefined) {
+        currentChartControl.remove();
+    }
+    currentChartControl = L.control({ position: 'bottomleft' });
+
+    // ...
+    currentChartControl.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info control-chart');
+    this._div.innerHTML = `<canvas id="radar-chart"></canvas>`;
+    return this._div;
+    }
+
+    currentChartControl.addTo(map);
+
+    // Call the function to create the radar chart
+    createRadarChart();
+
+    function createRadarChart() {
+        var ctx = document.getElementById("radar-chart").getContext("2d");
+
+        // Example data (replace with your own data)
+        var data = {
+            labels: radarLabels,
+            datasets: radarDataSets,
+        };
+
+        var options = {
+            scale: {
+                ticks: {
+                    callback: function() {return ""},
+                    backdropColor: "rgba(0, 0, 0, 0)"
+                }
+            },
+            tooltips: {
+                mode: 'label',
+                enabled: false,
+            },
+        };
+
+
+        // Create the radar chart
+        new Chart(ctx, {
+            type: "radar",
+            data: data,
+            options: options,
+        });
+    }
+        
+
+}
+
+
+var scaleReds = chroma.scale(['#ffffe0', '#f5e1c1', '#eac4a3', '#dda686', '#cf8a6a', '#c06d4e', '#b05034', '#9e311b', '#8b0000'])
+var scaleGreens = chroma.scale(['#ffffe0', '#e5f2cc', '#cbe5b9', '#b1d8a6', '#97ca93', '#7cbd81', '#60b06f', '#41a25d', '#10954c'])
+var scalePinks = chroma.scale(['#ffffe0', '#f7e9d6', '#eed4cc', '#e5bec2', '#dba9b8', '#d194ae', '#c77ea4', '#bd689a', '#b25290'])
+var scaleBlues = chroma.scale(['#ffffe0', '#eae8da', '#d5d1d3', '#c0bacc', '#aba4c5', '#958fbe', '#7f7ab7', '#6766b0', '#4d52a8'])
+var scaleOranges = chroma.scale(['#ffffe0', '#eae8da', '#d5d1d3', '#c0bacc', '#aba4c5', '#958fbe', '#7f7ab7', '#6766b0', '#4d52a8'])
+
+var scaleBuRd = chroma.scale(['#00429d', '#4771b2', '#73a2c6', '#a5d5d8', '#ffffe0', '#ffbcaf', '#f4777f', '#cf3759', '#93003a'])
+var scaleRdBu = chroma.scale(['#93003a', '#cf3759', '#f4777f', '#ffbcaf', '#ffffe0', '#a5d5d8', '#73a2c6', '#4771b2', '#00429d'])
+
+
+function getColor(d, valMin, valMax, scale = scaleReds) {
+    var scaledValue = (d - valMin) / (valMax - valMin);
+    var color = scale(scaledValue).hex();
+    return color;
+};
+
+function getVectorLayer(variable, varMin, varMax, scale = scaleReds) {
+    var TileStyling = {
+        "data_geo": function(properties, zoom) {
+            if (properties[variable] !== undefined) {
+                var weight = 0.1;
+                if (zoom > 12) {
+                    weight = 1.0;
+                }
+                return ({
+                    fill: true,
+                    fillColor: getColor(properties[variable], varMin, varMax, scale),
+                    fillOpacity: 0.9,
+                    weight: weight, // pass the weight variable instead of a value
+                    color: "#ffffff",
+                    opacity: 1.0,
+                });
+            }
+            else {
+                return ({
+                    fill: false,
+                    weight: 0,
+                    color: "#ffffff",
+                    opacity: 0,
+                });
+            }
+            
+        }
+    }
+
+    // define options of vector tiles
+    var mapTileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: true,
+        // attribution: '(C) Alex Banquet',
+        maxNativeZoom: 12,
+        minZoom: 4,
+        vectorTileLayerStyles: TileStyling,
+    };
+
+    var mapLayer = new L.VectorGrid.Protobuf(
+        mapDataTilesUrl, mapTileOptions
+    ).on('click', clickHandler);
+
+    return mapLayer;
+
+}
+
+
+var mapBaseLabelsLayer = L.tileLayer(
+    'https://api.mapbox.com/styles/v1/abanquet/clhdzt353015p01pg5gk53vbt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWJhbnF1ZXQiLCJhIjoiY2tuZWR0czllMXFsOTJ4bXI0YTJkYXh0NyJ9.5fHw32nqi29CNuM4oEF3AA', 
+);
+mapBaseLabelsLayer.setZIndex(10).addTo(map);
+
+var mapBaseTL1Layer = L.tileLayer(
+    'https://api.mapbox.com/styles/v1/abanquet/clif2mrb6002u01pge4wadfzw/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWJhbnF1ZXQiLCJhIjoiY2tuZWR0czllMXFsOTJ4bXI0YTJkYXh0NyJ9.5fHw32nqi29CNuM4oEF3AA'
+);
+mapBaseTL1Layer.setZIndex(11).addTo(map);
+
+// var scale = chroma.scale(['#ffffe0', '#ffe0a9', '#ffbe84', '#ff986d', '#f47361', '#e35056', '#cb2f44', '#ae112a', '#8b0000'])
+
+// function getColor(d, valMin, valMax) {
+//     var scaledValue = (d - valMin) / (valMax - valMin);
+//     var color = scale(scaledValue).hex();
+//     return color;
+// };
+
+function getLegend(varLabel, grades, varMin, varMax, scale = scaleReds){
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += `<b>${varLabel}</b><br>`
+    // grades = [5, 10, 20, 25];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i], varMin, varMax, scale) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+}
+
+return div;
+};
+
+return legend;
+}
+
+mapIncomeLayer = getVectorLayer("MEDIAN_DISP_INC", 10000, 50000, scaleBlues);
+incomeLegend = getLegend('Median disposable income (€)', [10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000], 10000, 50000, scaleBlues);
+currentLayer = mapIncomeLayer;
+currentLegend = incomeLegend;
+currentButton = document.getElementById('button-median-income');
+currentButton.classList.remove('bg-white');
+currentButton.classList.add('bg-gray-100');
+currentLayer.addTo(map);
+currentLegend.addTo(map);
+document.getElementById('button-median-income').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapIncomeLayer;
+  currentLegend = incomeLegend;
+  currentButton = document.getElementById('button-median-income');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+// layerControl.addBaseLayer(mapIncomeLayer, "Income");
+
+mapGiniLayer = getVectorLayer("GINI", 0.2, 0.5, scaleBlues);
+giniLegend = getLegend('Gini coefficient', [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5], 0.2, 0.5, scaleBlues);
+// layerControl.addBaseLayer(mapGiniLayer, "Gini");
+document.getElementById('button-gini').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapGiniLayer;
+  currentLegend = giniLegend;
+  currentButton = document.getElementById('button-gini');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapPovLayer = getVectorLayer("POV_RATE_60", 5, 40, scaleBlues);
+povLegend = getLegend('Poverty rate (%)', [5, 10, 15, 20, 25, 30, 35, 40], 5, 40, scaleBlues);
+// layerControl.addBaseLayer(mapPovLayer, "Poverty");
+document.getElementById('button-poverty').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapPovLayer;
+  currentLegend = povLegend;
+  currentButton = document.getElementById('button-poverty');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapUnempLayer = getVectorLayer("UNEMP_RATE_15+", 0, 30, scaleBlues);
+unempLegend = getLegend('Unemployment rate (%)', [0, 5, 10, 15, 20, 25, 30], 0, 30, scaleBlues);
+// layerControl.addBaseLayer(mapPovLayer, "Poverty");
+document.getElementById('button-unempl-rate').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapUnempLayer;
+  currentLegend = unempLegend;
+  currentButton = document.getElementById('button-unempl-rate');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapRentLayer = getVectorLayer("RENT_M2", 5, 25, scaleBlues);
+rentLegend = getLegend('Rent (€/m²)', [5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25], 5, 25, scaleBlues);
+// layerControl.addBaseLayer(mapRentLayer, "Rent");
+document.getElementById('button-rent').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapRentLayer;
+  currentLegend = rentLegend;
+  currentButton = document.getElementById('button-rent');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapHousingPriceLayer = getVectorLayer("HOUSING_PRICE_M2", 0, 10000, scaleBlues);
+HousingPriceLegend = getLegend('Housing price (€/m²)', [0, 2000, 6000, 8000, 10000], 0, 10000, scaleBlues);
+// layerControl.addBaseLayer(mapRentLayer, "Rent");
+document.getElementById('button-housing-price').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapHousingPriceLayer;
+  currentLegend = HousingPriceLegend;
+  currentButton = document.getElementById('button-housing-price');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapPopchLayer = getVectorLayer("POP_CH", -30, 30, scaleRdBu);
+popchLegend = getLegend('Population change (%)', [-30, -10, -5, -1, 1, 5, 10, 30], -30, 30, scaleRdBu);
+document.getElementById('button-popch').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapPopchLayer;
+  currentLegend = popchLegend;
+  currentButton = document.getElementById('button-popch');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapNatchLayer = getVectorLayer("NETNAT_RATE", -30, 30, scaleRdBu);
+natchLegend = getLegend('Net natural change rate (%)', [-30, -10, -5, -1, 1, 5, 10, 30], -30, 30, scaleRdBu);
+document.getElementById('button-natch').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapNatchLayer;
+  currentLegend = natchLegend;
+  currentButton = document.getElementById('button-natch');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapMobmigchLayer = getVectorLayer("NETMOBMIG_RATE", -30, 30, scaleRdBu);
+MobmigchLegend = getLegend('Net migration rate (%)', [-30, -10, -5, -1, 1, 5, 10, 30], -30, 30, scaleRdBu);
+document.getElementById('button-netmobmig').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapMobmigchLayer;
+  currentLegend = MobmigchLegend;
+  currentButton = document.getElementById('button-netmobmig');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapMobchLayer = getVectorLayer("NETMOB_RATE", -30, 30, scaleRdBu);
+MobchLegend = getLegend('Net internal migration rate (%)', [-30, -10, -5, -1, 1, 5, 10, 30], -30, 30, scaleRdBu);
+document.getElementById('button-netmob').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapMobchLayer;
+  currentLegend = MobchLegend;
+  currentButton = document.getElementById('button-netmob');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapMigchLayer = getVectorLayer("NETMIG_RATE", -30, 30, scaleRdBu);
+MigchLegend = getLegend('Net international migration rate (%)', [-30, -10, -5, -1, 1, 5, 10, 30], -30, 30, scaleRdBu);
+document.getElementById('button-netmig').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapMigchLayer;
+  currentLegend = MigchLegend;
+  currentButton = document.getElementById('button-netmig');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapOldshLayer = getVectorLayer("OLD_SH", 0, 40, scalePinks);
+oldshLegend = getLegend('Share of elderly population (%)', [0, 5, 10, 15, 20, 25, 30, 35, 40], 0, 40, scalePinks);
+document.getElementById('button-oldsh').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapOldshLayer;
+  currentLegend = oldshLegend;
+  currentButton = document.getElementById('button-oldsh');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapWorkageshLayer = getVectorLayer("WORKAGE_SH", 30, 80, scalePinks);
+worageshLegend = getLegend('Share of working age population (%)', [30, 40, 50, 60, 70, 80], 30, 80, scalePinks);
+document.getElementById('button-workagesh').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapWorkageshLayer;
+  currentLegend = worageshLegend;
+  currentButton = document.getElementById('button-workagesh');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapYoungshLayer = getVectorLayer("YOUTH_SH", 0, 30, scalePinks);
+youngshLegend = getLegend('Share of young population (%)', [0, 5, 10, 15, 20, 25, 30], 0, 30, scalePinks);
+document.getElementById('button-youngsh').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapYoungshLayer;
+  currentLegend = youngshLegend;
+  currentButton = document.getElementById('button-youngsh');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapMigrantshLayer = getVectorLayer("MIGRANT_SH", 0, 40, scalePinks);
+migrantshLegend = getLegend('Share of foreign-born population (%)', [0, 5, 10, 15, 20, 25, 30, 35, 40], 0, 40, scalePinks);
+document.getElementById('button-foreign-born').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapMigrantshLayer;
+  currentLegend = migrantshLegend;
+  currentButton = document.getElementById('button-foreign-born');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapSexRatioLayer = getVectorLayer("SEX_RATIO_TOT", 85, 115, scaleRdBu);
+sexRatioLegend = getLegend('Sex ratio', [85, 90, 95, 100, 105, 110, 115], 85, 115, scaleRdBu);
+document.getElementById('button-sex-ratio').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapSexRatioLayer;
+  currentLegend = sexRatioLegend;
+  currentButton = document.getElementById('button-sex-ratio');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapBirthRateLayer = getVectorLayer("BIRTH_RATE", 0, 25, scalePinks);
+birthRateLegend = getLegend('Birth rate (per 1000 people)', [0, 5, 10, 15, 20, 25], 0, 25, scalePinks);
+document.getElementById('button-birth').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapBirthRateLayer;
+  currentLegend = birthRateLegend;
+  currentButton = document.getElementById('button-birth');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapDeathRateLayer = getVectorLayer("DEATH_RATE", 0, 25, scalePinks);
+deathRateLegend = getLegend('Death rate (per 1000 people)', [0, 5, 10, 15, 20, 25], 0, 25, scalePinks);
+document.getElementById('button-death').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapDeathRateLayer;
+  currentLegend = deathRateLegend;
+  currentButton = document.getElementById('button-death');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapLSTDayLayer = getVectorLayer("LST_DAY_SUMMER", 20, 40);
+daylstLegend = getLegend('Daytime LST (°C)', [20, 25, 30, 35, 40], 20, 40);
+// layerControl.addBaseLayer(mapLSTDayLayer, "Daytime LST");
+document.getElementById('button-lst-day').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapLSTDayLayer;
+  currentLegend = daylstLegend;
+  currentButton = document.getElementById('button-lst-day');
+  // Add layer1 to the map
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapLSTNightLayer = getVectorLayer("LST_NIGHT_SUMMER", 10, 25);
+nightlstLegend = getLegend('Daytime LST (°C)', [10, 15, 20, 25], 10, 25);
+// layerControl.addBaseLayer(mapLSTNightLayer, "Nighttime LST");
+document.getElementById('button-lst-night').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapLSTNightLayer;
+  currentLegend = nightlstLegend;
+  currentButton = document.getElementById('button-lst-night');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapCDDLayer = getVectorLayer("CDD_T_22C", 0, 3000);
+CDDLegend = getLegend('Cooling Degree Days', [0, 500, 1000, 1500, 2000, 2500, 3000], 0, 3000);
+// layerControl.addBaseLayer(mapLSTNightLayer, "Nighttime LST");
+document.getElementById('button-cdd').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapCDDLayer;
+  currentLegend = CDDLegend;
+  currentButton = document.getElementById('button-cdd');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapCDDChLayer = getVectorLayer("CDD_T_22C_CH", 0, 100);
+CDDChLegend = getLegend('Change in Cooling Degree Days', [0, 20, 40, 60, 80, 100], 0, 100);
+document.getElementById('button-cdd-ch').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapCDDChLayer;
+  currentLegend = CDDChLegend;
+  currentButton = document.getElementById('button-cdd-ch');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapHDDLayer = getVectorLayer("HDD_T_15C", 0, 3000);
+HDDLegend = getLegend('Heating Degree Days', [0, 500, 1000, 1500, 2000, 2500, 3000], 0, 3000);
+document.getElementById('button-hdd').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapHDDLayer;
+  currentLegend = HDDLegend;
+  currentButton = document.getElementById('button-hdd');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapHDDChLayer = getVectorLayer("HDD_T_15C_CH", -500, 0);
+HDDChLegend = getLegend('Change in Heating Degree Days', [-500, -400, -300, -200, -100, 0], -500, 0);
+document.getElementById('button-hdd-ch').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapHDDChLayer;
+  currentLegend = HDDChLegend;
+  currentButton = document.getElementById('button-hdd-ch');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapRiverFloodLayer = getVectorLayer("RIVER_FLOOD_RP100_POP_SH", 0, 60);
+riverFloodLegend = getLegend('Population exposure to 100-year<br>river flooding (%)', [0, 10, 20, 30, 40, 50, 60], 0, 60);
+// layerControl.addBaseLayer(mapLSTNightLayer, "Nighttime LST");
+document.getElementById('button-river-flood').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapRiverFloodLayer;
+  currentLegend = riverFloodLegend;
+  currentButton = document.getElementById('button-river-flood');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+// mapCoastalFloodLayer = getVectorLayer("COASTAL_FLOOD_RP100_POP_SH", 0, 60);
+// coastalFloodLegend = getLegend('Population exposure to 100-year<br>coastal flooding (%)', [0, 10, 20, 30, 40, 50, 60], 0, 60);
+// document.getElementById('button-coastal-flood').addEventListener('click', function() {
+//   // Remove other layers
+//   map.removeLayer(currentLayer);
+//   map.removeControl(currentLegend);
+//   currentButton.classList.remove('bg-gray-100');
+//   currentButton.classList.add('bg-white');
+//   currentLayer = mapCoastalFloodLayer;
+//   currentLegend = coastalFloodLegend;
+//   currentButton = document.getElementById('button-coastal-flood');
+//   // Add layer1 to the map
+//   currentLayer.addTo(map);
+//   currentLegend.addTo(map);
+//   currentButton.classList.add('bg-gray-100');
+// });
+
+mapGreenshLayer = getVectorLayer("GREEN_AREA_SHARE", 0, 100, scaleGreens);
+greenShLegend = getLegend('Green area share (%)', [0, 20, 40, 50, 60, 70, 80, 90, 100], 0, 100, scaleGreens);
+// layerControl.addBaseLayer(mapLSTNightLayer, "Nighttime LST");
+document.getElementById('button-green-sh').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapGreenshLayer;
+  currentLegend = greenShLegend;
+  currentButton = document.getElementById('button-green-sh');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapGreenCapLayer = getVectorLayer("GREEN_AREA_CAPITA", 100, 10000, scaleGreens);
+greenCapLegend = getLegend('Green area per capita (m2/cap.)', [100, 500, 1000, 5000, 10000], 0, 10000, scaleGreens);
+// layerControl.addBaseLayer(mapLSTNightLayer, "Nighttime LST");
+document.getElementById('button-green-capita').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapGreenCapLayer;
+  currentLegend = greenCapLegend;
+  currentButton = document.getElementById('button-green-capita');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapForestchLayer = getVectorLayer("FOREST_CH", -30, 30, scaleRdBu);
+forestchLegend = getLegend('Tree cover change (%)', [-30, -10, -5, -1, 1, 5, 10, 30], -30, 30, scaleRdBu);
+document.getElementById('button-forestch').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapForestchLayer;
+  currentLegend = forestchLegend;
+  currentButton = document.getElementById('button-forestch');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapDownloadLayer = getVectorLayer("OOKLA_FIXED_DOWNLOAD_DEV", -100, 100, scaleRdBu);
+downloadLegend = getLegend('Fixed download speed<br>(% deviation from national average)', [-100, -70, -40, -10, 10, 40, 70, 100], -100, 100, scaleRdBu);
+document.getElementById('button-download').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapDownloadLayer;
+  currentLegend = downloadLegend;
+  currentButton = document.getElementById('button-download');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+mapUploadLayer = getVectorLayer("OOKLA_FIXED_UPLOAD_DEV", -100, 100, scaleRdBu);
+uploadLegend = getLegend('Fixed upload speed<br>(% deviation from national average)', [-100, -70, -40, -10, 10, 40, 70, 100], -100, 100, scaleRdBu);
+document.getElementById('button-upload').addEventListener('click', function() {
+  // Remove other layers
+  map.removeLayer(currentLayer);
+  map.removeControl(currentLegend);
+  currentButton.classList.remove('bg-gray-100');
+  currentButton.classList.add('bg-white');
+  currentLayer = mapUploadLayer;
+  currentLegend = uploadLegend;
+  currentButton = document.getElementById('button-upload');
+  // Add layer1 to the map
+  currentLayer.addTo(map);
+  currentLegend.addTo(map);
+  currentButton.classList.add('bg-gray-100');
+});
+
+
+
+map.on('baselayerchange', function (eventLayer) {
+// Switch to the Permafrost legend...
+   if (eventLayer.name === 'Rent') {
+       this.removeControl(legend);
+       legend = rentLegend;
+       legend.addTo(this);}
+  else if (eventLayer.name === 'Gini') {
+       this.removeControl(legend);
+       legend = giniLegend;
+       legend.addTo(this);}
+  else if (eventLayer.name === 'Poverty') {
+       this.removeControl(legend);
+       legend = povLegend;
+       legend.addTo(this);}
+else if (eventLayer.name === "Daytime LST") {
+       this.removeControl(legend);
+       legend = daylstLegend;
+       legend.addTo(this);}
+else if (eventLayer.name === "Nighttime LST") {
+       this.removeControl(legend);
+       legend = nightlstLegend;
+       legend.addTo(this);}
+  else { 
+       this.removeControl(legend);
+       legend = incomeLegend;
+       legend.addTo(this);
+  }});
+
+const provider = new window.GeoSearch.OpenStreetMapProvider();
+const search = new GeoSearch.GeoSearchControl({
+    provider: provider,
+    style: 'bar',
+    // position: 'topright',
+    showMarker: true,
+});
+map.addControl(search);
+
+
+</script>
+
+</body>
+
+</html>
+
+
+
