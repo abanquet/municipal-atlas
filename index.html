@@ -1088,9 +1088,27 @@ var mapSearch = new GeoSearch.GeoSearchControl({
     provider: mapProvider,
     style: 'bar',
     // position: 'topright',
-    showMarker: true,
+    showMarker: false,
 });
 map.addControl(mapSearch);
+
+// Listen for the marker dragend event
+// map.on('geosearch/showlocation', function(event) {
+//     var lat = event.location.y;
+//     var lon = event.location.x;
+//     console.log(lat);
+//     console.log(lon);
+//     var clickEvent = {
+//         latlng: L.latLng(lat, lon),
+//         layerPoint: map.latLngToLayerPoint([lat, lon]),
+//         containerPoint: map.latLngToContainerPoint([lat, lon]),
+//         originalEvent: {
+//             type: 'click',
+//             target: map
+//         }
+//     };
+//     map.fireEvent('click', clickEvent);
+// });
 
 </script>
 

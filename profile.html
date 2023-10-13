@@ -253,7 +253,7 @@ $.getJSON("https://municipalatlas.blob.core.windows.net/data/data/geo_names/tl1_
             })
             .then(data => {
                 mapContainerElem = document.getElementById("map-container");
-                mapContainerElem.innerHtml = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
+                mapContainerElem.innerHTML = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
                                 <div id='profileSauTitle' style="z-index: 10000" ></div>
                             </div>`;
                 if (mapProfile == undefined) {
@@ -319,7 +319,7 @@ function updateContent() {
                     })
                     .then(data => {
                         mapContainerElem = document.getElementById("map-container");
-                        mapContainerElem.innerHtml = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
+                        mapContainerElem.innerHTML = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
                                 <div id='profileSauTitle' style="z-index: 10000" ></div>
                             </div>`;
                         if (mapProfile == undefined) {
