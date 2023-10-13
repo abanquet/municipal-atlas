@@ -92,11 +92,10 @@
                         </div>
                         <hr />
 
-                        <div class="flex gap-4 justify-between print:!w-full sm:w min-h-96">
-                            
-                            <div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
+                        <div id="map-container" class="flex gap-4 justify-between print:!w-full sm:w min-h-96">
+                            <!-- <div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
                                 <div id='profileSauTitle' style="z-index: 10000" ></div>
-                            </div>
+                            </div> -->
                         </div>
                         
                         
@@ -253,6 +252,10 @@ $.getJSON("https://municipalatlas.blob.core.windows.net/data/data/geo_names/tl1_
                 return response.json(); // Get the raw text
             })
             .then(data => {
+                mapContainerElem = document.getElementById("map-container");
+                mapContainerElem.innerHtml = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
+                                <div id='profileSauTitle' style="z-index: 10000" ></div>
+                            </div>`;
                 if (mapProfile == undefined) {
                     mapProfile = buildBaseMap();
                     $('.leaflet-control-attribution').hide()
@@ -315,6 +318,10 @@ function updateContent() {
                         return response.json(); // Get the raw text
                     })
                     .then(data => {
+                        mapContainerElem = document.getElementById("map-container");
+                        mapContainerElem.innerHtml = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
+                                <div id='profileSauTitle' style="z-index: 10000" ></div>
+                            </div>`;
                         if (mapProfile == undefined) {
                             mapProfile = buildBaseMap();
                             $('.leaflet-control-attribution').hide()
