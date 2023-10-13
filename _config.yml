@@ -1,1 +1,4 @@
-baseurl: "/municipal-atlas"
+# Site settings
+title: Municipal Atlas
+description: A web site to visualise local statistics in OECD countries
+theme: jekyll-theme-minimal
