@@ -4,17 +4,17 @@
 <head>
     <title>OECD Municipal Atlas</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
     <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
     <script src="https://unpkg.com/esri-leaflet-vector@4.1.0/dist/esri-leaflet-vector.js"></script>
-    
+
     <!-- load VectorGrid extension -->
-    <script src="https://unpkg.com/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js"></script> 
+    <script src="https://unpkg.com/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js"></script>
 
     <!-- load Geotiff extension -->
     <!-- <script src="https://unpkg.com/georaster"></script> -->
@@ -24,11 +24,11 @@
     <link rel="stylesheet" href="fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="fontawesome/css/regular.css">
     <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/bundle.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://www.unpkg.com/papaparse@5.4.1/papaparse.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
 
@@ -43,804 +43,1225 @@
                 <div class="mx-auto max-w-1xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 items-center justify-between">
                         <div class="flex items-center">
-                            <a class="flex shrink-0 items-center mr-4 ml-0">
+                            <a class="flex shrink-0 items-center mr-4 ml-0" href="https://www.oecd.org/">
                                 <img src="./img/OECD_logo_new.svg.png" class="h-8 sm:h-10 w-auto" />
                             </a>
-                            <div class="font-bold text-xl sm:text-2xl text-gray-700 hidden sm:flex" style="padding: 20px;">
+                            <div class="font-bold text-xl sm:text-2xl text-gray-700 hidden sm:flex"
+                                style="padding: 20px;">
                                 Municipal Atlas
                             </div>
                         </div>
-                        
-                        
+
+
                         <div class="sm:-my-px sm:flex sm:space-x-4 justify-between items-center">
                             <a href="index"
-                            class="inline-flex items-center px-1 font-bold text-gray-500 hover:text-gray-700"
-                            aria-current="page">Maps</a>
+                                class="inline-flex items-center px-1 font-bold text-gray-500 hover:text-gray-700"
+                                aria-current="page">Maps</a>
                             <a href="profile"
-                            class="inline-flex items-center px-1 font-bold text-gray-500 hover:text-gray-700">Profile</a>
+                                class="inline-flex items-center px-1 font-bold text-gray-500 hover:text-gray-700">Profile</a>
                             <a href="methodology"
-                            class="!text-gray-900 router-link-exact-active inline-flex items-center px-1 font-bold text-gray-500 hover:text-gray-700">Methodology</a>
+                                class="!text-gray-900 router-link-exact-active inline-flex items-center px-1 font-bold text-gray-500 hover:text-gray-700">Methodology</a>
                         </div>
-                    
+
                     </div>
                 </div>
             </nav>
 
             <div class="grow">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex gap-10 py-16">
-                    
-                    <div class="flex flex-col gap-16 break-words print:!w-full sm:w">
-                        <div class="flex flex-col gap-8">
-                            
-                            
-
+                    <div class="flex flex-col gap-4 break-words print:!w-full sm:w">
+                        <div class="flex flex-col gap-4">
                             <h2 class="text-3xl font-extrabold sm:text-4xl">Methodology and sources</h2>
-                            <div class="text-lg text-gray-500"> 
-                                The OECD Municipal Atlas is based on both official statistics collected wihtin each country, as well as on unconventional sources
-                                acquired from diverse geospatial data sources, including satellite imagery. This page provides a detailed summary of the data sources
+                            <div class="text-lg text-gray-500">
+                                The OECD Municipal Atlas is based on both official statistics collected wihtin each
+                                country, as well
+                                as on unconventional sources
+                                acquired from diverse geospatial data sources, including satellite imagery. This page
+                                provides a
+                                detailed summary of the data sources
                                 and methodologies used to build this atlas.
-                                
-                            </div>
 
-                        </div>
-                        <div class="flex flex-col gap-8">
-                            <div class="flex flex-col gap-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                        style="background: darkgrey;"><i
-                                            class="fa-fw fa-regular fa-globe-stand"></i></div>
-                                    <div>
-                                        <div class="text-xl font-bold sm:text-2xl">Geographical definitions</div>
-                                    </div>
-                                </div>
-                                <div class="text-gray-500">
-                                    OECD subnational regions are classified into two scales: large regions, referred to as Territorial Level 2 (TL2), and small regions, referred to as Territorial Level 3 (TL3).
-                                    Large regions generally refer to the first government level after the national or federal one. Small regions are contained within large regions and, in the case of European countries, correspond to the NUTS3 nomenclature. 
-                                    For more details, check <a class="text-gray-800 transition hover:text-shift-blue" href="https://www.oecd.org/cfe/regionaldevelopment/territorial-grid.pdf"><u>here</u></a>.
-                                    
-                                </div>
-                                <div class="text-gray-500">
-                                    OECD metropolitan areas are defined based on Functional Urban Areas (FUA). 
-                                    Developed in collaboration with the European Union and endorsed at the 2020 Statistical Commission of the United Nations, FUAs consist of densely populated cities together with their surrounding commuting zones. 
-                                    This definition looks at the full extent of cities’ labour markets to capture the economic boundaries of cities. FUAs are generally the aggregation of local units. 
-                                    For more details, check <a class="text-gray-800 transition hover:text-shift-blue" href="https://www.oecd-ilibrary.org/urban-rural-and-regional-development/the-eu-oecd-definition-of-a-functional-urban-area_d58cb34d-en"><u>here</u></a>.
-                                
-                                </div>
-                                <div class="text-gray-500">
-                                    The table below provides for each OECD country the geographical scale used to define municipalities in the municipal atlas. It also provides the number of units, the average size and the population density.
-                                </div>
-
-                                <div id="table-container" class="flex flex-col text-gray-500 items-center justify-center gap-3">
-                                    <table class="table items-center justify-center gap-3" style="border-collapse: collapse;">
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <th style="padding: 8px; text-align: left;">Country</th>
-                                            <th style="padding: 8px; text-align: left;">Geographical level</th>
-                                            <!-- <th style="padding: 8px; text-align: left;">Number of units</th>
-                                            <th style="padding: 8px; text-align: left;">Area (km2)</th>
-                                            <th style="padding: 8px; text-align: left;">Population</th> -->
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Italy</td> <td style="padding: 8px;">Municipalities (communi)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Canada</td> <td style="padding: 8px;">Census Subdivisions</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Japan</td> <td style="padding: 8px;">Cities, Wards, Towns, and Villages (市区町村)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Switzerland</td> <td style="padding: 8px;">Municipalities (Politische Gemeinden [DE], Communes [FR])</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Costa Rica</td> <td style="padding: 8px;">Distritos</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Norway</td> <td style="padding: 8px;">Municipalities (Kommuner)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Germany</td> <td style="padding: 8px;">Municipalities (Gemeinden)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Austria</td> <td style="padding: 8px;">Municipalities (Gemeinden)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">United States</td> <td style="padding: 8px;">Counties</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Chile</td> <td style="padding: 8px;">Municipalities (comuna)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">New Zealand</td> <td style="padding: 8px;">Statistical Area 2</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Australia</td> <td style="padding: 8px;">Statistical Area 2</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Mexico</td> <td style="padding: 8px;">Municipalities (Áreas Geoestadísticas Municipales (AGEM))
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Finland</td> <td style="padding: 8px;">Municipalities (Kunnat)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Colombia</td> <td style="padding: 8px;">Municipalities (municipios)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">United Kingdom</td> <td style="padding: 8px;">Local Authority Districts (LAD)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Luxembourg</td> <td style="padding: 8px;">Municipalities (Communes)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">France</td> <td style="padding: 8px;">Municipalities (Communes)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Netherlands</td> <td style="padding: 8px;">Municipalities (Gemeente)</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Ireland</td> <td style="padding: 8px;">Electoral divisions
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Belgium</td> <td style="padding: 8px;">Municipalities (Gemeeente/ Commune/ Gemeinde)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Denmark</td> <td style="padding: 8px;">Municipalities (Kommuner)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Portugal</td> <td style="padding: 8px;">Municipalities (Concelhos)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Spain</td> <td style="padding: 8px;">Municipalities (Municipios)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Sweden</td> <td style="padding: 8px;">Municipalities (Kommun)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Poland</td> <td style="padding: 8px;">Municipalities (Gmina)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Korea</td> <td style="padding: 8px;">Municipalities (시군구): Si (시, city), Gun (군, county), Gu (구, district)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Slovenia</td> <td style="padding: 8px;">Municipalities (Občina)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Czech Republic</td> <td style="padding: 8px;">Municipalities (Obec)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Slovak Republic</td> <td style="padding: 8px;">Municipalities (Obec)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Estonia</td> <td style="padding: 8px;">Municipalities (Omavalitsus)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Iceland</td> <td style="padding: 8px;">Municipalities (Sveitarfélög)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Latvia</td> <td style="padding: 8px;">Administrative territories: cities and municipalities (novads)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Lithuania</td> <td style="padding: 8px;">Municipalities
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Greece</td> <td style="padding: 8px;">Communities (κοινότητες)
-                                            </td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 8px;">Türkiye</td> <td style="padding: 8px;">Districts
-                                            </td>
-                                        </tr>
-                                        
-                                    </table>
-                                </div>
-                            
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-people"></i></div>
-                                <div>
-                                    <div class="text-xl font-bold sm:text-2xl">Demography</div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-4">
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div>
-                                        The demographic indicators were collected from National Statistical Offices and include total population, population by age group and gender, number of births and deaths, internal and international inflows and outflows.
-                                        The data presented on the maps for total population, share of population by age group, sex ratio, birth and death rates foreign-born population correspond to the latest year of data available in each country. 
-                                        As for population change, natural change, and net migration, the indicators presented on the maps correspond to the change over the last 5 years of data available.
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3 px-3">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-person"></i></div>
-                                    <div class="font-bold text-lg">Population size</div>
-                                </div>
-                                <div class="text-gray-500 px-6">
-                                    The total population refers to the permanent resident population.
-                                </div>
-                                <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-
-                                <div class="flex items-start gap-3 px-3">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-person-cane"></i></div>
-                                    <div class="font-bold text-lg">Population by age group</div>
-                                </div>
-                                <div class="text-gray-500 px-6">
-                                    The population by age group is provided for 3 age groups: younger than 14 years old, between 15 and 64 years old, and older than 65 years old.
-                                </div>
-                                <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-
-                                <div class="flex items-start gap-3 px-3">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-venus-mars"></i></div>
-                                    <div class="font-bold text-lg">Sex ratio</div>
-                                </div>
-                                <div class="font-mono text-sm text-gray-500 px-10">
-                                    Sex ratio = male population / female population
-                                </div>
-                                <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-
-
-                                <div class="flex items-start gap-3 px-3">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-chart-line-up"></i></div>
-                                    <div class="font-bold text-lg">Population change</div>
-                                </div>
-                                <div class="text-gray-500 px-6">
-                                    Population change is defined for the last 5 years of data available as follows:
-                                </div>
-                                <div class="font-mono text-sm text-gray-500 px-10">
-                                    Population change = Final population - Initial population =  Natural change + Net migration
-                                </div>
-                                <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-
-                                <div class="flex items-start gap-3 px-3">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-baby"></i></div>
-                                    <div class="font-bold text-lg">Natural change</div>
-                                </div>
-                                <div class="text-gray-500 px-6">
-                                    Indicators related to natural change are defined for the last 5 years of data available as follows:
-                                    
-                                </div>
-                                <div class="font-mono text-sm text-gray-500 px-10">
-                                    <ul>
-                                        <li>Natural change = Number of births - Number of deaths</li>
-                                        <li>Natural change rate = (Number of births - Number of deaths) / (Initial population)</li>
-                                        <li>Birth rate = Number of births / Population </li>
-                                        <li>Death rate = Number of deaths / Population </li>
-                                    </ul>
-                                </div>
-                                <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-
-                                <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(178, 82, 144);"><i
-                                            class="fa-fw fa-regular fa-globe"></i></div>
-                                    <div class="font-bold text-lg">Migration</div>
-                                </div>
-                                <div class="text-gray-500 px-6">
-                                    Indicators related to  flows are defined for the last 5 years of data available as follows:
-                                    
-                                </div>
-                                <div class="font-mono text-sm text-gray-500 px-10">
-                                    <ul>
-                                        <li>Net internal migration = Internal mobility inflows - outflows</li>
-                                        <li>Net internal migration rate = (Internal mobility inflows - outflows) / (Initial population)</li>
-                                        <li>Net international migration = International migration inflows - outflows</li>
-                                        <li>Net migration = Net internal migration + Net international migration</li>
-                                            
-                                    </ul>
-                                </div>
-                                <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-
-
-                                
                             </div>
                         </div>
-
-                        <div class="flex flex-col gap-8">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(16, 149, 76);"><i
-                                        class="fa-fw fa-regular fa-seedling"></i></div>
-                                <div>
-                                    <div class="text-xl font-bold sm:text-2xl">Environment</div>
+                        <hr />
+                        <div class="flex flex-col gap-8 break-words print:!w-full sm:w">
+                            <div class="flex items-center gap-2">
+                                <div id="button-geography"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-highlights"
+                                    title="Geographies"><i class="fa-fw fa-regular fa-globe-stand"></i>
                                 </div>
+                                <div id="button-demography"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Demography"><i class="fa-fw fa-regular fa-people"></i>
+                                </div>
+                                <div id="button-environment"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
+                                </div>
+                                <div id="button-climate"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
+                                </div>
+                                <div id="button-economy"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
+                                </div>
+                                <div id="button-ghsl"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
+                                </div>
+                                <div id="button-services"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Services"><i class="fa-fw fa-regular fa-shop"></i>
+                                </div>
+
                             </div>
-                            <div class="flex flex-col gap-12">
-                                <div class="flex flex-col gap-4">
 
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(16, 149, 76);"><i
-                                                class="fa-fw fa-regular fa-seedling"></i></div>
-                                        <div class="font-bold">Green areas</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Green areas refer to trees, shrublands and grasslands.
-                                    </div>
+                            <div class="flex flex-col gap-8">
+                                <div id='topic-geography' class="flex flex-col gap-8 break-words print:!w-full sm:w">
+                                    <div class="flex flex-col gap-3">
+                                        <div class="flex flex-col gap-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="text-xl font-bold sm:text-2xl">Geographical definitions
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-gray-500">
+                                            OECD subnational regions are classified into two scales: large regions,
+                                            referred to
+                                            as
+                                            Territorial Level 2 (TL2), and small regions, referred to as Territorial
+                                            Level 3
+                                            (TL3).
+                                            Large regions generally refer to the first government level after the
+                                            national or
+                                            federal one.
+                                            Small regions are contained within large regions and, in the case of
+                                            European
+                                            countries,
+                                            correspond to the NUTS3 nomenclature.
+                                            For more details, check <a
+                                                class="text-gray-800 transition hover:text-shift-blue"
+                                                href="https://www.oecd.org/cfe/regionaldevelopment/territorial-grid.pdf"><u>here</u></a>.
 
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200.
-                                    </div>
+                                        </div>
+                                        <div class="text-gray-500">
+                                            OECD metropolitan areas are defined based on Functional Urban Areas (FUA).
+                                            Developed in collaboration with the European Union and endorsed at the 2020
+                                            Statistical
+                                            Commission of the United Nations, FUAs consist of densely populated cities
+                                            together
+                                            with their
+                                            surrounding commuting zones.
+                                            This definition looks at the full extent of cities’ labour markets to
+                                            capture the
+                                            economic
+                                            boundaries of cities. FUAs are generally the aggregation of local units.
+                                            For more details, check <a
+                                                class="text-gray-800 transition hover:text-shift-blue"
+                                                href="https://www.oecd-ilibrary.org/urban-rural-and-regional-development/the-eu-oecd-definition-of-a-functional-urban-area_d58cb34d-en"><u>here</u></a>.
 
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(16, 149, 76);"><i
-                                                class="fa-fw fa-regular fa-trees"></i></div>
-                                        <div class="font-bold">Tree cover change</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Copernicus Climate Change Service, Climate Data Store, (2019): Land cover classification gridded maps from 1992 to present derived from satellite observation. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.006f2c9a"><u>10.24381/cds.006f2c9a</u></a>
-                                    </div>
+                                        </div>
+                                        <div class="text-gray-500">
+                                            The table below provides for each OECD country the geographical scale used
+                                            to define
+                                            municipalities in the municipal atlas. It also provides the number of units,
+                                            the
+                                            average size
+                                            and the population density.
+                                        </div>
 
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(16, 149, 76);"><i
-                                                class="fa-fw fa-regular fa-wind-turbine"></i></div>
-                                        <div class="font-bold">Renewable potential</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        The wind power potential is assessed by the mean wind power density, which serves as a quantitative measure of wind energy available at a specific location. It is expressed in W/m².
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        The solar power potential is assessed by the photovoltaic power potential, which serves as a quantitative measure of solar energy available at a specific location. 
-                                        It represents the amount of power generated per unit of the installed PV capacity over the long-term, and it is measured in kilowatthours per installed kilowatt-peak of the system capacity (kWh/kWp).
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        <ul>
-                                            <li>
-                                                Global Solar Atlas 2.0, a free, web-based application is developed and operated by the company Solargis s.r.o. on behalf of the World Bank Group, utilizing Solargis data, with funding provided by the Energy Sector Management Assistance Program (ESMAP). For additional information: 
-                                                <a class="text-gray-800 transition hover:text-shift-blue" href="https://globalsolaratlas.info"><u>https://globalsolaratlas.info</u></a>,
-                                            </li>
-                                            <li>
-                                                Global Wind Atlas 3.0, a free, web-based application developed, owned and operated by the Technical University of Denmark (DTU). The Global Wind Atlas 3.0 is released in partnership with the World Bank Group, utilizing data provided by Vortex, using funding provided by the Energy Sector Management Assistance Program (ESMAP). For additional information: 
-                                                <a class="text-gray-800 transition hover:text-shift-blue" href="https://globalwindatlas.info"><u>https://globalwindatlas.info</u></a>,
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    
+                                        <div id="table-container"
+                                            class="flex flex-col text-gray-500 items-center justify-center gap-3">
+                                            <table class="table items-center justify-center gap-3"
+                                                style="border-collapse: collapse;">
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <th style="padding: 8px; text-align: left;">Country</th>
+                                                    <th style="padding: 8px; text-align: left;">Geographical level</th>
+                                                    <!-- <th style="padding: 8px; text-align: left;">Number of units</th>
+                                                                <th style="padding: 8px; text-align: left;">Area (km2)</th>
+                                                                <th style="padding: 8px; text-align: left;">Population</th> -->
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Italy</td>
+                                                    <td style="padding: 8px;">Municipalities (communi)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Canada</td>
+                                                    <td style="padding: 8px;">Census Subdivisions</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Japan</td>
+                                                    <td style="padding: 8px;">Cities, Wards, Towns, and Villages (市区町村)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Switzerland</td>
+                                                    <td style="padding: 8px;">Municipalities (Politische Gemeinden [DE],
+                                                        Communes [FR])</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Costa Rica</td>
+                                                    <td style="padding: 8px;">Distritos</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Norway</td>
+                                                    <td style="padding: 8px;">Municipalities (Kommuner)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Germany</td>
+                                                    <td style="padding: 8px;">Municipalities (Gemeinden)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Austria</td>
+                                                    <td style="padding: 8px;">Municipalities (Gemeinden)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">United States</td>
+                                                    <td style="padding: 8px;">Counties</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Chile</td>
+                                                    <td style="padding: 8px;">Municipalities (comuna)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">New Zealand</td>
+                                                    <td style="padding: 8px;">Statistical Area 2</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Australia</td>
+                                                    <td style="padding: 8px;">Statistical Area 2</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Mexico</td>
+                                                    <td style="padding: 8px;">Municipalities (Áreas Geoestadísticas
+                                                        Municipales
+                                                        (AGEM))
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Finland</td>
+                                                    <td style="padding: 8px;">Municipalities (Kunnat)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Colombia</td>
+                                                    <td style="padding: 8px;">Municipalities (municipios)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">United Kingdom</td>
+                                                    <td style="padding: 8px;">Local Authority Districts (LAD)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Luxembourg</td>
+                                                    <td style="padding: 8px;">Municipalities (Communes)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">France</td>
+                                                    <td style="padding: 8px;">Municipalities (Communes)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Netherlands</td>
+                                                    <td style="padding: 8px;">Municipalities (Gemeente)</td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Ireland</td>
+                                                    <td style="padding: 8px;">Electoral divisions
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Belgium</td>
+                                                    <td style="padding: 8px;">Municipalities (Gemeeente/ Commune/
+                                                        Gemeinde)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Denmark</td>
+                                                    <td style="padding: 8px;">Municipalities (Kommuner)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Portugal</td>
+                                                    <td style="padding: 8px;">Municipalities (Concelhos)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Spain</td>
+                                                    <td style="padding: 8px;">Municipalities (Municipios)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Sweden</td>
+                                                    <td style="padding: 8px;">Municipalities (Kommun)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Poland</td>
+                                                    <td style="padding: 8px;">Municipalities (Gmina)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Korea</td>
+                                                    <td style="padding: 8px;">Municipalities (시군구): Si (시, city), Gun
+                                                        (군,
+                                                        county), Gu (구,
+                                                        district)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Slovenia</td>
+                                                    <td style="padding: 8px;">Municipalities (Občina)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Czech Republic</td>
+                                                    <td style="padding: 8px;">Municipalities (Obec)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Slovak Republic</td>
+                                                    <td style="padding: 8px;">Municipalities (Obec)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Estonia</td>
+                                                    <td style="padding: 8px;">Municipalities (Omavalitsus)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Iceland</td>
+                                                    <td style="padding: 8px;">Municipalities (Sveitarfélög)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Latvia</td>
+                                                    <td style="padding: 8px;">Administrative territories: cities and
+                                                        municipalities (novads)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Lithuania</td>
+                                                    <td style="padding: 8px;">Municipalities
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Greece</td>
+                                                    <td style="padding: 8px;">Communities (κοινότητες)
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #ddd;">
+                                                    <td style="padding: 8px;">Türkiye</td>
+                                                    <td style="padding: 8px;">Districts
+                                                    </td>
+                                                </tr>
 
-
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                                
+
+                                <div id="topic-demography" class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-xl font-bold sm:text-2xl">Demography</div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <div class="flex flex-col gap-4 text-gray-500">
+                                            <div>
+                                                The demographic indicators were collected from National Statistical
+                                                Offices and
+                                                include total
+                                                population, population by age group and gender, number of births and
+                                                deaths,
+                                                internal and
+                                                international inflows and outflows.
+                                                The data presented on the maps for total population, share of population
+                                                by age
+                                                group, sex
+                                                ratio, birth and death rates foreign-born population correspond to the
+                                                latest
+                                                year
+                                                of data
+                                                available in each country.
+                                                As for population change, natural change, and net migration, the
+                                                indicators
+                                                presented on the
+                                                maps correspond to the change over the last 5 years of data available.
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-person"></i>
+                                            </div>
+                                            <div class="font-bold text-lg">Population size</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            The total population refers to the permanent resident population.
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-person-cane"></i></div>
+                                            <div class="font-bold text-lg">Population by age group</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            The population by age group is provided for 3 age groups: younger than 14
+                                            years old,
+                                            between 15 and
+                                            64 years old, and older than 65 years old.
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-venus-mars"></i></div>
+                                            <div class="font-bold text-lg">Sex ratio</div>
+                                        </div>
+                                        <div class="font-mono text-sm text-gray-500 px-10">
+                                            Sex ratio = male population / female population
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices
+                                        </div>
+
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-chart-line-up"></i></div>
+                                            <div class="font-bold text-lg">Population change</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            Population change is defined for the last 5 years of data available as
+                                            follows:
+                                        </div>
+                                        <div class="font-mono text-sm text-gray-500 px-10">
+                                            Population change = Final population - Initial population = Natural change +
+                                            Net
+                                            migration
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-baby"></i>
+                                            </div>
+                                            <div class="font-bold text-lg">Natural change</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            Indicators related to natural change are defined for the last 5 years of
+                                            data
+                                            available
+                                            as follows:
+
+                                        </div>
+                                        <div class="font-mono text-sm text-gray-500 px-10">
+                                            <ul>
+                                                <li>Natural change = Number of births - Number of deaths</li>
+                                                <li>Natural change rate = (Number of births - Number of deaths) /
+                                                    (Initial
+                                                    population)</li>
+                                                <li>Birth rate = Number of births / Population </li>
+                                                <li>Death rate = Number of deaths / Population </li>
+                                            </ul>
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-globe"></i>
+                                            </div>
+                                            <div class="font-bold text-lg">Migration</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            Indicators related to flows are defined for the last 5 years of data
+                                            available as
+                                            follows:
+
+                                        </div>
+                                        <div class="font-mono text-sm text-gray-500 px-10">
+                                            <ul>
+                                                <li>Net internal migration = Internal mobility inflows - outflows</li>
+                                                <li>Net internal migration rate = (Internal mobility inflows - outflows)
+                                                    /
+                                                    (Initial
+                                                    population)
+                                                </li>
+                                                <li>Net international migration = International migration inflows -
+                                                    outflows
+                                                </li>
+                                                <li>Net migration = Net internal migration + Net international migration
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+                                <div id="topic-environment" class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-xl font-bold sm:text-2xl">Environment</div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-seedling"></i></div>
+                                            <div class="font-bold">Green areas</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            Green areas refer to trees, shrublands and grasslands.
+                                        </div>
+
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W.,
+                                            Brockmann,
+                                            C.,
+                                            Kirches, G.,
+                                            Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold,
+                                            M.,
+                                            Tsendbazar,
+                                            N.E., Xu, P.,
+                                            Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200.
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-trees"></i>
+                                            </div>
+                                            <div class="font-bold">Tree cover change</div>
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            Copernicus Climate Change Service, Climate Data Store, (2019): Land
+                                            cover
+                                            classification gridded
+                                            maps from 1992 to present derived from satellite observation.
+                                            Copernicus
+                                            Climate
+                                            Change Service
+                                            (C3S) Climate Data Store (CDS).
+                                            doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                href="https://doi.org/10.24381/cds.006f2c9a"><u>10.24381/cds.006f2c9a</u></a>
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-wind-turbine"></i></div>
+                                            <div class="font-bold">Renewable potential</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            The wind power potential is assessed by the mean wind power density,
+                                            which
+                                            serves as
+                                            a
+                                            quantitative measure of wind energy available at a specific
+                                            location. It is
+                                            expressed in W/m².
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            The solar power potential is assessed by the photovoltaic power
+                                            potential,
+                                            which
+                                            serves as a
+                                            quantitative measure of solar energy available at a specific
+                                            location.
+                                            It represents the amount of power generated per unit of the
+                                            installed PV
+                                            capacity
+                                            over the
+                                            long-term, and it is measured in kilowatthours per installed
+                                            kilowatt-peak
+                                            of the
+                                            system
+                                            capacity (kWh/kWp).
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            <ul>
+                                                <li>
+                                                    Global Solar Atlas 2.0, a free, web-based application is
+                                                    developed
+                                                    and
+                                                    operated by the
+                                                    company Solargis s.r.o. on behalf of the World Bank Group,
+                                                    utilizing
+                                                    Solargis data, with
+                                                    funding provided by the Energy Sector Management Assistance
+                                                    Program
+                                                    (ESMAP).
+                                                    For
+                                                    additional information:
+                                                    <a class="text-gray-800 transition hover:text-shift-blue"
+                                                        href="https://globalsolaratlas.info"><u>https://globalsolaratlas.info</u></a>,
+                                                </li>
+                                                <li>
+                                                    Global Wind Atlas 3.0, a free, web-based application
+                                                    developed,
+                                                    owned and
+                                                    operated by
+                                                    the Technical University of Denmark (DTU). The Global Wind
+                                                    Atlas 3.0
+                                                    is
+                                                    released in
+                                                    partnership with the World Bank Group, utilizing data
+                                                    provided by
+                                                    Vortex,
+                                                    using funding
+                                                    provided by the Energy Sector Management Assistance Program
+                                                    (ESMAP).
+                                                    For
+                                                    additional
+                                                    information:
+                                                    <a class="text-gray-800 transition hover:text-shift-blue"
+                                                        href="https://globalwindatlas.info"><u>https://globalwindatlas.info</u></a>,
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="topic-climate" class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-xl font-bold sm:text-2xl">Climate</div>
+                                    </div>
+                                    <div class="flex flex-col gap-12">
+                                        <div class="flex flex-col gap-4">
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
+                                                <div class="font-bold text-lg">Temperature trends</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Temperature trends are assessed based on ERA5-Land using the average
+                                                annual
+                                                air
+                                                temperature at 2
+                                                meters height. Increase in temperature are compared to the 1981-2010
+                                                climatology.
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Daytime and nighttime land surface temperatures are assessed based on
+                                                MODIS
+                                                Aqua and
+                                                Terra satellite
+                                                measurements, which provide daily land surface temperature data at 1 km
+                                                resolution.
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                                present.
+                                                Copernicus Climate
+                                                Change Service (C3S) Climate Data Store (CDS),
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                            </div>
+                                            <div class="text-gray-500 px-10">
+                                                Wan, Z., Hook, S., Hulley, G. (2021). MODIS/Terra Land Surface
+                                                Temperature/Emissivity
+                                                Daily L3
+                                                Global 1km SIN Grid V061 [Data set]. NASA EOSDIS Land Processes
+                                                Distributed
+                                                Active
+                                                Archive Center.
+                                                Accessed 2023-10-04 from
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.5067/MODIS/MOD11A1.061"><u>https://doi.org/10.5067/MODIS/MOD11A1.061</u></a>
+
+                                            </div>
+                                            <div class="text-gray-500 px-10">
+                                                Wan, Z., Hook, S., Hulley, G. (2021). MODIS/Aqua Land Surface
+                                                Temperature/Emissivity
+                                                Daily L3 Global
+                                                1km SIN Grid V061 [Data set]. NASA EOSDIS Land Processes Distributed
+                                                Active
+                                                Archive
+                                                Center. Accessed
+                                                2023-10-04 from
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.5067/MODIS/MYD11A1.061"><u>https://doi.org/10.5067/MODIS/MYD11A1.061</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-temperature-sun"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Heat stress</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Hot days refer to days during which the daily maximum temperature is
+                                                higher
+                                                than 35°C.
+                                                Hot days are
+                                                assessed based on ERA5-Land using the air temperature at 2 meters
+                                                height.
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Tropical nights refer to nights during which the minimum temperature is
+                                                higher than
+                                                20°C. Tropical
+                                                nights are assessed based on ERA5-Land using the air temperature at 2
+                                                meters
+                                                height.
+                                            </div>
+                                            <div class="text-gray-500 px-6 gap-3">
+                                                Hot days and tropical nights are based on the air temperature and do not
+                                                account for
+                                                other
+                                                meteorological variables impacting thermal comfort.
+                                                The Universal Thermal Climate Index (UTCI) provides a more comprehensive
+                                                measure of
+                                                thermal comfort
+                                                by considering other factors such as humidity, wind speed, and
+                                                radiation,
+                                                offering a
+                                                more accurate
+                                                assessment than air temperature alone. The UTCI also allows to assess
+                                                the
+                                                population
+                                                exposure to
+                                                different heat stress levels:
+                                                <ul class="px-6">
+                                                    <li>
+                                                        - 32°C < UTCI < 38°C: strong heat stress. </li>
+                                                    <li>
+                                                        - 38°C < UTCI < 46°C: very strong heat stress. </li>
+                                                    <li>
+                                                        - UTCI > 46°C: extreme heat stress.
+                                                    </li>
+                                                </ul>
+                                                These indicators were estimated using the thermal comfort indices
+                                                derived
+                                                from ERA5
+                                                reanalysis.
+
+                                            </div>
+
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Di Napoli C., Barnard C., Prudhomme C., Cloke HL and Pappenberger F.
+                                                (2020):
+                                                Thermal
+                                                comfort indices
+                                                derived from ERA5 reanalysis. Copernicus Climate Change Service (C3S)
+                                                Climate Data Store
+                                                (CDS). DOI:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.553b7518</u></a>
+                                                (Accessed on 01-08-2023)
+                                            </div>
+                                            <div class="text-gray-500 px-10">
+                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                                present.
+                                                Copernicus Climate
+                                                Change Service (C3S) Climate Data Store (CDS),
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i class="fa-fw fa-regular fa-fan"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Cooling Degree Days</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                A Cooling Degree Days (CDD) is a measure of how hot the temperature was
+                                                during a period
+                                                of days,
+                                                which serves to quantify the demand for energy needed to cool buidlings.
+                                                It is defined as the sum of the difference between the daily mean
+                                                temperature and the
+                                                reference
+                                                temperature of 22°C for days during which the mean temperature is higher
+                                                than 22°C.
+                                                Cooling Degree
+                                                Days are assessed based on ERA5-Land using the average annual air
+                                                temperature at 2
+                                                meters height.
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                                present.
+                                                Copernicus Climate
+                                                Change Service (C3S) Climate Data Store (CDS),
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-heat"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Heating Degree Days</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                A Heating Degree Days (HDD) is a measure of how cold the temperature was
+                                                during a period
+                                                of days,
+                                                which serves to quantify the demand for energy needed to heat buidlings.
+                                                It is defined as the sum of the difference between the reference
+                                                temperature
+                                                of 15°C
+                                                daily and the
+                                                mean temperature for days during which the mean temperature is lower
+                                                than
+                                                15°C. Heating
+                                                Degree Days
+                                                are assessed based on ERA5-Land using the average annual air temperature
+                                                at
+                                                2 meters
+                                                height.
+                                            </div>
+
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                                present.
+                                                Copernicus Climate
+                                                Change Service (C3S) Climate Data Store (CDS),
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-cloud-showers-heavy"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Precipitation</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Total precipitation refers to the accumulated precipitation over a year
+                                                and
+                                                is expressed
+                                                in mm.
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Extreme precipitation days correspond to days during which the
+                                                accumulated
+                                                precipitation
+                                                is higher
+                                                than 20 mm.
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                                present.
+                                                Copernicus Climate
+                                                Change Service (C3S) Climate Data Store (CDS),
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-sun-plant-wilt"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Drought</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Drought is defined by the soil moisture change compared to the reference
+                                                period
+                                                1981-2010. The soil
+                                                moisture refers the volume of water in the first soil layer (0 to 7 cm).
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                                present.
+                                                Copernicus Climate
+                                                Change Service (C3S) Climate Data Store (CDS),
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-fire"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Fires</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Burned areas are delineated using MODIS satellite measurements.
+
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Artés, T., Oom, D., De Rigo, D., Durrant, T. H., Maianti, P., Libertà,
+                                                G., &
+                                                San-Miguel-Ayanz, J.
+                                                (2019). A global wildfire dataset for the analysis of fire regimes and
+                                                fire
+                                                behaviour.
+                                                Scientific
+                                                data, 6(1), 1-11. doi:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.1038/s41597-019-0312-2"><u>10.1038/s41597-019-0312-2</u></a>
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-house-flood-water"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">River Flooding</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Population exposure to river flooding is assessed using a 100-year
+                                                return
+                                                period, which
+                                                corresponds
+                                                to the average duration between two flooding events of the same
+                                                intensity.
+                                            </div>
+
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Dottori, Francesco; Alfieri, Lorenzo; Bianchi, Alessandra; Skoien, Jon;
+                                                Salamon, Peter
+                                                (2021): River
+                                                flood hazard maps for Europe and the Mediterranean Basin region.
+                                                European
+                                                Commission,
+                                                Joint Research
+                                                Centre (JRC) [Dataset] doi:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.2905/1D128B6C-A4EE-4858-9E34-6210707F3C81"><u>10.2905/1D128B6C-A4EE-4858-9E34-6210707F3C81</u></a>
+                                                PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/1d128b6c-a4ee-4858-9e34-6210707f3c81"><u>http://data.europa.eu/89h/1d128b6c-a4ee-4858-9e34-6210707f3c81</u></a>
+
+                                            </div>
+                                            <div class="text-gray-500 px-10">
+                                                Dottori, Francesco; Alfieri, Lorenzo; Salamon, Peter; Bianchi,
+                                                Alessandra;
+                                                Feyen, Luc;
+                                                Hirpa, Feyera
+                                                (2016): Flood hazard map of the World - 100-year return period. European
+                                                Commission,
+                                                Joint Research
+                                                Centre (JRC) [Dataset]
+                                                PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/jrc-floods-floodmapgl_rp100y-tif"><u>http://data.europa.eu/89h/jrc-floods-floodmapgl_rp100y-tif</u></a>
+
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: darkred;"><i
+                                                        class="fa-fw fa-regular fa-house-tsunami"></i></div>
+                                                <div class="font-bold text-lg">Coastal Flooding</div>
+                                            </div>
+                                            <div class="text-gray-500 px-6">
+                                                Population exposure to coastal flooding is assessed using a 100-year
+                                                return
+                                                period,
+                                                which
+                                                corresponds to the average duration between two flooding events of the
+                                                same
+                                                intensity.
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Muis, S., Verlaan, M., Winsemius, H.C., Aerts, J.C.J.H., Ward, P.J.,
+                                                2016. A
+                                                global
+                                                reanalysis of
+                                                storm surge and extreme sea levels. Nat. Commun. 7, 1–11. doi:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.1038/ncomms11969"><u>10.1038/ncomms11969</u></a>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="topic-economy" class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            <div class="text-xl font-bold sm:text-2xl">Economy and labour</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <div class="flex flex-col gap-4">
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(77, 82, 168);"><i
+                                                        class="fa-fw fa-regular fa-dollar-sign"></i></div>
+                                                <div class="font-bold text-lg">Income distribution</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                National Statistical Offices
+                                            </div>
+                                        </div>
+
+
+                                        <div class="flex flex-col gap-4">
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(77, 82, 168);"><i
+                                                        class="fa-fw fa-regular fa-briefcase"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Labour</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                National Statistical Offices
+                                            </div>
+                                        </div>
+
+
+                                        <div class="flex flex-col gap-4">
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(77, 82, 168);"><i
+                                                        class="fa-fw fa-regular fa-house"></i>
+                                                </div>
+                                                <div class="font-bold text-lg">Housing</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                National Statistical Offices
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id='topic-ghsl' class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            <div class="text-xl font-bold sm:text-2xl">Territorial Organisation
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <div class="flex flex-col gap-4">
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(122, 64, 43);"><i
+                                                        class="fa-fw fa-regular fa-person"></i>
+                                                </div>
+                                                <div class="font-bold">Population</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Schiavina M., Freire S., Carioli A., MacManus K. (2023): GHS-POP
+                                                R2023A
+                                                - GHS population
+                                                grid
+                                                multitemporal (1975-2030).European Commission, Joint Research Centre
+                                                (JRC), PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/2ff68a52-5b5b-4a22-8f40-c41da8332cfe"><u>http://data.europa.eu/89h/2ff68a52-5b5b-4a22-8f40-c41da8332cfe</u></a>,
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.2905/2FF68A52-5B5B-4A22-8F40-C41DA8332CFE"><u>10.2905/2FF68A52-5B5B-4A22-8F40-C41DA8332CFE</u></a>
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(122, 64, 43);"><i
+                                                        class="fa-fw fa-regular fa-square"></i>
+                                                </div>
+                                                <div class="font-bold">Built-up surface</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Pesaresi M., Politis P. (2023): GHS-BUILT-S R2023A - GHS built-up
+                                                surface grid, derived
+                                                from
+                                                Sentinel2 composite and Landsat, multitemporal (1975-2030), European
+                                                Commission, Joint
+                                                Research
+                                                Centre (JRC), PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea"><u>http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea</u></a>,
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA"><u>10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA</u></a>
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(122, 64, 43);"><i
+                                                        class="fa-fw fa-regular fa-cube"></i></div>
+                                                <div class="font-bold">Built-up volume</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Pesaresi M., Politis P. (2023): GHS-BUILT-V R2023A - GHS built-up
+                                                volume
+                                                grids derived
+                                                from joint
+                                                assessment of Sentinel2, Landsat, and global DEM data, multitemporal
+                                                (1975-2030).
+                                                European
+                                                Commission, Joint Research Centre (JRC), PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/ab2f107a-03cd-47a3-85e5-139d8ec63283"><u>http://data.europa.eu/89h/ab2f107a-03cd-47a3-85e5-139d8ec63283</u></a>,
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.2905/AB2F107A-03CD-47A3-85E5-139D8EC63283"><u>10.2905/AB2F107A-03CD-47A3-85E5-139D8EC63283</u></a>
+                                            </div>
+
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(122, 64, 43);"><i
+                                                        class="fa-fw fa-regular fa-building"></i>
+                                                </div>
+                                                <div class="font-bold">Built-up height</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Pesaresi, M.; Politis, P. (2023): GHS-BUILT-H R2023A - GHS building
+                                                height, derived from
+                                                AW3D30,
+                                                SRTM30, and Sentinel2 composite (2018). European Commission, Joint
+                                                Research Centre
+                                                (JRC), PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/85005901-3a49-48dd-9d19-6261354f56fe"><u>http://data.europa.eu/89h/85005901-3a49-48dd-9d19-6261354f56fe</u></a>,
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.2905/85005901-3A49-48DD-9D19-6261354F56FE"><u>10.2905/85005901-3A49-48DD-9D19-6261354F56FE</u></a>
+                                            </div>
+
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(122, 64, 43);"><i
+                                                        class="fa-fw fa-regular fa-tree-city"></i>
+                                                </div>
+                                                <div class="font-bold">Degree of Urbanisation</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Schiavina M., Melchiorri M., Pesaresi M. (2023): GHS-SMOD R2023A -
+                                                GHS
+                                                settlement
+                                                layers,
+                                                application of the Degree of Urbanisation methodology (stage I) to
+                                                GHS-POP R2023A and
+                                                GHS-BUILT-S
+                                                R2023A, multitemporal (1975-2030). European Commission, Joint
+                                                Research
+                                                Centre (JRC),
+                                                PID:
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="http://data.europa.eu/89h/a0df7a6f-49de-46ea-9bde-563437a6e2ba"><u>http://data.europa.eu/89h/a0df7a6f-49de-46ea-9bde-563437a6e2ba</u></a>,
+                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://doi.org/10.2905/A0DF7A6F-49DE-46EA-9BDE-563437A6E2BA"><u>10.2905/A0DF7A6F-49DE-46EA-9BDE-563437A6E2BA</u></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="topic-services" class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            <div class="text-xl font-bold sm:text-2xl">Services</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <div class="flex flex-col gap-4">
+                                            <div class="flex items-start gap-3 px-3">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                    style="background: rgb(255, 130, 0);"><i
+                                                        class="fa-fw fa-regular fa-wifi"></i></div>
+                                                <div class="font-bold">Digitalisation</div>
+                                            </div>
+                                            <div class="font-bold px-6">Source</div>
+                                            <div class="text-gray-500 px-10">
+                                                Speedtest by Ookla Global Fixed and Mobile Network Performance
+                                                Maps
+                                                was accessed in
+                                                March 2023 from
+                                                <a class="text-gray-800 transition hover:text-shift-blue"
+                                                    href="https://registry.opendata.aws/speedtest-global-performance"><u>https://registry.opendata.aws/speedtest-global-performance</u></a>
+                                                . Speedtest® by Ookla® Global Fixed and Mobile Network
+                                                Performance
+                                                Maps. Based on
+                                                analysis by Ookla
+                                                of Speedtest Intelligence® data for 2022. Provided by Ookla and
+                                                accessed in March 2023.
+                                                Ookla
+                                                trademarks used under license and reprinted with permission.
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="flex flex-col gap-8">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: darkred;"><i
-                                        class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
-                                <div>
-                                    <div class="text-xl font-bold sm:text-2xl">Climate</div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-12">
-                                <div class="flex flex-col gap-4">
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
-                                        <div class="font-bold text-lg">Temperature trends</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Temperature trends are assessed based on ERA5-Land using the average annual air temperature at 2 meters height. Increase in temperature are compared to the 1981-2010 climatology.
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Daytime and nighttime land surface temperatures are assessed based on MODIS Aqua and Terra satellite measurements, which provide daily land surface temperature data at 1 km resolution.
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-                                                                                
-                                    </div>
-                                    <div class="text-gray-500 px-10">
-                                        Wan, Z., Hook, S., Hulley, G. (2021). MODIS/Terra Land Surface Temperature/Emissivity Daily L3 Global 1km SIN Grid V061 [Data set]. NASA EOSDIS Land Processes Distributed Active Archive Center. Accessed 2023-10-04 from 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.5067/MODIS/MOD11A1.061"><u>https://doi.org/10.5067/MODIS/MOD11A1.061</u></a>
-                                                                                
-                                    </div>
-                                    <div class="text-gray-500 px-10">
-                                        Wan, Z., Hook, S., Hulley, G. (2021). MODIS/Aqua Land Surface Temperature/Emissivity Daily L3 Global 1km SIN Grid V061 [Data set]. NASA EOSDIS Land Processes Distributed Active Archive Center. Accessed 2023-10-04 from 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.5067/MODIS/MYD11A1.061"><u>https://doi.org/10.5067/MODIS/MYD11A1.061</u></a>
-                                                                                
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-temperature-sun"></i></div>
-                                        <div class="font-bold text-lg">Heat stress</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Hot days refer to days during which the daily maximum temperature is higher than 35°C. Hot days are assessed based on ERA5-Land using the air temperature at 2 meters height.
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Tropical nights refer to nights during which the minimum temperature is higher than 20°C. Tropical nights are assessed based on ERA5-Land using the air temperature at 2 meters height.
-                                    </div>
-                                    <div class="text-gray-500 px-6 gap-3">
-                                        Hot days and tropical nights are based on the air temperature and do not account  for other meteorological variables impacting thermal comfort.
-                                        The Universal Thermal Climate Index (UTCI) provides a more comprehensive measure of thermal comfort by considering other factors such as humidity, wind speed, and radiation, offering a more accurate assessment than air temperature alone. The UTCI also allows to assess the population exposure to different heat stress levels:
-                                        <ul class="px-6">
-                                            <li>
-                                                - 32°C < UTCI < 38°C: strong heat stress.
-                                            </li>
-                                            <li>
-                                                - 38°C < UTCI < 46°C: very strong heat stress.
-                                            </li>
-                                            <li>
-                                                - UTCI > 46°C: extreme heat stress.
-                                            </li>
-                                        </ul>
-                                        These indicators were estimated using the thermal comfort indices derived from ERA5 reanalysis.
-
-                                    </div>
-                                    
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Di Napoli C., Barnard C., Prudhomme C., Cloke HL and Pappenberger F. (2020): Thermal comfort indices derived from ERA5 reanalysis. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.553b7518</u></a>
-                                         (Accessed on 01-08-2023)                                                                                
-                                    </div>
-                                    <div class="text-gray-500 px-10">
-                                        Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-                                                                                
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-fan"></i></div>
-                                        <div class="font-bold text-lg">Cooling Degree Days</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        A Cooling Degree Days (CDD) is a measure of how hot the temperature was during a period of days, which serves to quantify the demand for energy needed to cool buidlings. 
-                                        It is defined as the sum of the difference between the daily mean temperature and the reference temperature of 22°C for days during which the mean temperature is higher than 22°C. Cooling Degree Days are assessed based on ERA5-Land using the average annual air temperature at 2 meters height.
-                                    </div>                                        
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-                                                                                
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-heat"></i></div>
-                                        <div class="font-bold text-lg">Heating Degree Days</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        A Heating Degree Days (HDD) is a measure of how cold the temperature was during a period of days, which serves to quantify the demand for energy needed to heat buidlings. 
-                                        It is defined as the sum of the difference between the reference temperature of 15°C daily and the mean temperature for days during which the mean temperature is lower than 15°C. Heating Degree Days are assessed based on ERA5-Land using the average annual air temperature at 2 meters height.
-                                    </div>
-                                        
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-                                                                                
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-cloud-showers-heavy"></i></div>
-                                        <div class="font-bold text-lg">Precipitation</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Total precipitation refers to the accumulated precipitation over a year and is expressed in mm.
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Extreme precipitation days correspond to days during which the accumulated precipitation is higher than 20 mm.
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-                                                                                
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-sun-plant-wilt"></i></div>
-                                        <div class="font-bold text-lg">Drought</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Drought is defined by the soil moisture change compared to the reference period 1981-2010. The soil moisture refers the volume of water in the first soil layer (0 to 7 cm).
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), 
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-                                                                                
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-fire"></i></div>
-                                        <div class="font-bold text-lg">Fires</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Burned areas are delineated using MODIS satellite measurements. 
-
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Artés, T., Oom, D., De Rigo, D., Durrant, T. H., Maianti, P., Libertà, G., & San-Miguel-Ayanz, J. (2019). A global wildfire dataset for the analysis of fire regimes and fire behaviour. Scientific data, 6(1), 1-11. doi:
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.1038/s41597-019-0312-2"><u>10.1038/s41597-019-0312-2</u></a>
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-house-flood-water"></i></div>
-                                        <div class="font-bold text-lg">River Flooding</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Population exposure to river flooding is assessed using a 100-year return period, which corresponds to the average duration between two flooding events of the same intensity.
-                                    </div>
-                                    
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Dottori, Francesco; Alfieri, Lorenzo; Bianchi, Alessandra; Skoien, Jon; Salamon, Peter (2021): River flood hazard maps for Europe and the Mediterranean Basin region. European Commission, Joint Research Centre (JRC) [Dataset] doi: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.2905/1D128B6C-A4EE-4858-9E34-6210707F3C81"><u>10.2905/1D128B6C-A4EE-4858-9E34-6210707F3C81</u></a>
-                                        PID: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/1d128b6c-a4ee-4858-9e34-6210707f3c81"><u>http://data.europa.eu/89h/1d128b6c-a4ee-4858-9e34-6210707f3c81</u></a>
-                                                    
-                                    </div>
-                                    <div class="text-gray-500 px-10">
-                                    Dottori, Francesco; Alfieri, Lorenzo; Salamon, Peter; Bianchi, Alessandra; Feyen, Luc; Hirpa, Feyera (2016): Flood hazard map of the World - 100-year return period. European Commission, Joint Research Centre (JRC) [Dataset] 
-                                    PID: 
-                                    <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/jrc-floods-floodmapgl_rp100y-tif"><u>http://data.europa.eu/89h/jrc-floods-floodmapgl_rp100y-tif</u></a>
-                                    
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: darkred;"><i class="fa-fw fa-regular fa-house-tsunami"></i></div>
-                                        <div class="font-bold text-lg">Coastal Flooding</div>
-                                    </div>
-                                    <div class="text-gray-500 px-6">
-                                        Population exposure to coastal flooding is assessed using a 100-year return period, which corresponds to the average duration between two flooding events of the same intensity.
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Muis, S., Verlaan, M., Winsemius, H.C., Aerts, J.C.J.H., Ward, P.J., 2016. A global reanalysis of storm surge and extreme sea levels. Nat. Commun. 7, 1–11. doi:
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.1038/ncomms11969"><u>10.1038/ncomms11969</u></a>                                       
-                                    </div>
-                                    
-
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-8">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(77, 82, 168);"><i
-                                        class="fa-fw fa-regular fa-building-columns"></i></div>
-                                <div>
-                                    <div class="text-xl font-bold sm:text-2xl">Economy and labour</div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-12">
-                                <div class="flex flex-col gap-4">
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(77, 82, 168);"><i class="fa-fw fa-regular fa-dollar-sign"></i></div>
-                                        <div class="font-bold text-lg">Income distribution</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-                                </div>
-                                
-
-                                <div class="flex flex-col gap-4">
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(77, 82, 168);"><i class="fa-fw fa-regular fa-briefcase"></i></div>
-                                        <div class="font-bold text-lg">Labour</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-                                </div>
-                                
-
-                                <div class="flex flex-col gap-4">
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(77, 82, 168);"><i class="fa-fw fa-regular fa-house"></i></div>
-                                        <div class="font-bold text-lg">Housing</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        National Statistical Offices
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-8">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(122, 64, 43);"><i
-                                        class="fa-fw fa-regular fa-building-user"></i></div>
-                                <div>
-                                    <div class="text-xl font-bold sm:text-2xl">Territorial Organisation</div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-12">
-                                <div class="flex flex-col gap-4">
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(122, 64, 43);"><i
-                                                class="fa-fw fa-regular fa-person"></i></div>
-                                        <div class="font-bold">Population</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Schiavina M., Freire S., Carioli A., MacManus K. (2023): GHS-POP R2023A - GHS population grid multitemporal (1975-2030).European Commission, Joint Research Centre (JRC), PID: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/2ff68a52-5b5b-4a22-8f40-c41da8332cfe"><u>http://data.europa.eu/89h/2ff68a52-5b5b-4a22-8f40-c41da8332cfe</u></a>,
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.2905/2FF68A52-5B5B-4A22-8F40-C41DA8332CFE"><u>10.2905/2FF68A52-5B5B-4A22-8F40-C41DA8332CFE</u></a>
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(122, 64, 43);"><i
-                                                class="fa-fw fa-regular fa-square"></i></div>
-                                        <div class="font-bold">Built-up surface</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Pesaresi M., Politis P. (2023): GHS-BUILT-S R2023A - GHS built-up surface grid, derived from Sentinel2 composite and Landsat, multitemporal (1975-2030), European Commission, Joint Research Centre (JRC), PID: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea"><u>http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea</u></a>,
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA"><u>10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA</u></a>
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(122, 64, 43);"><i
-                                                class="fa-fw fa-regular fa-cube"></i></div>
-                                        <div class="font-bold">Built-up volume</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Pesaresi M., Politis P. (2023): GHS-BUILT-V R2023A - GHS built-up volume grids derived from joint assessment of Sentinel2, Landsat, and global DEM data, multitemporal (1975-2030). European Commission, Joint Research Centre (JRC), PID: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/ab2f107a-03cd-47a3-85e5-139d8ec63283"><u>http://data.europa.eu/89h/ab2f107a-03cd-47a3-85e5-139d8ec63283</u></a>,
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.2905/AB2F107A-03CD-47A3-85E5-139D8EC63283"><u>10.2905/AB2F107A-03CD-47A3-85E5-139D8EC63283</u></a>
-                                    </div>
-                                    
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(122, 64, 43);"><i
-                                                class="fa-fw fa-regular fa-building"></i></div>
-                                        <div class="font-bold">Built-up height</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Pesaresi, M.; Politis, P. (2023): GHS-BUILT-H R2023A - GHS building height, derived from AW3D30, SRTM30, and Sentinel2 composite (2018). European Commission, Joint Research Centre (JRC), PID: 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/85005901-3a49-48dd-9d19-6261354f56fe"><u>http://data.europa.eu/89h/85005901-3a49-48dd-9d19-6261354f56fe</u></a>,
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.2905/85005901-3A49-48DD-9D19-6261354F56FE"><u>10.2905/85005901-3A49-48DD-9D19-6261354F56FE</u></a>
-                                    </div>
-
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(122, 64, 43);"><i
-                                                class="fa-fw fa-regular fa-tree-city"></i></div>
-                                        <div class="font-bold">Degree of Urbanisation</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Schiavina M., Melchiorri M., Pesaresi M. (2023): GHS-SMOD R2023A - GHS settlement layers, application of the Degree of Urbanisation methodology (stage I) to GHS-POP R2023A and GHS-BUILT-S R2023A, multitemporal (1975-2030). European Commission, Joint Research Centre (JRC), PID:
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="http://data.europa.eu/89h/a0df7a6f-49de-46ea-9bde-563437a6e2ba"><u>http://data.europa.eu/89h/a0df7a6f-49de-46ea-9bde-563437a6e2ba</u></a>,
-                                        doi: <a class="text-gray-800 transition hover:text-shift-blue" href="https://doi.org/10.2905/A0DF7A6F-49DE-46EA-9BDE-563437A6E2BA"><u>10.2905/A0DF7A6F-49DE-46EA-9BDE-563437A6E2BA</u></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-8">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(255, 130, 0);"><i
-                                        class="fa-fw fa-regular fa-shop"></i></div>
-                                <div>
-                                    <div class="text-xl font-bold sm:text-2xl">Services</div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-12">
-                                <div class="flex flex-col gap-4">
-                                    <div class="flex items-start gap-3 px-3">
-                                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                            style="background: rgb(255, 130, 0);"><i
-                                                class="fa-fw fa-regular fa-wifi"></i></div>
-                                        <div class="font-bold">Digitalisation</div>
-                                    </div>
-                                    <div class="font-bold px-6">Source</div>
-                                    <div class="text-gray-500 px-10">
-                                        Speedtest by Ookla Global Fixed and Mobile Network Performance Maps was accessed in March 2023 from 
-                                        <a class="text-gray-800 transition hover:text-shift-blue" href="https://registry.opendata.aws/speedtest-global-performance"><u>https://registry.opendata.aws/speedtest-global-performance</u></a>
-                                        . Speedtest® by Ookla® Global Fixed and Mobile Network Performance Maps. Based on analysis by Ookla of Speedtest Intelligence® data for 2022. Provided by Ookla and accessed in March 2023. Ookla trademarks used under license and reprinted with permission.
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
-
         </div>
+        <hr />
     </div>
+   
 
+    <script type="text/javascript" src="./js/tabs.js"></script>
     <script>
-        // Function to load and convert Markdown content
-        function loadMarkdownFile(filePath, elementId) {
-          fetch(filePath)
-            .then(response => response.text())
-            .then(markdown => {
-              const converter = new showdown.Converter({ tables: true });
-              const html = converter.makeHtml(markdown);
-              document.getElementById(elementId).innerHTML = html;
-            })
-            .catch(error => console.error('Error loading Markdown file:', error));
-        }
-      
-        // Call the function with the path to your Markdown file
-        // loadMarkdownFile('data/methodology/pop_age.md', 'pop_age_sources');
-      </script>
+        var currentTopicName;
+
+        currentTopicName = "geography";
+        buildTabTopic("geography");
+        buildTabTopic("demography");
+        buildTabTopic("environment");
+        buildTabTopic("climate");
+        buildTabTopic("economy");
+        buildTabTopic("ghsl");
+        buildTabTopic("services");
+
+    </script>
 </body>
+
 </html>

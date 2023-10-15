@@ -158,14 +158,14 @@ function buildRadarChartData(data) {
         radarSauDataNorm.push(normalizeData(data.SEX_RATIO_TOT, 85, 115));
     }
     
-    if (data.BIRTH_RATE != undefined) {
+    if (data.BIRTHS_RATE != undefined) {
         radarLabels.push('Birth rate');
         radarUnits.push('%');
         radarSauData.push(data.BIRTH_RATE);
         radarSauDataNorm.push(normalizeData(data.BIRTH_RATE, 0, 25));
     }
     
-    if (data.DEATH_RATE != undefined) {
+    if (data.DEATHS_RATE != undefined) {
         radarLabels.push('Death rate');
         radarUnits.push('%');
         radarSauData.push(data.DEATH_RATE);

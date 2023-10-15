@@ -42,7 +42,7 @@
                 <div class="mx-auto max-w-1xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 items-center justify-between">
                         <div class="flex items-center">
-                            <a class="flex shrink-0 items-center mr-4 ml-0">
+                            <a class="flex shrink-0 items-center mr-4 ml-0"  href="https://www.oecd.org/">
                                 <img src="img/OECD_logo_new.svg.png" class="h-8 sm:h-10 w-auto" />
                             </a>
                             <div class="font-bold text-xl sm:text-2xl text-gray-700 hidden sm:flex" style="padding: 20px;">
@@ -99,8 +99,8 @@
                         </div>
                         
                         
-                        <div id='profileSauHighlights' class="flex flex-col gap-8 break-words print:!w-full sm:w">                          
-                        </div>
+                        <!-- <div id='profileSauHighlights' class="flex flex-col gap-8 break-words print:!w-full sm:w">                          
+                        </div> -->
 
                         <div id='profileSau' class="flex flex-col gap-8 break-words print:!w-full sm:w">                          
                         </div>
@@ -114,91 +114,14 @@
             </div>
         </div> 
     </div>
-    
+
+<script  type="text/javascript" src="./js/tabs.js"></script>
 <script  type="text/javascript" src="./js/idcard.js"></script>
 <script  type="text/javascript" src="./js/searchbar.js"></script>
 <script  type="text/javascript" src="./js/chart.js"></script>
 
 <script>
-
-function buildBaseMap() {
-    var map = L.map('map', {
-        center: [48.8566, 2.3522],
-        minZoom: 3,
-        maxZoom: 12,
-        zoomControl: false,
-        zoom: 7,        
-    });
-
-    var mapBaseLayer = L.esri.Vector.vectorBasemapLayer("8d891c38ed57477aa1db1693c144bab4", {
-        apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
-    });
-    mapBaseLayer.addTo(map);
-
-    var mapBaseLabelsLayer = L.esri.Vector.vectorBasemapLayer("arcgis/light-gray/labels", {
-    apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
-    zindex: 10,
-    });
-    mapBaseLabelsLayer.addTo(map);
-
-    var mapBaseTL1PlainUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
-    var mapBaseTL1PlainStyling = {
-            "tl1_plain_boundaries": function (properties, zoom) {
-                return {
-                    fill: false, // No fill
-                    weight: 1,
-                    color: "#626262", // Black color
-                    opacity: 1.0,
-                };
-            }
-    };
-    var mapBaseTL1PlainTileOptions = {
-        rendererFactory: L.canvas.tile,
-        interactive: false,
-        maxNativeZoom: 12,
-        minZoom: 0,
-        vectorTileLayerStyles: mapBaseTL1PlainStyling,
-        attribution: "Source of administrative boundaries: National Statistical Offices and FAO Global Administrative Unit Layers (GAUL). This map is for illustrative purposes and is without prejudice to the status of or sovereignty over any territory covered by this map."
-    };
-    try {
-        var mapBaseTL1PlainLayer = new L.VectorGrid.Protobuf(mapBaseTL1PlainUrl, mapBaseTL1PlainTileOptions);
-        mapBaseTL1PlainLayer.setZIndex(12).addTo(map);
-    } catch (error) {
-        // Handle the error here (or ignore it)
-        console.error("Error loading PBF file:", error);
-    }
-
-    var mapBaseTL1DottedUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
-    var mapBaseTL1DottedStyling = {
-            "tl1_dotted_boundaries": function (properties, zoom) {
-                return {
-                    fill: false, // No fill
-                    weight: 1,
-                    color: "#626262", // Black color
-                    opacity: 1.0,
-                    dashArray: "4, 4",
-                };
-            }
-    };
-    var mapBaseTL1DottedTileOptions = {
-        rendererFactory: L.canvas.tile,
-        interactive: false,
-        maxNativeZoom: 12,
-        minZoom: 0,
-        vectorTileLayerStyles: mapBaseTL1DottedStyling
-    };
-    try {
-        var mapBaseTL1DottedLayer = new L.VectorGrid.Protobuf(mapBaseTL1DottedUrl, mapBaseTL1DottedTileOptions);
-        mapBaseTL1DottedLayer.setZIndex(12).addTo(map);
-    } catch (error) {
-        console.error("Error loading PBF file:", error);
-    }
-
-    return map;
-}
-
-var currentButton;
-var currentTopicContent;
+var currentTopicName;
 
 let radarChart;
 let mapProfile;
@@ -254,35 +177,31 @@ $.getJSON("https://municipalatlas.blob.core.windows.net/data/data/geo_names/tl1_
             .then(data => {
                 mapContainerElem = document.getElementById("map-container");
                 mapContainerElem.innerHTML = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
-                                <div id='profileSauTitle' style="z-index: 10000" ></div>
-                            </div>`;
+                        <div id='profileSauTitle' style="z-index: 10000" ></div>
+                    </div>`;
                 if (mapProfile == undefined) {
                     mapProfile = buildBaseMap();
                     $('.leaflet-control-attribution').hide()
                 }
                 var geojsonLayer = L.geoJSON(data).addTo(mapProfile);
                 mapProfile.fitBounds(geojsonLayer.getBounds());
-                sauProfileContentHtml = buildSauProfile(data.features[0].properties);
                 sauProfileTitleHtml = buildSauTitle(data.features[0].properties);
-                sauProfileHighlightsHtml = buildSauHighlights(data.features[0].properties);
+                sauProfileContentHtml = buildSauProfile(data.features[0].properties);
 
                 sauProfileElem = document.getElementById("profileSau");
                 sauProfileTitleElem = document.getElementById("profileSauTitle");
-                sauProfileHighlightsElem = document.getElementById("profileSauHighlights");
-
+                
+                sauProfileElem.innerHTML = sauProfileContentHtml;
                 sauProfileTitleElem.innerHTML = sauProfileTitleHtml;
-                sauProfileHighlightsElem.innerHTML = sauProfileHighlightsHtml;
-                sauProfileElem.innerHTML = sauProfileContentHtml.current;
-                currentButton = document.getElementById(`button-demography`);
-                currentTopicContent = document.getElementById(`topic-content`);
-                console.log(currentTopicContent.innerHTML);
 
-                buildSauTabProfile(sauProfileContentHtml.demography, "demography")
-                buildSauTabProfile(sauProfileContentHtml.environment, "environment")
-                buildSauTabProfile(sauProfileContentHtml.climate, "climate")
-                buildSauTabProfile(sauProfileContentHtml.economy, "economy")
-                buildSauTabProfile(sauProfileContentHtml.ghsl, "ghsl")
-                buildSauTabProfile(sauProfileContentHtml.services, "services")
+                currentTopicName = "highlights";
+                buildTabTopic("highlights");
+                buildTabTopic("demography");
+                buildTabTopic("environment");
+                buildTabTopic("climate");
+                buildTabTopic("economy");
+                buildTabTopic("ghsl");
+                buildTabTopic("services");
 
                 var sauname = data.features[0].properties.launame;
                 var fuaname = data.features[0].properties.fuaname_en;
@@ -328,27 +247,23 @@ function updateContent() {
                         }
                         var geojsonLayer = L.geoJSON(data).addTo(mapProfile);
                         mapProfile.fitBounds(geojsonLayer.getBounds());
-                        sauProfileContentHtml = buildSauProfile(data.features[0].properties);
                         sauProfileTitleHtml = buildSauTitle(data.features[0].properties);
-                        sauProfileHighlightsHtml = buildSauHighlights(data.features[0].properties);
+                        sauProfileContentHtml = buildSauProfile(data.features[0].properties);
 
                         sauProfileElem = document.getElementById("profileSau");
                         sauProfileTitleElem = document.getElementById("profileSauTitle");
-                        sauProfileHighlightsElem = document.getElementById("profileSauHighlights");
-
+                        
+                        sauProfileElem.innerHTML = sauProfileContentHtml;
                         sauProfileTitleElem.innerHTML = sauProfileTitleHtml;
-                        sauProfileHighlightsElem.innerHTML = sauProfileHighlightsHtml;
-                        sauProfileElem.innerHTML = sauProfileContentHtml.current;
-                        currentButton = document.getElementById(`button-demography`);
-                        currentTopicContent = document.getElementById(`topic-content`);
-                        console.log(currentTopicContent.innerHTML);
 
-                        buildSauTabProfile(sauProfileContentHtml.demography, "demography")
-                        buildSauTabProfile(sauProfileContentHtml.environment, "environment")
-                        buildSauTabProfile(sauProfileContentHtml.climate, "climate")
-                        buildSauTabProfile(sauProfileContentHtml.economy, "economy")
-                        buildSauTabProfile(sauProfileContentHtml.ghsl, "ghsl")
-                        buildSauTabProfile(sauProfileContentHtml.services, "services")
+                        currentTopicName = "highlights";
+                        buildTabTopic("highlights");
+                        buildTabTopic("demography");
+                        buildTabTopic("environment");
+                        buildTabTopic("climate");
+                        buildTabTopic("economy");
+                        buildTabTopic("ghsl");
+                        buildTabTopic("services");
 
                         var sauname = data.features[0].properties.launame;
                         var fuaname = data.features[0].properties.fuaname_en;

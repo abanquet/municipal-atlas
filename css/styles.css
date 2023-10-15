@@ -880,8 +880,8 @@ strong {
     height: 10px
 }
 
-.h-\[calc\(100vh-3\.5rem-1px\)\] {
-    height: calc(100vh - 3.5rem - 1px)
+.h-\[calc\(100vh-4rem-1px\)\] {
+    height: calc(100vh - 4rem - 1px)
 }
 
 .h-6 {
@@ -1228,6 +1228,11 @@ strong {
     border-width: 1px
 }
 
+.border2 {
+    border-width: 2px
+}
+
+
 .border-\[3px\] {
     border-width: 3px
 }
@@ -1280,6 +1285,14 @@ strong {
 .bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.bg-highlights {
+    background-color: rgb(66, 122, 179)
+}
+
+.bg-geography {
+    background-color: rgb(66, 122, 179)
 }
 
 .bg-demography {
@@ -2475,4 +2488,3 @@ background-color: #f2f2f2; /* Set a background color for the map container */
     border-color:rgb(160, 160, 160);
     border-width: 1px;
 }
-

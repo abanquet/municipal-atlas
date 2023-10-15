@@ -29,11 +29,12 @@ function buildSauProfile(data){
     };
 
     
-
-    var innerHtmlDemography = `<div class="flex items-center gap-3">
-                                    <div class="text-xl font-bold sm:text-2xl">Demography</div>
-                                </div>
-                           `;
+    var innerHtmlDemography = `
+    <div id="topic-demography" class="flex flex-col gap-5 hidden">
+        <div class="flex items-center gap-3">
+            <div class="text-xl font-bold sm:text-2xl">Demography</div>
+        </div>
+    `;
 
     var poptot = data.POP_T;
     if (poptot != undefined) {
@@ -145,8 +146,8 @@ function buildSauProfile(data){
     };
 
     var natch = data.NETNAT_RATE;
-    var births = data.BIRTH_RATE;
-    var deaths = data.DEATH_RATE;
+    var births = data.BIRTHS_RATE;
+    var deaths = data.DEATHS_RATE;
     if ((natch != undefined) | (births != undefined) | (deaths != undefined)){
         innerHtmlDemography += `
         <div class="flex flex-col gap-3">
@@ -274,12 +275,15 @@ function buildSauProfile(data){
 
         innerHtmlDemography += '</div>'
         };
+        innerHtmlDemography += '</div>'
 
-        var innerHtmlEnvironment = `<div class="flex items-center gap-2">
-            <div>
-                <div class="text-xl font-bold sm:text-2xl">Environment</div>
-            </div>
-        </div>`;
+        var innerHtmlEnvironment = `
+        <div id="topic-environment" class="flex flex-col gap-5 hidden">
+            <div class="flex items-center gap-2">
+                <div>
+                    <div class="text-xl font-bold sm:text-2xl">Environment</div>
+                </div>
+            </div>`;
 
         var greenAreaShare = data.GREEN_AREA_SHARE;
         var greenAreasCap = data.GREEN_AREA_CAPITA;
@@ -368,8 +372,7 @@ function buildSauProfile(data){
                 </div>
                 `;
             }
-
-            innerHtmlEnvironment += `</div>`;
+            innerHtmlEnvironment += '</div>'
         }
 
         // var O3 = data.O3_POP_W_MEAN;
@@ -461,11 +464,13 @@ function buildSauProfile(data){
         // }
         innerHtmlEnvironment += `</div>`;
 
-        var innerHtmlServices = `<div class="flex items-center gap-2">
-            <div>
-                <div class="text-xl font-bold sm:text-2xl">Services</div>
-            </div>
-        </div>`;
+        var innerHtmlServices = `
+        <div id="topic-services" class="flex flex-col gap-5 hidden">
+            <div class="flex items-center gap-2">
+                <div>
+                    <div class="text-xl font-bold sm:text-2xl">Services</div>
+                </div>
+            </div>`;
 
         var downloadSpeedDeviation = data.OOKLA_FIXED_DOWNLOAD_DEV;
         var uploadSpeedDeviation = data.OOKLA_FIXED_UPLOAD_DEV;
@@ -511,16 +516,19 @@ function buildSauProfile(data){
                 </div>
                 `;
             }
-
-            innerHtmlServices += `</div>
-            </div>`;
+            innerHtmlServices += '</div>'
         }
 
-    var innerHtmlGHSL = `<div class="flex items-center gap-2">
-        <div>
-            <div class="text-xl font-bold sm:text-2xl">Territorial Organisation</div>
-        </div>
-    </div>`;
+    innerHtmlServices += `
+        </div>`;
+
+    var innerHtmlGHSL = `
+    <div id="topic-ghsl" class="flex flex-col gap-5 hidden">
+        <div class="flex items-center gap-2">
+            <div>
+                <div class="text-xl font-bold sm:text-2xl">Territorial Organisation</div>
+            </div>
+        </div>`;
 
     var popdens = data['pop_density_km2'];
     var builts = data['BUILT_S__T'];
@@ -694,17 +702,20 @@ function buildSauProfile(data){
                     </div>                     
             </div>`;
         }
-
-        innerHtmlGHSL += `
-        </div>`;
+        innerHtmlGHSL += '</div>'
     }
 
+    innerHtmlGHSL += `
+        </div>`;
 
-    var innerHtmlClimate = `<div class="flex items-center gap-2">
-        <div>
-            <div class="text-xl font-bold sm:text-2xl">Climate</div>
-        </div>
-    </div>`;
+
+    var innerHtmlClimate = `
+    <div id="topic-climate" class="flex flex-col gap-5 hidden">
+        <div class="flex items-center gap-2">
+            <div>
+                <div class="text-xl font-bold sm:text-2xl">Climate</div>
+            </div>
+        </div>`;
 
     var temp = data.AIR_TEMP2M;
     var tempCh = data.AIR_TEMP2M_DIFF_1981_2010;
@@ -1029,17 +1040,20 @@ function buildSauProfile(data){
                 </div>                     
             </div>`;
         }
-
-        innerHtmlClimate += `
-        </div>`;
+        innerHtmlClimate += '</div>'
     }
 
+    innerHtmlClimate += `
+        </div>`;
+
     var innerHtmlEcon = `
-    <div class="flex items-center gap-2">
-        <div>
-            <div class="text-xl font-bold sm:text-2xl">Economy and Labour</div>
+    <div id="topic-economy" class="flex flex-col gap-5 hidden">
+        <div class="flex items-center gap-2">
+            <div>
+                <div class="text-xl font-bold sm:text-2xl">Economy and Labour</div>
+            </div>
         </div>
-    </div>`;
+    `;
 
     var medianIncome = data.MEDIAN_DISP_INC;
     var povertyRate = data.POV_RATE_60;
@@ -1144,160 +1158,19 @@ function buildSauProfile(data){
                     </div>                     
             </div>`;
         }
-
-        innerHtmlEcon += `
-        </div>`;
     }
+    innerHtmlEcon += `
+        </div></div>`;
 
-    // var innerHtmlTl = "";
 
-    // if (tl2_name_en != undefined) {
-    //     innerHtmlTl += `<div class="flex items-start gap-1" style="padding-left: 1em">
-    //                     <div class="flex h-9 w-9 items-center justify-center rounded text-xs text-white text-sm font-bold"
-    //                     style="background: darkgrey;"> TL2 </div>
-    //                 <div class="flex h-9 items-center justify-center font-bold" style="padding-left: 0.2em; padding-right: 1em">${tl2_name_en}</div>
-    //             </div>`
-    // };
-
-    // if (tl3_name_en != undefined) {
-    //     innerHtmlTl += `<div class="flex items-start gap-1" style="padding-left: 1em">
-    //                 <div class="flex h-9 w-9 items-center justify-center rounded text-xs text-white text-sm font-bold"
-    //                     style="background: darkgrey;"> TL3 </div>
-    //                 <div class="flex h-9 items-center justify-center font-bold" style="padding-left: 0.2em; padding-right: 1em">${tl3_name_en}</div>
-    //             </div>`
-    // };
-
-    // if (fuaname != undefined) {
-    //     innerHtmlTl += `<div class="flex items-start gap-1" style="padding-left: 1em">
-    //                     <div class="flex h-9 w-9 items-center justify-center rounded text-xs text-white text-sm font-bold"
-    //                     style="background: darkgrey;"> FUA </div>
-    //                 <div class="flex h-9 items-center justify-center font-bold" style="padding-left: 0.2em; padding-right: 1em">${fuaname}</div>
-    //             </div>`
-    // };
-
-    // if (cityname != undefined) {
-    //     innerHtmlTl += `<div class="flex items-start gap-1" style="padding-left: 1em">
-    //                     <div class="flex h-9 w-9 items-center justify-center rounded text-xs text-white text-sm font-bold"
-    //                     style="background: darkgrey;"> City </div>
-    //                 <div class="flex h-9 items-center justify-center font-bold" style="padding-left: 0.2em; padding-right: 1em">${cityname}</div>
-    //             </div>
-    //                 `
-    // };
-
-    // <div class="flex flex-col gap-4">
-    //                         <div class="text-3xl font-extrabold sm:text-4xl">${sauInfo}</div>
-    //                         <div class="flex flex-col items-start gap-1" style="padding-left: 1em">
-    //                             ${innerHtmlTl}
-    //                         </div>
-                            
-    //                     </div>
-    // sauHtmlContent = `<div class="flex flex-col gap-16 break-words print:!w-full sm:w">
-                        
-    //                     <div class="flex flex-col gap-8">
-    //                         ${innerHtmlDemography}
-    //                     </div>
-
-    //                     <div class="flex flex-col gap-8">
-    //                         ${innerHtmlEnvironment}
-    //                     </div>
-
-    //                     <div class="flex flex-col gap-8">
-    //                         ${innerHtmlClimate}
-    //                     </div>
-
-    //                     <div class="flex flex-col gap-8">
-    //                         ${innerHtmlEcon}
-    //                     </div>
-
-    //                     <div class="flex flex-col gap-8">
-    //                         ${innerHtmlGHSL}
-    //                     </div>
-
-    //                     <div class="flex flex-col gap-8">
-    //                         ${innerHtmlServices}
-    //                     </div>
-
-                        
-                        
-    //                 </div>
-    //                 <hr />
-    //             ` 
-
-sauHtmlContent = `
-<div class="flex flex-col gap-8 break-words print:!w-full sm:w">
-    <div class="flex items-center gap-2">
-        <div id="button-demography" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-demography"
-            title="Demography"><i class="fa-fw fa-regular fa-people"></i>
-        </div>
-        <div id="button-environment" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-            title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
-        </div>
-        <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-            title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
-        </div>
-        <div id="button-economy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-            title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
-        </div>
-        <div id="button-ghsl" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-            title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
-        </div>
-        <div id="button-services" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-            title="Services"><i class="fa-fw fa-regular fa-wifi"></i>
-        </div>
-        
-    </div>
-
-    <div id="topic-content" class="flex flex-col gap-8">
-    ${innerHtmlDemography}
-    </div>
-</div>
-<hr />
-`;
-
-return {
-    "current": sauHtmlContent,
-    "demography": innerHtmlDemography,
-    "environment": innerHtmlEnvironment,
-    "climate": innerHtmlClimate,
-    "economy": innerHtmlEcon,
-    "ghsl": innerHtmlGHSL,
-    "services": innerHtmlServices
-    }
-};
-
-function buildSauTabProfile(innerHtmlTopic, topic, firstTopic=false) {
-    const buttonElem = document.getElementById(`button-${topic}`);
-    const topicContentElem = document.getElementById(`topic-content`);
-
-    buttonElem.addEventListener('click', function () {
-        currentButton.classList.remove(`bg-${topic}`);
-        currentButton.classList.add(`bg-gray-700`);
-        currentButton.classList.add(`hover:bg-gray-900`);
-        currentTopicContent.innerHTML = "";
-
-        currentButton = buttonElem;
-        currentButton.classList.remove(`bg-gray-700`);
-        currentButton.classList.remove(`hover:bg-gray-900`);
-        currentButton.classList.add(`bg-${topic}`);
-        currentTopicContent = topicContentElem;
-        currentTopicContent.innerHTML = innerHtmlTopic;
-        
-  });
-};
-
-function buildSauHighlights(data){
-
-    var innerHtmlHighlights = `<hr>
+    var innerHtmlHighlights = `
+    <div id="topic-highlights" class="flex flex-col gap-5">
         <div class="flex items-center gap-2">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-800"
-                "><i
-                    class="fa-fw fa-regular fa-square-info"></i>
-            </div>
             <div>
                 <div class="text-xl font-bold sm:text-2xl">Highlights</div>
             </div>
         </div>
-        <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">        
     `;
 
     var poptot = data.POP_T;
@@ -1325,7 +1198,7 @@ function buildSauHighlights(data){
                 <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
                     <div class="flex items-start gap-3 justify-center">
                         <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
-                            class="fa-fw fa-regular fa-person"></i></div>
+                            class="fa-fw fa-regular fa-person-arrow-up-from-line"></i></div>
                         <div class="font-bold text-lg">Population density</div>
                     </div>
                     <div class="text-gray-600 items-center justify-center ">
@@ -1474,7 +1347,329 @@ function buildSauHighlights(data){
     }
 
     
-    innerHtmlHighlights += `</div><hr>`
+    innerHtmlHighlights += `</div></div>`
+
+    sauHtmlContent = `
+    <hr />
+    <div class="flex flex-col gap-8 break-words print:!w-full sm:w">
+        <div class="flex items-center gap-2">
+            <div id="button-highlights" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-highlights"
+                title="Highlights"><i class="fa-fw fa-regular fa-square-info"></i>
+            </div>
+            <div id="button-demography" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Demography"><i class="fa-fw fa-regular fa-people"></i>
+            </div>
+            <div id="button-environment" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
+            </div>
+            <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
+            </div>
+            <div id="button-economy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
+            </div>
+            <div id="button-ghsl" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
+            </div>
+            <div id="button-services" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Services"><i class="fa-fw fa-regular fa-shop"></i>
+            </div>
+            
+        </div>
+
+        <div id="topic-content" class="flex flex-col gap-8">
+        ${innerHtmlHighlights}
+        ${innerHtmlDemography}
+        ${innerHtmlEnvironment}
+        ${innerHtmlClimate}
+        ${innerHtmlEcon}
+        ${innerHtmlGHSL}
+        ${innerHtmlServices}
+        </div>
+    </div>
+    <hr />
+    `;
+
+return sauHtmlContent
+};
+
+// function buildSauProfileInit(innerHtmlInit) {
+//     sauHtmlContent = `
+//     <hr />
+//     <div class="flex flex-col gap-8 break-words print:!w-full sm:w">
+//         <div class="flex items-center gap-2">
+//             <div id="button-highlights" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-highlights"
+//                 title="Highlights"><i class="fa-fw fa-regular fa-square-info"></i>
+//             </div>
+//             <div id="button-demography" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+//                 title="Demography"><i class="fa-fw fa-regular fa-people"></i>
+//             </div>
+//             <div id="button-environment" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+//                 title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
+//             </div>
+//             <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+//                 title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
+//             </div>
+//             <div id="button-economy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+//                 title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
+//             </div>
+//             <div id="button-ghsl" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+//                 title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
+//             </div>
+//             <div id="button-services" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+//                 title="Services"><i class="fa-fw fa-regular fa-shop"></i>
+//             </div>
+            
+//         </div>
+
+//         <div id="topic-content" class="flex flex-col gap-8">
+//         ${innerHtmlInit}
+//         </div>
+//     </div>
+//     <hr />
+//     `;
+
+//     return sauHtmlContent;
+// };
+
+// function buildSauTabProfile(innerHtmlTopic, topic) {
+//     const buttonElem = document.getElementById(`button-${topic}`);
+//     const topicContentElem = document.getElementById(`topic-content`);
+
+//     buttonElem.addEventListener('click', function () {
+//         currentButton.classList.remove(`bg-${topic}`);
+//         currentButton.classList.add(`bg-gray-700`);
+//         currentButton.classList.add(`hover:bg-gray-900`);
+//         currentTopicContent.innerHTML = "";
+
+//         currentButton = buttonElem;
+//         currentButton.classList.remove(`bg-gray-700`);
+//         currentButton.classList.remove(`hover:bg-gray-900`);
+//         currentButton.classList.add(`bg-${topic}`);
+//         currentTopicContent = topicContentElem;
+//         currentTopicContent.innerHTML = innerHtmlTopic;
+        
+//   });
+// };
+
+
+function buildSauTabProfile(topic) {
+    const buttonElem = document.getElementById(`button-${topic}`);
+    const topicContentElem = document.getElementById(`topic-${topic}`);
+    console.log(topicContentElem.classList);
+
+    buttonElem.addEventListener('click', function () {
+        document.getElementById(`button-${currentTopicName}`).classList.remove(`bg-${currentTopicName}`);
+        document.getElementById(`button-${currentTopicName}`).classList.add(`bg-gray-700`);
+        document.getElementById(`button-${currentTopicName}`).classList.add(`hover:bg-gray-900`);
+        document.getElementById(`topic-${currentTopicName}`).classList.add(`hidden`);
+
+        currentTopicName = topic;
+        buttonElem.classList.remove(`bg-gray-700`);
+        buttonElem.classList.remove(`hover:bg-gray-900`);
+        buttonElem.classList.add(`bg-${topic}`);
+        topicContentElem.classList.remove(`hidden`);        
+  });
+};
+
+function buildSauHighlights(data){
+
+    // var innerHtmlHighlights = `<hr>
+    //     <div class="flex items-center gap-2">
+    //         <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-800"
+    //             "><i
+    //                 class="fa-fw fa-regular fa-square-info"></i>
+    //         </div>
+    //         <div>
+    //             <div class="text-xl font-bold sm:text-2xl">Highlights</div>
+    //         </div>
+    //     </div>
+    //     <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+    // `;
+    
+    var innerHtmlHighlights = `<div class="flex items-center gap-2">
+    <div>
+        <div class="text-xl font-bold sm:text-2xl">Highlights</div>
+    </div>
+</div>
+        <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+    `;
+
+    var poptot = data.POP_T;
+    if (poptot != undefined) {
+        innerHtmlHighlights += `
+        
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-person"></i></div>
+                        <div class="font-bold text-lg">Total population</div>
+                    </div>
+                    <div class="text-gray-600 items-center justify-center ">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${(Math.round(poptot)).toLocaleString('en-US').replaceAll(',', ' ')}</span> 
+                        persons
+                    </div>   
+                </div>
+            `;
+    };
+
+    var popdens = data.pop_density_km2;
+    if (popdens != undefined) {
+        innerHtmlHighlights += `
+        
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-person-arrow-up-from-line"></i></div>
+                        <div class="font-bold text-lg">Population density</div>
+                    </div>
+                    <div class="text-gray-600 items-center justify-center ">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${(Math.round(popdens)).toLocaleString('en-US').replaceAll(',', ' ')}</span> 
+                        persons/km<sup>2</sup>
+                    </div>   
+                </div>
+            `;
+    };
+
+    var popch = data.POP_CH;
+    if (popch != undefined) {
+        if (popch > 0) {
+            var popchInfo = "of population increase over the past 5 years.";
+        } else {
+            var popchInfo = "of population loss over the past 5 years.";
+        }
+        
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-chart-line-up"></i></div>
+                        <div class="font-bold text-lg">Population change</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center ">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${popch<0?"":"+"}${Math.round(popch * 100) / 100}%</span> 
+                        over the past 5 years
+                    </div>                  
+                </div>
+            `;
+        
+    };
+
+    var tempCh = data.AIR_TEMP2M_DIFF_1981_2010;
+    if (tempCh != undefined) {
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600 ">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
+                        <div class="font-bold text-lg">Climate change</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${tempCh<0?"":"+"}${Math.round(tempCh * 10) / 10}°C</span> 
+                        warmer than during 1981-2010
+                    </div>                  
+                </div>
+            `;
+        
+    }
+
+
+    var treeCoverChange = data.FOREST_CH;
+    if (tempCh != undefined) {
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600 ">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-trees"></i></div>
+                        <div class="font-bold text-lg">Tree cover change</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${treeCoverChange<0?"":"+"}${Math.round(treeCoverChange * 10) / 10}%</span> 
+                        from 2000 to 2020.
+                    </div>                  
+                </div>
+            `;
+        
+    }
+
+    var medianIncome = data.MEDIAN_DISP_INC_PC_CURR_PR;
+    var povertyRate = data.POV_RATE_60;
+    var unemploymentRate = data.UNEMP_RA_15_64;
+    var housingPricePerSqMeter = data.HOUSING_PRICE_M2;
+
+    if (medianIncome != undefined) {
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-dollar-sign"></i></div>
+                        <div class="font-bold text-lg">Income</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${(Math.round(medianIncome * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} €</span> 
+                        median disposable income.
+                    </div>                  
+                </div>
+            `;
+        
+    }
+
+    if (unemploymentRate != undefined) {
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-suitcase"></i></div>
+                        <div class="font-bold text-lg">Employment</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center ">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${(Math.round(unemploymentRate * 10) / 10)} %</span> 
+                        unemployment rate
+                    </div>                  
+                </div>
+            `;
+    }
+
+    if (housingPricePerSqMeter != undefined) {
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-house"></i></div>
+                        <div class="font-bold text-lg">Housing</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center ">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${(Math.round(housingPricePerSqMeter)).toLocaleString('en-US').replaceAll(',', ' ')}  €/m<sup>2</sup> </span> 
+                        average transaction price.
+                    </div>                  
+                </div>
+            `;
+    }
+
+    var downloadSpeedDeviation = data.OOKLA_FIXED_DOWNLOAD_DEV;
+    if (downloadSpeedDeviation != undefined) {
+        if (downloadSpeedDeviation > 0) {
+            var downloadSpeedDeviationInfo = "faster fixed download speed than the national average.";
+        } else {
+            var downloadSpeedDeviationInfo = "slower fixed download speed than the national average.";
+        }
+        innerHtmlHighlights += `
+                <div class="flex flex-col gap-1 p-3 rounded-md border border-gray-600">
+                    <div class="flex items-start gap-3 justify-center">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-gray-800"><i
+                            class="fa-fw fa-regular fa-wifi"></i></div>
+                        <div class="font-bold text-lg">Digitalisation</div>
+                    </div>                  
+                    <div class="text-gray-600 items-center justify-center ">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(31 41 55);">${Math.round(downloadSpeedDeviation * 10) / 10} % </span> 
+                        ${downloadSpeedDeviationInfo}
+                    </div>                  
+                </div>
+            `;
+    }
+
+    
+    innerHtmlHighlights += `</div>`
 
 return innerHtmlHighlights;
 
@@ -1538,4 +1733,80 @@ function buildSauTitle(data){
                     </div>` 
 return sauHtmlContent;
 
+}
+
+function buildBaseMap() {
+    var map = L.map('map', {
+        center: [48.8566, 2.3522],
+        minZoom: 3,
+        maxZoom: 12,
+        zoomControl: false,
+        zoom: 7,        
+    });
+
+    var mapBaseLayer = L.esri.Vector.vectorBasemapLayer("8d891c38ed57477aa1db1693c144bab4", {
+        apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
+    });
+    mapBaseLayer.addTo(map);
+
+    var mapBaseLabelsLayer = L.esri.Vector.vectorBasemapLayer("arcgis/light-gray/labels", {
+    apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
+    zindex: 10,
+    });
+    mapBaseLabelsLayer.addTo(map);
+
+    var mapBaseTL1PlainUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1PlainStyling = {
+            "tl1_plain_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 1,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                };
+            }
+    };
+    var mapBaseTL1PlainTileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 0,
+        vectorTileLayerStyles: mapBaseTL1PlainStyling,
+        attribution: "Source of administrative boundaries: National Statistical Offices and FAO Global Administrative Unit Layers (GAUL). This map is for illustrative purposes and is without prejudice to the status of or sovereignty over any territory covered by this map."
+    };
+    try {
+        var mapBaseTL1PlainLayer = new L.VectorGrid.Protobuf(mapBaseTL1PlainUrl, mapBaseTL1PlainTileOptions);
+        mapBaseTL1PlainLayer.setZIndex(12).addTo(map);
+    } catch (error) {
+        // Handle the error here (or ignore it)
+        console.error("Error loading PBF file:", error);
+    }
+
+    var mapBaseTL1DottedUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1DottedStyling = {
+            "tl1_dotted_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 1,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                    dashArray: "4, 4",
+                };
+            }
+    };
+    var mapBaseTL1DottedTileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 0,
+        vectorTileLayerStyles: mapBaseTL1DottedStyling
+    };
+    try {
+        var mapBaseTL1DottedLayer = new L.VectorGrid.Protobuf(mapBaseTL1DottedUrl, mapBaseTL1DottedTileOptions);
+        mapBaseTL1DottedLayer.setZIndex(12).addTo(map);
+    } catch (error) {
+        console.error("Error loading PBF file:", error);
+    }
+
+    return map;
 }

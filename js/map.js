@@ -1,5 +1,291 @@
 var mapDataTilesUrl = "https://municipalatlas.blob.core.windows.net/tiles/sau_tiles/{z}/{x}/{y}.pbf";
 
+function buildBaseMap() {
+    var map = L.map('map', {
+            center: [48.8566, 2.3522],
+            minZoom: 3,
+            maxZoom: 12,
+            zoomControl: true,
+            zoom: 7,
+    });
+
+    var fuaData;
+    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_fua.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        // Parse the CSV data using Papaparse
+        fuaData = Papa.parse(csvData, { header: true });
+    }
+    )
+
+    var cityData;
+    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_city.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        // Parse the CSV data using Papaparse
+        cityData = Papa.parse(csvData, { header: true });
+    }
+    )
+
+    var tl1Data;
+    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl1.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        // Parse the CSV data using Papaparse
+        fuaData = Papa.parse(csvData, { header: true });
+    }
+    )
+
+    var tl2Data;
+    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl2.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        // Parse the CSV data using Papaparse
+        fuaData = Papa.parse(csvData, { header: true });
+    }
+    )
+
+    var tl3Data;
+    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl3.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        // Parse the CSV data using Papaparse
+        fuaData = Papa.parse(csvData, { header: true });
+    }
+    )
+
+    var mapBaseLayer = L.esri.Vector.vectorBasemapLayer("8d891c38ed57477aa1db1693c144bab4", {
+        apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
+    });
+    mapBaseLayer.addTo(map);
+
+    var mapBaseLabelsLayer = L.esri.Vector.vectorBasemapLayer("arcgis/light-gray/labels", {
+    apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
+    zindex: 10,
+    });
+    mapBaseLabelsLayer.addTo(map);
+
+    var mapBaseTL1PlainUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1PlainStyling = {
+            "tl1_plain_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 1,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                };
+            }
+    };
+    var mapBaseTL1PlainTileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 0,
+        vectorTileLayerStyles: mapBaseTL1PlainStyling,
+        attribution: "Source of administrative boundaries: National Statistical Offices and FAO Global Administrative Unit Layers (GAUL). This map is for illustrative purposes and is without prejudice to the status of or sovereignty over any territory covered by this map."
+    };
+    try {
+        var mapBaseTL1PlainLayer = new L.VectorGrid.Protobuf(mapBaseTL1PlainUrl, mapBaseTL1PlainTileOptions);
+        mapBaseTL1PlainLayer.setZIndex(12).addTo(map);
+    } catch (error) {
+        // Handle the error here (or ignore it)
+        console.error("Error loading PBF file:", error);
+    }
+
+    var mapBaseTL1DottedUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1DottedStyling = {
+            "tl1_dotted_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 1,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                    dashArray: "4, 4",
+                };
+            }
+    };
+    var mapBaseTL1DottedTileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 0,
+        vectorTileLayerStyles: mapBaseTL1DottedStyling
+    };
+    try {
+        var mapBaseTL1DottedLayer = new L.VectorGrid.Protobuf(mapBaseTL1DottedUrl, mapBaseTL1DottedTileOptions);
+        mapBaseTL1DottedLayer.setZIndex(12).addTo(map);
+    } catch (error) {
+        console.error("Error loading PBF file:", error);
+    }
+
+    var mapBaseTL2Url = "https://municipalatlas.blob.core.windows.net/tiles/tl2_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL2Styling = {
+            "tl2_oecd_interior_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 0.8,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                };
+            }
+    };
+    var mapBaseTL2TileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 6,
+        vectorTileLayerStyles: mapBaseTL2Styling
+    };
+    try {
+        var mapBaseTL2Layer = new L.VectorGrid.Protobuf(mapBaseTL2Url, mapBaseTL2TileOptions);
+    } catch (error) {
+        console.error("Error loading PBF file:", error);
+    }
+
+    var mapBaseTL3Url = "https://municipalatlas.blob.core.windows.net/tiles/tl3_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL3Styling = {
+            "tl3_oecd_interior_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 0.8,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                };
+            }
+    };
+    var mapBaseTL3TileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 6,
+        vectorTileLayerStyles: mapBaseTL3Styling
+    };
+    try {
+    var mapBaseTL3Layer = new L.VectorGrid.Protobuf(mapBaseTL3Url, mapBaseTL3TileOptions);
+    } catch (error) {
+        console.error("Error loading PBF file:", error);
+    }
+
+    var mapBaseFUAUrl = "https://municipalatlas.blob.core.windows.net/tiles/fuas_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseFUAStyling = {
+            "fuas_oecd_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 0.8,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                };
+            }
+    };
+    var mapBaseFUATileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 6,
+        vectorTileLayerStyles: mapBaseFUAStyling
+    };
+    var mapBaseFUALayer = new L.VectorGrid.Protobuf(mapBaseFUAUrl, mapBaseFUATileOptions);
+
+    var mapBaseCityUrl = "https://municipalatlas.blob.core.windows.net/tiles/cities_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseCityStyling = {
+            "cities_oecd_boundaries": function (properties, zoom) {
+                return {
+                    fill: false, // No fill
+                    weight: 0.8,
+                    color: "#626262", // Black color
+                    opacity: 1.0,
+                };
+            }
+    };
+    var mapBaseCityTileOptions = {
+        rendererFactory: L.canvas.tile,
+        interactive: false,
+        maxNativeZoom: 12,
+        minZoom: 6,
+        vectorTileLayerStyles: mapBaseCityStyling
+    };
+    var mapBaseCityLayer = new L.VectorGrid.Protobuf(mapBaseCityUrl, mapBaseCityTileOptions);
+
+
+    var tlLayers = {};
+    tlLayers['Large regions (TL2)'] = mapBaseTL2Layer;
+    tlLayers['Small regions (TL3)'] = mapBaseTL3Layer;
+    tlLayers['Metropolitan areas (FUA)'] = mapBaseFUALayer;
+    tlLayers['Cities'] = mapBaseCityLayer;
+
+    var controlGeoLayers = L.control.layers(tlLayers, null, {
+        collapsed: true,
+        position: 'topleft'
+    })
+    .addTo(map);
+
+    tlLayers['Large regions (TL2)'].setZIndex(13).addTo(map); 
+
+    var mapProvider = new window.GeoSearch.OpenStreetMapProvider();
+    var mapSearch = new GeoSearch.GeoSearchControl({
+        provider: mapProvider,
+        style: 'bar',
+        // position: 'topright',
+        showMarker: false,
+    });
+    map.addControl(mapSearch);
+
+    map.on('geosearch/showlocation', function(event) {
+        var lat = event.location.y;
+        var lon = event.location.x;
+        console.log(lat);
+        console.log(lon);
+        var clickEvent = {
+            latlng: L.latLng(lat, lon),
+            originalEvent: {
+                type: 'click',
+                target: map
+            }
+        };
+        map.fire('click', clickEvent);
+    });
+
+    new HideElementControl({ position: 'topleft' }).addTo(map);
+
+    return map;
+}
+
+var HideElementControl = L.Control.extend({
+    onAdd: function (map) {
+        var controlDiv = L.DomUtil.create('div', 'leaflet-control-button');
+        
+        // Add a button to the control
+        var button = L.DomUtil.create('button', 'legend', controlDiv);
+        // button.innerHTML = '<div class="cursor-pointer h-12 w-12 shrink-0 items-center justify-center rounded-md text-xl fa-fw fa-regular fa-bars border border-gray-800 bg-white shadow-sm hover:bg-gray-50"><div>';
+        
+        button.innerHTML = `
+        <div class="flex items-center gap-2">
+        <div class="cursor-pointer h-12 w-12 px-3 py-3 items-center justify-center rounded-md border2 border-gray-600 text-xl bg-white"
+        ><i class="fa-fw fa-regular fa-bars"></i></div></div>
+        `;
+        // Set up the event listener for the button click
+        L.DomEvent.on(button, 'click', function () {
+            // Call your function to hide the element
+            hideElementFunction();
+        });
+
+        return controlDiv;
+    },
+});
+
+
+// Your function to hide the element
+function hideElementFunction() {
+    var mapTabs = document.getElementById('map-topic');
+    var isHidden = mapTabs.classList.contains('hidden');
+    // Toggle the 'hidden' class
+    if (isHidden) {
+        mapTabs.classList.remove('hidden');
+    } else {
+        mapTabs.classList.add('hidden');
+    }
+}
+
 function normalizeData(val, valMin, valMax) {
     var valNorm = (Math.min(val, valMax) - valMin) / (valMax - valMin);
     return valNorm;

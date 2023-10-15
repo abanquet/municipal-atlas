@@ -44,10 +44,10 @@
                 <div class="mx-auto max-w-1xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 items-center justify-between">
                         <div class="flex items-center">
-                            <a class="flex shrink-0 items-center mr-4 ml-0">
-                                <img src="img/OECD_logo_new.svg.png" class="h-8 sm:h-10 w-auto" />
+                            <a class="flex shrink-0 items-center mr-4 ml-0"  href="https://www.oecd.org/">
+                                <img src="img/OECD_logo_new.svg.png" class="h-8 sm:h-10 w-auto"/>
                             </a>
-                            <div class="font-bold text-xl sm:text-2xl text-gray-700 hidden sm:flex" style="padding: 20px;">
+                            <div class="font-bold text-xl sm:text-2xl text-gray-700 sm:flex hidden" style="padding: 20px;">
                                 Municipal Atlas
                             </div>
                         </div>
@@ -67,696 +67,703 @@
                 </div>
             </nav>
             <div class="grow">
-                <div class="relative flex h-[calc(100vh-3.5rem-1px)] flex-col sm:flex-row">
-                    <div
-                        class="z-10 flex w-full shrink-0 flex-col gap-12 overflow-auto border-gray-200 bg-white py-5 px-4 sm:z-10 sm:flex sm:w-[380px] sm:border-r sm:px-6 xl:w-[460px] hidden sm:flex">
-                        
-                        <div class="flex flex-col gap-5">
+                <div class="relative flex h-[calc(100vh-4rem-1px)] flex-col sm:flex-row">
+                    <!-- <div id="map-topic"
+                        class="z-10 flex w-full shrink-0 flex-col gap-12 overflow-auto border-gray-200 bg-white py-5 px-4 sm:z-10 sm:flex sm:w-[380px] sm:border-r sm:px-6 xl:w-[460px] sm:flex"> -->
+                    <div id="map-topic"
+                        class="z-10 flex w-full shrink-0 flex-col gap-12 overflow-auto border-gray-200 bg-white py-5 px-4 xl:w-[460px]">
+                        <div class="flex flex-col gap-4 break-words print:!w-full sm:w">
+                        <!-- <div class="flex flex-col gap-4 break-words print:!w-full"> -->
                             <div class="flex items-center gap-2">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-people"></i>
-                                    </div>
-                                <div class="text-lg font-bold">Demography</div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-person"></i></div>
-                                <div class="font-bold">Population size</div>
+                                <div id="button-demography" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-demography"
+                                    title="Demography"><i class="fa-fw fa-regular fa-people"></i>
                                 </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-pop-tot">
-                                        <div class="font-medium text-gray-600" >Total population </div><!---->
-                                    </div>
-                                    
+                                <div id="button-environment" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
+                                </div>
+                                <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
+                                </div>
+                                <div id="button-economy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
+                                </div>
+                                <div id="button-ghsl" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
+                                </div>
+                                <div id="button-services" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Services"><i class="fa-fw fa-regular fa-shop"></i>
                                 </div>
                                 
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-person-cane"></i></div>
-                                <div class="font-bold">Age groups</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-youngsh">
-                                        <div class="font-medium text-gray-600" >Share of young population (- 14 years old) </div><!---->
+                    
+                            <div class="flex flex-col gap-8">
+                                <div id="topic-demography" class="flex flex-col gap-5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Demography</div>
                                     </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-workagesh">
-                                        <div class="font-medium text-gray-600">Share of working age population (15 to 64 years old)</div><!---->
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(178, 82, 144);"><i
+                                                class="fa-fw fa-regular fa-person"></i></div>
+                                        <div class="font-bold">Population size</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-pop-tot">
+                                                <div class="font-medium text-gray-600" >Total population </div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                        
                                     </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-oldsh">
-                                        <div class="font-medium text-gray-600">Share of elderly population (+ 65 years old)</div><!---->
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(178, 82, 144);"><i
+                                                class="fa-fw fa-regular fa-person-cane"></i></div>
+                                        <div class="font-bold">Age groups</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-youngsh">
+                                                <div class="font-medium text-gray-600" >Share of young population (- 14 years old) </div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-workagesh">
+                                                <div class="font-medium text-gray-600">Share of working age population (15 to 64 years old)</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-oldsh">
+                                                <div class="font-medium text-gray-600">Share of elderly population (+ 65 years old)</div><!---->
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                </div>
-                                
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(178, 82, 144);"><i
-                                        class="fa-fw fa-regular fa-venus-mars"></i></div>
-                                <div class="font-bold">Sex ratio</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-sex-ratio">
-                                        <div class="font-medium text-gray-600" >Sex ratio (total population)</div><!---->
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(178, 82, 144);"><i
+                                                class="fa-fw fa-regular fa-venus-mars"></i></div>
+                                        <div class="font-bold">Sex ratio</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-sex-ratio">
+                                                <div class="font-medium text-gray-600" >Sex ratio (total population)</div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                        
                                     </div>
-                                    
-                                </div>
-                                
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(178, 82, 144);"><i
-                                            class="fa-fw fa-regular fa-chart-line-up"></i></div>
-                                    <div class="font-bold">Population change</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-popch">
-                                        <div class="font-medium text-gray-600" >Population change in the last 5 years</div><!---->
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-chart-line-up"></i></div>
+                                            <div class="font-bold">Population change</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-popch">
+                                                <div class="font-medium text-gray-600" >Population change in the last 5 years</div><!---->
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(178, 82, 144);"><i
-                                            class="fa-fw fa-regular fa-baby"></i></div>
-                                    <div class="font-bold">Natural change</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-natch">
-                                        <div class="font-medium text-gray-600" >Natural change in the last 5 years</div><!---->
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-baby"></i></div>
+                                            <div class="font-bold">Natural change</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-natch">
+                                                <div class="font-medium text-gray-600" >Natural change in the last 5 years</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-birth">
+                                                <div class="font-medium text-gray-600" >Birth rate</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-death">
+                                                <div class="font-medium text-gray-600" >Death rate</div><!---->
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-birth">
-                                        <div class="font-medium text-gray-600" >Birth rate</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-death">
-                                        <div class="font-medium text-gray-600" >Death rate</div><!---->
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(178, 82, 144);"><i
-                                            class="fa-fw fa-regular fa-globe"></i></div>
-                                    <div class="font-bold">Migration</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-foreign-born">
-                                        <div class="font-medium text-gray-600" >Share of foreign-born population</div><!---->
-                                    </div>
-                                    
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-netmobmig">
-                                        <div class="font-medium text-gray-600" >Net migration rate (internal and international)</div><!---->
-                                    </div>
-                                    
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-netmob">
-                                        <div class="font-medium text-gray-600" >Net internal migration rate</div><!---->
-                                    </div>
-                                    
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-netmig">
-                                        <div class="font-medium text-gray-600" >Net international migration rate</div><!---->
-                                    </div>
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-5">
-                            <div class="flex items-center gap-2">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(16, 149, 76);"><i class="fa-fw fa-regular fa-seedling"></i>
-                                </div>
-                                <div class="text-lg font-bold">Environment</div>
-                            </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(178, 82, 144);"><i
+                                                    class="fa-fw fa-regular fa-globe"></i></div>
+                                            <div class="font-bold">Migration</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-foreign-born">
+                                                <div class="font-medium text-gray-600" >Share of foreign-born population</div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-netmobmig">
+                                                <div class="font-medium text-gray-600" >Net migration rate (internal and international)</div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-netmob">
+                                                <div class="font-medium text-gray-600" >Net internal migration rate</div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-netmig">
+                                                <div class="font-medium text-gray-600" >Net international migration rate</div><!---->
+                                            </div>
+                                            
+                                        </div>
                             
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(16, 149, 76);"><i
-                                            class="fa-fw fa-regular fa-seedling"></i></div>
-                                    <div class="font-bold">Green areas</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-green-sh">
-                                        <div class="font-medium text-gray-600">Share of green areas</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-green-capita">
-                                        <div class="font-medium text-gray-600"> Green areas per capita</div><!---->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(16, 149, 76);"><i
-                                            class="fa-fw fa-regular fa-trees"></i></div>
-                                    <div class="font-bold">Tree cover change</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-forestch">
-                                        <div class="font-medium text-gray-600">Tree cover change 2000-2020</div><!---->
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(16, 149, 76);"><i
-                                            class="fa-fw fa-regular fa-wind-turbine"></i></div>
-                                    <div class="font-bold">Renewable potential</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-solar-power">
-                                        <div class="font-medium text-gray-600">Solar power potential</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-wind-power">
-                                        <div class="font-medium text-gray-600"> Wind power potential</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(16, 149, 76);"><i
-                                            class="fa-fw fa-regular fa-smog"></i></div>
-                                    <div class="font-bold">Air pollution</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-no2">
-                                        <div class="font-medium text-gray-600">NO<sub>2</sub></div>
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-pm25">
-                                        <div class="font-medium text-gray-600">PM2.5</div>
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-pm10">
-                                        <div class="font-medium text-gray-600">PM10</div>
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-o3">
-                                        <div class="font-medium text-gray-600">O<sub>3</sub></div>
-                                    </div>
-                                </div>
-                            </div> -->
 
-                        </div>
-                        <div class="flex flex-col gap-5">
-                            <div class="flex items-center gap-2">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: darkred;"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
-                                </div>
-                                <div class="text-lg font-bold">Climate</div>
-                            </div>
-                            
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
-                                    <div class="font-bold">Temperature trends</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-temp">
-                                        <div class="font-medium text-gray-600" >Air temperature</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-temp-ch">
-                                        <div class="font-medium text-gray-600" >Change in air temperature compared to 1981-2010</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-lst-day">
-                                        <div class="font-medium text-gray-600" >Daytime summer land surface temperature</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-lst-night">
-                                        <div class="font-medium text-gray-600" >Nighttime summer land surface temperature
-                                        </div><!---->
+                                <div id="topic-environment" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Environment</div>
                                     </div>
                                     
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-seedling"></i></div>
+                                            <div class="font-bold">Green areas</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-green-sh">
+                                                <div class="font-medium text-gray-600">Share of green areas</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-green-capita">
+                                                <div class="font-medium text-gray-600"> Green areas per capita</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-trees"></i></div>
+                                            <div class="font-bold">Tree cover change</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-forestch">
+                                                <div class="font-medium text-gray-600">Tree cover change 2000-2020</div><!---->
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-wind-turbine"></i></div>
+                                            <div class="font-bold">Renewable potential</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-solar-power">
+                                                <div class="font-medium text-gray-600">Solar power potential</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-wind-power">
+                                                <div class="font-medium text-gray-600"> Wind power potential</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-smog"></i></div>
+                                            <div class="font-bold">Air pollution</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-no2">
+                                                <div class="font-medium text-gray-600">NO<sub>2</sub></div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-pm25">
+                                                <div class="font-medium text-gray-600">PM2.5</div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-pm10">
+                                                <div class="font-medium text-gray-600">PM10</div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-o3">
+                                                <div class="font-medium text-gray-600">O<sub>3</sub></div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                
                                 </div>
-                            </div>
 
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-temperature-sun"></i></div>
-                                    <div class="font-bold">Heat stress</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-hot-days">
-                                        <div class="font-medium text-gray-600" >Hot days (T<sub>max</sub> > 35°C)</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-hot-days-ch">
-                                        <div class="font-medium text-gray-600" >Change in hot days (T<sub>max</sub> > 35°C) compared to 1981-2010</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-tropical-nights">
-                                        <div class="font-medium text-gray-600" >Tropical nights (T<sub>min</sub> > 20°C)</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-tropical-nights-ch">
-                                        <div class="font-medium text-gray-600" >Change in tropical nights (T<sub>min</sub> > 20°C) compared to 1981-2010</div><!---->
+                                <div id="topic-climate" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Climate</div>
                                     </div>
                                     
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
+                                            <div class="font-bold">Temperature trends</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-temp">
+                                                <div class="font-medium text-gray-600" >Air temperature</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-temp-ch">
+                                                <div class="font-medium text-gray-600" >Change in air temperature compared to 1981-2010</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-lst-day">
+                                                <div class="font-medium text-gray-600" >Daytime summer land surface temperature</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-lst-night">
+                                                <div class="font-medium text-gray-600" >Nighttime summer land surface temperature
+                                                </div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-temperature-sun"></i></div>
+                                            <div class="font-bold">Heat stress</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-hot-days">
+                                                <div class="font-medium text-gray-600" >Hot days (T<sub>max</sub> > 35°C)</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-hot-days-ch">
+                                                <div class="font-medium text-gray-600" >Change in hot days (T<sub>max</sub> > 35°C) compared to 1981-2010</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-tropical-nights">
+                                                <div class="font-medium text-gray-600" >Tropical nights (T<sub>min</sub> > 20°C)</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-tropical-nights-ch">
+                                                <div class="font-medium text-gray-600" >Change in tropical nights (T<sub>min</sub> > 20°C) compared to 1981-2010</div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-fan"></i></div>
+                                            <div class="font-bold">Cooling degree days</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-cdd">
+                                                <div class="font-medium text-gray-600" >Cooling degree days in the last 5 years</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-cdd-ch">
+                                                <div class="font-medium text-gray-600" >Change in cooling degree days compared to 1981-2010
+                                                </div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-heat"></i></div>
+                                            <div class="font-bold">Heating degree days</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-hdd">
+                                                <div class="font-medium text-gray-600" >Heating degree days in the last 5 years</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-hdd-ch">
+                                                <div class="font-medium text-gray-600" >Change in heating degree days compared to 1981-2010
+                                                </div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-cloud-showers-heavy"></i></div>
+                                            <div class="font-bold">Precipitation</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-precip">
+                                                <div class="font-medium text-gray-600" >Average precipitation</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-precip-ch">
+                                                <div class="font-medium text-gray-600" >Average precipitation change compared to 1981-2010</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-ext-precip">
+                                                <div class="font-medium text-gray-600" >Extreme precipitation days</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-ext-precip-ch">
+                                                <div class="font-medium text-gray-600" >Extreme precipitation days change compared to 1981-2010</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-sun-plant-wilt"></i></div>
+                                            <div class="font-bold">Droughts</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-drought">
+                                                <div class="font-medium text-gray-600">Soil moisture change compared to 1981-2010</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-fire"></i></div>
+                                            <div class="font-bold">Fires</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-fire-burned">
+                                                <div class="font-medium text-gray-600">Share of area burned</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-house-flood-water"></i></div>
+                                            <div class="font-bold">River flooding</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-river-flood">
+                                                <div class="font-medium text-gray-600">Share of population exposed to 100-year river flooding</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: darkred;"><i
+                                                    class="fa-fw fa-regular fa-house-tsunami"></i></div>
+                                            <div class="font-bold">Coastal flooding</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-coastal-flood">
+                                                <div class="font-medium text-gray-600">Share of population exposed to 100-year coastal flooding</div><!---->
+                                         </div>
+                                        </div>
+                                    </div> 
+                                    
+                                </div>
+
+                                <div id="topic-economy" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Economy and labour</div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(77, 82, 168);"><i
+                                                class="fa-fw fa-regular fa-dollar-sign"></i></div>
+                                        <div class="font-bold">Income distribution</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-median-income">
+                                                <div class="font-medium text-gray-600">Median disposable income</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-poverty">
+                                                <div class="font-medium text-gray-600">Relative poverty rate (60% of median income)</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-gini">
+                                                <div class="font-medium text-gray-600" >Gini coefficient</div><!---->
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(77, 82, 168);"><i
+                                                class="fa-fw fa-regular fa-briefcase"></i></div>
+                                        <div class="font-bold">Labour</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-unempl-rate">
+                                                <div class="font-medium text-gray-600" >Unemployment rate</div><!---->
+                                            </div>
+                                        
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(77, 82, 168);"><i
+                                                    class="fa-fw fa-regular fa-house"></i></div>
+                                            <div class="font-bold">Housing</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-rent">
+                                                <div class="font-medium text-gray-600" >Rent per sq. m</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-housing-price">
+                                                <div class="font-medium text-gray-600">Price per sq. m</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="topic-ghsl" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Territorial organisation</div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(122, 64, 43);"><i
+                                                class="fa-fw fa-regular fa-person-arrow-up-from-line"></i></div>
+                                        <div class="font-bold">Population density</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-pop-dens">
+                                                <div class="font-medium text-gray-600">Population density</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(122, 64, 43);"><i
+                                                class="fa-fw fa-regular fa-square"></i></div>
+                                        <div class="font-bold">Built-up surface</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-builts-dens">
+                                                <div class="font-medium text-gray-600" >Built-up surface per capita</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-res-builts-dens">
+                                                <div class="font-medium text-gray-600" >Residential built-up surface per capita</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-nres-builts-dens">
+                                                <div class="font-medium text-gray-600" >Non-residential built-up surface per capita</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-builts-gr">
+                                                <div class="font-medium text-gray-600" >Built-up surface growth 2000-2020</div><!---->
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(122, 64, 43);"><i
+                                                class="fa-fw fa-regular fa-cube"></i></div>
+                                        <div class="font-bold">Built-up volume</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-builtv-dens">
+                                                <div class="font-medium text-gray-600" >Built-up volume per capita</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-res-builtv-dens">
+                                                <div class="font-medium text-gray-600" >Residential built-up volume per capita</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-nres-builtv-dens">
+                                                <div class="font-medium text-gray-600" >Non-residential built-up volume per capita</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-builth">
+                                                <div class="font-medium text-gray-600" >Average building height</div><!---->
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                            style="background: rgb(122, 64, 43);"><i
+                                                class="fa-fw fa-regular fa-tree-city"></i></div>
+                                        <div class="font-bold">Degree of urbanisation</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-degurba-l1">
+                                                <div class="font-medium text-gray-600">Level 1</div><!---->
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-degurba-l2">
+                                                <div class="font-medium text-gray-600">Level 2</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="topic-services" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Services</div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
+                                                style="background: rgb(255, 130, 0);"><i
+                                                    class="fa-fw fa-regular fa-wifi"></i></div>
+                                            <div class="font-bold">Digitalisation</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-download">
+                                                <div class="font-medium text-gray-600">Download speed</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-upload">
+                                                <div class="font-medium text-gray-600">Upload speed</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-fan"></i></div>
-                                    <div class="font-bold">Cooling degree days</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-cdd">
-                                        <div class="font-medium text-gray-600" >Cooling degree days in the last 5 years</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-cdd-ch">
-                                        <div class="font-medium text-gray-600" >Change in cooling degree days compared to 1981-2010
-                                        </div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-heat"></i></div>
-                                    <div class="font-bold">Heating degree days</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-hdd">
-                                        <div class="font-medium text-gray-600" >Heating degree days in the last 5 years</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-hdd-ch">
-                                        <div class="font-medium text-gray-600" >Change in heating degree days compared to 1981-2010
-                                        </div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-cloud-showers-heavy"></i></div>
-                                    <div class="font-bold">Precipitation</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-precip">
-                                        <div class="font-medium text-gray-600" >Average precipitation</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-precip-ch">
-                                        <div class="font-medium text-gray-600" >Average precipitation change compared to 1981-2010</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-ext-precip">
-                                        <div class="font-medium text-gray-600" >Extreme precipitation days</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-ext-precip-ch">
-                                        <div class="font-medium text-gray-600" >Extreme precipitation days change compared to 1981-2010</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-sun-plant-wilt"></i></div>
-                                    <div class="font-bold">Droughts</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-drought">
-                                        <div class="font-medium text-gray-600">Soil moisture change compared to 1981-2010</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-fire"></i></div>
-                                    <div class="font-bold">Fires</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-fire-burned">
-                                        <div class="font-medium text-gray-600">Share of area burned</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-house-flood-water"></i></div>
-                                    <div class="font-bold">River flooding</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-river-flood">
-                                        <div class="font-medium text-gray-600">Share of population exposed to 100-year river flooding</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: darkred;"><i
-                                            class="fa-fw fa-regular fa-house-tsunami"></i></div>
-                                    <div class="font-bold">Coastal flooding</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-coastal-flood">
-                                        <div class="font-medium text-gray-600">Share of population exposed to 100-year coastal flooding</div><!---->
-                                 </div>
-                                </div>
-                            </div> 
-                            
                         </div>
-
-                        <div class="flex flex-col gap-5">
-                            <div class="flex items-center gap-2">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(77, 82, 168);"><i
-                                        class="fa-fw fa-regular fa-building-columns"></i>
-                                    </div>
-                                <div class="text-lg font-bold">Economy and labour</div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(77, 82, 168);"><i
-                                        class="fa-fw fa-regular fa-dollar-sign"></i></div>
-                                <div class="font-bold">Income distribution</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-median-income">
-                                        <div class="font-medium text-gray-600">Median disposable income</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-poverty">
-                                        <div class="font-medium text-gray-600">Relative poverty rate (60% of median income)</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-gini">
-                                        <div class="font-medium text-gray-600" >Gini coefficient</div><!---->
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(77, 82, 168);"><i
-                                        class="fa-fw fa-regular fa-briefcase"></i></div>
-                                <div class="font-bold">Labour</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-unempl-rate">
-                                        <div class="font-medium text-gray-600" >Unemployment rate</div><!---->
-                                    </div>
-                                
-                                </div>
-                                
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(77, 82, 168);"><i
-                                            class="fa-fw fa-regular fa-house"></i></div>
-                                    <div class="font-bold">Housing</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-rent">
-                                        <div class="font-medium text-gray-600" >Rent per sq. m</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-housing-price">
-                                        <div class="font-medium text-gray-600">Price per sq. m</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-5">
-                            <div class="flex items-center gap-2">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(122, 64, 43);"><i
-                                        class="fa-fw fa-regular fa-building-user"></i>
-                                    </div>
-                                <div class="text-lg font-bold">Territorial organisation</div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(122, 64, 43);"><i
-                                        class="fa-fw fa-regular fa-person-arrow-up-from-line"></i></div>
-                                <div class="font-bold">Population density</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-pop-dens">
-                                        <div class="font-medium text-gray-600">Population density</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(122, 64, 43);"><i
-                                        class="fa-fw fa-regular fa-square"></i></div>
-                                <div class="font-bold">Built-up surface</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-builts-dens">
-                                        <div class="font-medium text-gray-600" >Built-up surface per capita</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-res-builts-dens">
-                                        <div class="font-medium text-gray-600" >Residential built-up surface per capita</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-nres-builts-dens">
-                                        <div class="font-medium text-gray-600" >Non-residential built-up surface per capita</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-builts-gr">
-                                        <div class="font-medium text-gray-600" >Built-up surface growth 2000-2020</div><!---->
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(122, 64, 43);"><i
-                                        class="fa-fw fa-regular fa-cube"></i></div>
-                                <div class="font-bold">Built-up volume</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-builtv-dens">
-                                        <div class="font-medium text-gray-600" >Built-up volume per capita</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-res-builtv-dens">
-                                        <div class="font-medium text-gray-600" >Residential built-up volume per capita</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-nres-builtv-dens">
-                                        <div class="font-medium text-gray-600" >Non-residential built-up volume per capita</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-builth">
-                                        <div class="font-medium text-gray-600" >Average building height</div><!---->
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                    style="background: rgb(122, 64, 43);"><i
-                                        class="fa-fw fa-regular fa-tree-city"></i></div>
-                                <div class="font-bold">Degree of urbanisation</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-degurba-l1">
-                                        <div class="font-medium text-gray-600">Level 1</div><!---->
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-degurba-l2">
-                                        <div class="font-medium text-gray-600">Level 2</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-5">
-                            <div class="flex items-center gap-2">
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-shift-indigo text-xl text-white"
-                                    style="background: rgb(255, 130, 0);"><i class="fa-fw fa-regular fa-shop"></i>
-                                </div>
-                                <div class="text-lg font-bold">Services</div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex items-start gap-2">
-                                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                        style="background: rgb(255, 130, 0);"><i
-                                            class="fa-fw fa-regular fa-wifi"></i></div>
-                                    <div class="font-bold">Digitalisation</div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-download">
-                                        <div class="font-medium text-gray-600">Download speed</div><!---->
-                                    </div>
-                                    <div
-                                        class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                        id="button-upload">
-                                        <div class="font-medium text-gray-600">Upload speed</div><!---->
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        
                     </div>
 
                     <div class="z-10 flex flex-1 flex-col">
-                        <div class="absolute inset-0 h-full w-full sm:relative">
-                            <div class="h-full w-full transition">
+                        <div id="map-container" class="absolute inset-0 h-full w-full sm:relative">
+                            <!-- <div class="absolute inset-0 h-full w-full relative"> -->
+                            <div class="relative h-full w-full">
                                 <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="height: 100%; width: 100%;"></div>
                             </div>
                         </div>
@@ -774,233 +781,25 @@
 <!-- <div id="map" style="width: 100vw; height: 100vh; background: #fdfdfd"></div> -->
 
 <script  type="text/javascript" src="./js/map.js"></script>
+<script  type="text/javascript" src="./js/tabs.js"></script>
 
 <script>
+
+var currentTopicName;
 var currentLayer;
 var currentLegend;
 var currentButton;
 var currentChartControl;
-// create map
-var map = L.map('map', {
-        center: [48.8566, 2.3522],
-        minZoom: 3,
-        maxZoom: 12,
-        zoomControl: true,
-        zoom: 7,
-});
 
-var fuaData;
-fetch('https://municipalatlas.blob.core.windows.net/data/data/data_fua.csv')
-  .then(response => response.text())
-  .then(csvData => {
-    // Parse the CSV data using Papaparse
-    fuaData = Papa.parse(csvData, { header: true });
-  }
-  )
+currentTopicName = "demography";
+buildTabTopic("demography");
+buildTabTopic("environment");
+buildTabTopic("climate");
+buildTabTopic("economy");
+buildTabTopic("ghsl");
+buildTabTopic("services");
 
-var cityData;
-fetch('https://municipalatlas.blob.core.windows.net/data/data/data_city.csv')
-  .then(response => response.text())
-  .then(csvData => {
-    // Parse the CSV data using Papaparse
-    cityData = Papa.parse(csvData, { header: true });
-  }
-  )
-
-var tl1Data;
-fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl1.csv')
-  .then(response => response.text())
-  .then(csvData => {
-    // Parse the CSV data using Papaparse
-    fuaData = Papa.parse(csvData, { header: true });
-  }
-  )
-
-var tl2Data;
-fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl2.csv')
-  .then(response => response.text())
-  .then(csvData => {
-    // Parse the CSV data using Papaparse
-    fuaData = Papa.parse(csvData, { header: true });
-  }
-  )
-
-var tl3Data;
-fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl3.csv')
-  .then(response => response.text())
-  .then(csvData => {
-    // Parse the CSV data using Papaparse
-    fuaData = Papa.parse(csvData, { header: true });
-  }
-  )
-
-var mapBaseLayer = L.esri.Vector.vectorBasemapLayer("8d891c38ed57477aa1db1693c144bab4", {
-    apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
-});
-mapBaseLayer.addTo(map);
-
-var mapBaseLabelsLayer = L.esri.Vector.vectorBasemapLayer("arcgis/light-gray/labels", {
-apikey: "AAPK6733906110644097bc8da019ac9689e2vgrUl21eT8xUm1vNGb7Ovg7qfyhqoi0Ka0yYuNo7J1ER0XeYWtyHpyy7tr5nNtXk", 
-zindex: 10,
-});
-mapBaseLabelsLayer.addTo(map);
-
-var mapBaseTL1PlainUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
-var mapBaseTL1PlainStyling = {
-        "tl1_plain_boundaries": function (properties, zoom) {
-            return {
-                fill: false, // No fill
-                weight: 1,
-                color: "#626262", // Black color
-                opacity: 1.0,
-            };
-        }
-};
-var mapBaseTL1PlainTileOptions = {
-    rendererFactory: L.canvas.tile,
-    interactive: false,
-    maxNativeZoom: 12,
-    minZoom: 0,
-    vectorTileLayerStyles: mapBaseTL1PlainStyling,
-    attribution: "Source of administrative boundaries: National Statistical Offices and FAO Global Administrative Unit Layers (GAUL). This map is for illustrative purposes and is without prejudice to the status of or sovereignty over any territory covered by this map."
-};
-try {
-    var mapBaseTL1PlainLayer = new L.VectorGrid.Protobuf(mapBaseTL1PlainUrl, mapBaseTL1PlainTileOptions);
-    mapBaseTL1PlainLayer.setZIndex(12).addTo(map);
-} catch (error) {
-    // Handle the error here (or ignore it)
-    console.error("Error loading PBF file:", error);
-}
-
-var mapBaseTL1DottedUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
-var mapBaseTL1DottedStyling = {
-        "tl1_dotted_boundaries": function (properties, zoom) {
-            return {
-                fill: false, // No fill
-                weight: 1,
-                color: "#626262", // Black color
-                opacity: 1.0,
-                dashArray: "4, 4",
-            };
-        }
-};
-var mapBaseTL1DottedTileOptions = {
-    rendererFactory: L.canvas.tile,
-    interactive: false,
-    maxNativeZoom: 12,
-    minZoom: 0,
-    vectorTileLayerStyles: mapBaseTL1DottedStyling
-};
-try {
-    var mapBaseTL1DottedLayer = new L.VectorGrid.Protobuf(mapBaseTL1DottedUrl, mapBaseTL1DottedTileOptions);
-    mapBaseTL1DottedLayer.setZIndex(12).addTo(map);
-} catch (error) {
-    console.error("Error loading PBF file:", error);
-}
-
-var mapBaseTL2Url = "https://municipalatlas.blob.core.windows.net/tiles/tl2_tiles/{z}/{x}/{y}.pbf";
-var mapBaseTL2Styling = {
-        "tl2_oecd_interior_boundaries": function (properties, zoom) {
-            return {
-                fill: false, // No fill
-                weight: 0.8,
-                color: "#626262", // Black color
-                opacity: 1.0,
-            };
-        }
-};
-var mapBaseTL2TileOptions = {
-    rendererFactory: L.canvas.tile,
-    interactive: false,
-    maxNativeZoom: 12,
-    minZoom: 6,
-    vectorTileLayerStyles: mapBaseTL2Styling
-};
-try {
-    var mapBaseTL2Layer = new L.VectorGrid.Protobuf(mapBaseTL2Url, mapBaseTL2TileOptions);
-} catch (error) {
-    console.error("Error loading PBF file:", error);
-}
-
-var mapBaseTL3Url = "https://municipalatlas.blob.core.windows.net/tiles/tl3_tiles/{z}/{x}/{y}.pbf";
-var mapBaseTL3Styling = {
-        "tl3_oecd_interior_boundaries": function (properties, zoom) {
-            return {
-                fill: false, // No fill
-                weight: 0.8,
-                color: "#626262", // Black color
-                opacity: 1.0,
-            };
-        }
-};
-var mapBaseTL3TileOptions = {
-    rendererFactory: L.canvas.tile,
-    interactive: false,
-    maxNativeZoom: 12,
-    minZoom: 6,
-    vectorTileLayerStyles: mapBaseTL3Styling
-};
-try {
-var mapBaseTL3Layer = new L.VectorGrid.Protobuf(mapBaseTL3Url, mapBaseTL3TileOptions);
-} catch (error) {
-    console.error("Error loading PBF file:", error);
-}
-
-var mapBaseFUAUrl = "https://municipalatlas.blob.core.windows.net/tiles/fuas_tiles/{z}/{x}/{y}.pbf";
-var mapBaseFUAStyling = {
-        "fuas_oecd_boundaries": function (properties, zoom) {
-            return {
-                fill: false, // No fill
-                weight: 0.8,
-                color: "#626262", // Black color
-                opacity: 1.0,
-            };
-        }
-};
-var mapBaseFUATileOptions = {
-    rendererFactory: L.canvas.tile,
-    interactive: false,
-    maxNativeZoom: 12,
-    minZoom: 6,
-    vectorTileLayerStyles: mapBaseFUAStyling
-};
-var mapBaseFUALayer = new L.VectorGrid.Protobuf(mapBaseFUAUrl, mapBaseFUATileOptions);
-
-var mapBaseCityUrl = "https://municipalatlas.blob.core.windows.net/tiles/cities_tiles/{z}/{x}/{y}.pbf";
-var mapBaseCityStyling = {
-        "cities_oecd_boundaries": function (properties, zoom) {
-            return {
-                fill: false, // No fill
-                weight: 0.8,
-                color: "#626262", // Black color
-                opacity: 1.0,
-            };
-        }
-};
-var mapBaseCityTileOptions = {
-    rendererFactory: L.canvas.tile,
-    interactive: false,
-    maxNativeZoom: 12,
-    minZoom: 6,
-    vectorTileLayerStyles: mapBaseCityStyling
-};
-var mapBaseCityLayer = new L.VectorGrid.Protobuf(mapBaseCityUrl, mapBaseCityTileOptions);
-
-
-var tlLayers = {};
-tlLayers['Large regions (TL2)'] = mapBaseTL2Layer;
-tlLayers['Small regions (TL3)'] = mapBaseTL3Layer;
-tlLayers['Metropolitan areas (FUA)'] = mapBaseFUALayer;
-tlLayers['Cities'] = mapBaseCityLayer;
-
-var controlGeoLayers = L.control.layers(tlLayers, null, {
-    collapsed: true,
-    position: 'topleft'
-})
-.addTo(map);
-
-tlLayers['Large regions (TL2)'].setZIndex(13).addTo(map); 
-
+map = buildBaseMap();
 
 createLayerAndLegend("median-income", "MEDIAN_DISP_INC_PC_CURR_PR", "Median disposable income", "€", 10000, 50000, [10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000], scaleBlues, firstLayer=false);
 createLayerAndLegend("gini", "GINI", "Gini coefficient", "", 0.2, 0.5, [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5], scaleBlues, firstLayer=false,  minusLow=true);
@@ -1045,8 +844,8 @@ createLayerAndLegend("workagesh", "WORKAGE_SH", "Share of working age population
 createLayerAndLegend("youngsh", "YOUTH_SH", "Share of young population",  "%", 0, 30, [0, 5, 10, 15, 20, 25, 30], scalePinks, firstLayer=false);
 createLayerAndLegend("foreign-born", "MIGRANT_SH", "Share of foreign-born population",  "%", 0, 40, [0, 5, 10, 15, 20, 25, 30, 35, 40], scalePinks, firstLayer=false);
 createLayerAndLegend("sex-ratio", "SEX_RATIO_TOT", "Sex ratio", "", 85, 115, [85, 90, 95, 100, 105, 110, 115], scaleRdBu, firstLayer=false,  minusLow=true);
-createLayerAndLegend("birth", "BIRTH_RATE", "Birth rate", "births per 1000 people", 0, 25, [0, 5, 10, 15, 20, 25], scalePinks, firstLayer=false);
-createLayerAndLegend("death", "DEATH_RATE", "Death rate", "deaths per 1000 people", 0, 25, [0, 5, 10, 15, 20, 25], scalePinks, firstLayer=false);
+createLayerAndLegend("birth", "BIRTHS_RATE", "Birth rate", "births per 1000 people", 0, 25, [0, 5, 10, 15, 20, 25], scalePinks, firstLayer=false);
+createLayerAndLegend("death", "DEATHS_RATE", "Death rate", "deaths per 1000 people", 0, 25, [0, 5, 10, 15, 20, 25], scalePinks, firstLayer=false);
 
 createLayerAndLegend("temp", "AIR_TEMP2M", "Average air temperature", "°C", 5, 25, [5, 10, 15, 20, 25], scaleReds, firstLayer=false,  minusLow=true);
 createLayerAndLegend("temp-ch", "AIR_TEMP2M_DIFF_1981_2010", "Average air temperature change<br>compared to 1981-2010", "°C", -3, 3, [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3], scaleBuRd, firstLayer=false, minusLow=true);
@@ -1082,33 +881,6 @@ createLayerAndLegend("wind-power", "WIND_POWER_POT", "Mean wind power density", 
 
 createLayerAndLegend("download", "OOKLA_FIXED_DOWNLOAD_DEV", "Fixed download speed (deviation<br>from national average)", "%", -100, 100, [-100, -70, -40, -10, 10, 40, 70, 100], scaleRdBu, firstLayer=false, minusLow=true);
 createLayerAndLegend("upload", "OOKLA_FIXED_UPLOAD_DEV", "Fixed upload speed (deviation<br>from national average)", "%", -100, 100, [-100, -70, -40, -10, 10, 40, 70, 100], scaleRdBu, firstLayer=false, minusLow=true);
-
-var mapProvider = new window.GeoSearch.OpenStreetMapProvider();
-var mapSearch = new GeoSearch.GeoSearchControl({
-    provider: mapProvider,
-    style: 'bar',
-    // position: 'topright',
-    showMarker: false,
-});
-map.addControl(mapSearch);
-
-// Listen for the marker dragend event
-// map.on('geosearch/showlocation', function(event) {
-//     var lat = event.location.y;
-//     var lon = event.location.x;
-//     console.log(lat);
-//     console.log(lon);
-//     var clickEvent = {
-//         latlng: L.latLng(lat, lon),
-//         layerPoint: map.latLngToLayerPoint([lat, lon]),
-//         containerPoint: map.latLngToContainerPoint([lat, lon]),
-//         originalEvent: {
-//             type: 'click',
-//             target: map
-//         }
-//     };
-//     map.fireEvent('click', clickEvent);
-// });
 
 </script>
 
