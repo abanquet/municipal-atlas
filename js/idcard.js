@@ -559,7 +559,7 @@ function buildSauProfile(data){
                     </div>                     
             </div>
        `;
-            innerHtmlGHSL += `
+        innerHtmlGHSL += `
         </div>`;
     }
 
@@ -644,7 +644,7 @@ function buildSauProfile(data){
                 <div class="text-gray-600 items-center justify-center">
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${(Math.round(builtvres * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} m<sup>3</sup></span> 
                     of residential built-up volume per capita.
-                    </div>                     
+                </div>                     
             </div>`;
         }
 
@@ -654,7 +654,7 @@ function buildSauProfile(data){
                 <div class="text-gray-600 items-center justify-center">
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${(Math.round(builtvnres * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} m<sup>3</sup></span> 
                     of non-residential residential built-up volume per capita.
-                    </div>                     
+                </div>                     
             </div>`;
         }
 
@@ -664,7 +664,7 @@ function buildSauProfile(data){
                 <div class="text-gray-600 items-center justify-center">
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${(Math.round(builth * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} m</span> 
                     average building height.
-                    </div>                     
+                </div>                     
             </div>`;
         }
 
@@ -688,7 +688,7 @@ function buildSauProfile(data){
                 <div class="text-gray-600 items-center justify-center">
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${degurbal1}</span> 
                     (Level 1 classification)
-                    </div>                     
+                </div>                     
             </div>
             `;
         }
@@ -699,7 +699,7 @@ function buildSauProfile(data){
                 <div class="text-gray-600 items-center justify-center">
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${degurbal2}</span> 
                     (Level 2 classification)
-                    </div>                     
+                </div>                     
             </div>`;
         }
         innerHtmlGHSL += '</div>'
@@ -1155,12 +1155,14 @@ function buildSauProfile(data){
                 <div class="text-gray-600 items-center justify-center">
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(77, 82, 168);">${(Math.round(housingPricePerSqMeter * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}  €/m<sup>2</sup></span> 
                     is the average home transaction price.
-                    </div>                     
+                </div>                     
             </div>`;
         }
+        innerHtmlEcon += `
+        </div>`;
     }
     innerHtmlEcon += `
-        </div></div>`;
+        </div>`;
 
 
     var innerHtmlHighlights = `
@@ -1453,24 +1455,24 @@ return sauHtmlContent
 // };
 
 
-function buildSauTabProfile(topic) {
-    const buttonElem = document.getElementById(`button-${topic}`);
-    const topicContentElem = document.getElementById(`topic-${topic}`);
-    console.log(topicContentElem.classList);
+// function buildSauTabProfile(topic) {
+//     const buttonElem = document.getElementById(`button-${topic}`);
+//     const topicContentElem = document.getElementById(`topic-${topic}`);
+//     console.log(topicContentElem.classList);
 
-    buttonElem.addEventListener('click', function () {
-        document.getElementById(`button-${currentTopicName}`).classList.remove(`bg-${currentTopicName}`);
-        document.getElementById(`button-${currentTopicName}`).classList.add(`bg-gray-700`);
-        document.getElementById(`button-${currentTopicName}`).classList.add(`hover:bg-gray-900`);
-        document.getElementById(`topic-${currentTopicName}`).classList.add(`hidden`);
+//     buttonElem.addEventListener('click', function () {
+//         document.getElementById(`button-${currentTopicName}`).classList.remove(`bg-${currentTopicName}`);
+//         document.getElementById(`button-${currentTopicName}`).classList.add(`bg-gray-700`);
+//         document.getElementById(`button-${currentTopicName}`).classList.add(`hover:bg-gray-900`);
+//         document.getElementById(`topic-${currentTopicName}`).classList.add(`hidden`);
 
-        currentTopicName = topic;
-        buttonElem.classList.remove(`bg-gray-700`);
-        buttonElem.classList.remove(`hover:bg-gray-900`);
-        buttonElem.classList.add(`bg-${topic}`);
-        topicContentElem.classList.remove(`hidden`);        
-  });
-};
+//         currentTopicName = topic;
+//         buttonElem.classList.remove(`bg-gray-700`);
+//         buttonElem.classList.remove(`hover:bg-gray-900`);
+//         buttonElem.classList.add(`bg-${topic}`);
+//         topicContentElem.classList.remove(`hidden`);        
+//   });
+// };
 
 function buildSauHighlights(data){
 
@@ -1755,7 +1757,7 @@ function buildBaseMap() {
     });
     mapBaseLabelsLayer.addTo(map);
 
-    var mapBaseTL1PlainUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1PlainUrl = "../oecd-municipal-atlas-data/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
     var mapBaseTL1PlainStyling = {
             "tl1_plain_boundaries": function (properties, zoom) {
                 return {
@@ -1782,7 +1784,7 @@ function buildBaseMap() {
         console.error("Error loading PBF file:", error);
     }
 
-    var mapBaseTL1DottedUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1DottedUrl = "../oecd-municipal-atlas-data/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
     var mapBaseTL1DottedStyling = {
             "tl1_dotted_boundaries": function (properties, zoom) {
                 return {

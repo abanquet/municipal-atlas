@@ -25,12 +25,11 @@
     <link rel="stylesheet" href="fontawesome/css/regular.css">
     <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/bundle.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.unpkg.com/papaparse@5.4.1/papaparse.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
-
 
 </head>
 
@@ -122,11 +121,12 @@
 
 <script>
 var currentTopicName;
+var dataUrl = "https://raw.githubusercontent.com/abanquet/municipal-atlas-data/main"; 
 
 let radarChart;
 let mapProfile;
 
-$.getJSON("https://municipalatlas.blob.core.windows.net/data/data/geo_names/tl1_names_map.json", function(_json) {
+$.getJSON(`${dataUrl}/geo_names/tl1_names_map.json`, function(_json) {
     df_tl1 = $.map(_json, function (obj) {
         obj.text = obj.tl1_name_en; // replace name with the property used for the text
         obj.id = obj.iso3; // replace pk with your identifier
@@ -142,7 +142,7 @@ $.getJSON("https://municipalatlas.blob.core.windows.net/data/data/geo_names/tl1_
         if (selectedValue != null) {
             searchSauElem = document.getElementById("searchSau");
             searchSauElem.style.display = "block";
-            $.getJSON(`https://municipalatlas.blob.core.windows.net/data/data/geo_names/sau_names/${selectedValue}.json`, function(_json) {
+            $.getJSON(`${dataUrl}/geo_names/sau_names/${selectedValue}.json`, function(_json) {
                 df_sau = $.map(_json, function (obj) {
                     obj.text = obj.tl2_name_en; // replace name with the property used for the text
                     obj.id = obj.tl2_id; // replace pk with your identifier
@@ -166,7 +166,7 @@ $.getJSON("https://municipalatlas.blob.core.windows.net/data/data/geo_names/tl1_
         sauProfileElem = document.getElementById("profileSau");
         // sauNameElem = document.getElementById("sauName");
 
-        var jsonFilePath = `https://municipalatlas.blob.core.windows.net/data/data/geo_data/${selectedTl1}/${selectedSau}.json`;
+        var jsonFilePath = `${dataUrl}/geo_data/${selectedTl1}/${selectedSau}.json`;
         fetch(jsonFilePath) 
             .then(response => {
                 if (!response.ok) {
@@ -227,7 +227,7 @@ function updateContent() {
         var selectedSau = urlParams.get('code');
         var selectedTl1 = selectedSau.substring(0, 3);
 
-        jsonFilePath = `https://municipalatlas.blob.core.windows.net/data/data/geo_data/${selectedTl1}/${selectedSau}.json`
+        jsonFilePath = `${dataUrl}/geo_data/${selectedTl1}/${selectedSau}.json`
         // console.log(jsonFilePath)
         fetch(jsonFilePath) 
                     .then(response => {

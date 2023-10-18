@@ -787,6 +787,7 @@
 
 var currentTopicName;
 var currentLayer;
+var currentSauData;
 var currentLegend;
 var currentButton;
 var currentChartControl;
@@ -834,7 +835,7 @@ createLayerAndLegendCategorical("degurba-l1", "DEGURBA_L1", "Degree of urbanisat
 createLayerAndLegendCategorical("degurba-l2", "DEGURBA_L2", "Degree of urbanisation", degurbaL2Colors);
 
 createLayerAndLegend("pop-tot", "POP_T", "Total population", "", 0, 25000, [0, 5000, 10000, 15000, 20000, 25000], scalePinks, firstLayer=false);
-createLayerAndLegend("popch", "POP_CH", "Population change", "%", -30, 30, [-30, -20, -10, 0, 10, 20, 30], scaleRdBu, firstLayer=true, minusLow=false);
+createLayerAndLegend("popch", "POP_CH", "Population change", "%", -30, 30, [-30, -20, -10, 0, 10, 20, 30], scaleRdBu, firstLayer=true, minusLow=true);
 createLayerAndLegend("natch", "NETNAT_RATE", "Net natural change rate",  "%", -30, 30, [-30, -20, -10, 0, 10, 20, 30], scaleRdBu, firstLayer=false, minusLow=true);
 createLayerAndLegend("netmobmig", "NETMOBMIG_RATE", "Net migration rate",  "%", -30, 30, [-30, -20, -10, 0, 10, 20, 30], scaleRdBu, firstLayer=false, minusLow=true);
 createLayerAndLegend("netmob", "NETMOB_RATE", "Net internal migration rate",  "%", -30, 30, [-30, -20, -10, 0, 10, 20, 30], scaleRdBu, firstLayer=false, minusLow=true);

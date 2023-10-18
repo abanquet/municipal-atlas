@@ -1,4 +1,7 @@
-var mapDataTilesUrl = "https://municipalatlas.blob.core.windows.net/tiles/sau_tiles/{z}/{x}/{y}.pbf";
+var tilesUrl = "https://raw.githubusercontent.com/abanquet/municipal-atlas-tiles/main";
+// var tilesUrl = "../oecd-municipal-atlas-tiles";
+
+var mapDataTilesUrl = `${tilesUrl}/sau_tiles/{z}/{x}/{y}.pbf`;
 
 function buildBaseMap() {
     var map = L.map('map', {
@@ -10,7 +13,7 @@ function buildBaseMap() {
     });
 
     var fuaData;
-    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_fua.csv')
+    fetch('data/data_fua.csv')
     .then(response => response.text())
     .then(csvData => {
         // Parse the CSV data using Papaparse
@@ -19,7 +22,7 @@ function buildBaseMap() {
     )
 
     var cityData;
-    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_city.csv')
+    fetch('data/data_city.csv')
     .then(response => response.text())
     .then(csvData => {
         // Parse the CSV data using Papaparse
@@ -28,7 +31,7 @@ function buildBaseMap() {
     )
 
     var tl1Data;
-    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl1.csv')
+    fetch('data/data_tl1.csv')
     .then(response => response.text())
     .then(csvData => {
         // Parse the CSV data using Papaparse
@@ -37,7 +40,7 @@ function buildBaseMap() {
     )
 
     var tl2Data;
-    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl2.csv')
+    fetch('data/data_tl2.csv')
     .then(response => response.text())
     .then(csvData => {
         // Parse the CSV data using Papaparse
@@ -46,7 +49,7 @@ function buildBaseMap() {
     )
 
     var tl3Data;
-    fetch('https://municipalatlas.blob.core.windows.net/data/data/data_tl3.csv')
+    fetch('data/data_tl3.csv')
     .then(response => response.text())
     .then(csvData => {
         // Parse the CSV data using Papaparse
@@ -64,8 +67,8 @@ function buildBaseMap() {
     zindex: 10,
     });
     mapBaseLabelsLayer.addTo(map);
-
-    var mapBaseTL1PlainUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
+    
+    var mapBaseTL1PlainUrl = `${tilesUrl}/tl1_plain_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseTL1PlainStyling = {
             "tl1_plain_boundaries": function (properties, zoom) {
                 return {
@@ -92,7 +95,7 @@ function buildBaseMap() {
         console.error("Error loading PBF file:", error);
     }
 
-    var mapBaseTL1DottedUrl = "https://municipalatlas.blob.core.windows.net/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1DottedUrl = `${tilesUrl}/tl1_dotted_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseTL1DottedStyling = {
             "tl1_dotted_boundaries": function (properties, zoom) {
                 return {
@@ -118,7 +121,7 @@ function buildBaseMap() {
         console.error("Error loading PBF file:", error);
     }
 
-    var mapBaseTL2Url = "https://municipalatlas.blob.core.windows.net/tiles/tl2_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL2Url = `${tilesUrl}/tl2_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseTL2Styling = {
             "tl2_oecd_interior_boundaries": function (properties, zoom) {
                 return {
@@ -142,7 +145,7 @@ function buildBaseMap() {
         console.error("Error loading PBF file:", error);
     }
 
-    var mapBaseTL3Url = "https://municipalatlas.blob.core.windows.net/tiles/tl3_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL3Url = `${tilesUrl}/tl3_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseTL3Styling = {
             "tl3_oecd_interior_boundaries": function (properties, zoom) {
                 return {
@@ -166,7 +169,7 @@ function buildBaseMap() {
         console.error("Error loading PBF file:", error);
     }
 
-    var mapBaseFUAUrl = "https://municipalatlas.blob.core.windows.net/tiles/fuas_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseFUAUrl = `${tilesUrl}/fuas_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseFUAStyling = {
             "fuas_oecd_boundaries": function (properties, zoom) {
                 return {
@@ -186,7 +189,7 @@ function buildBaseMap() {
     };
     var mapBaseFUALayer = new L.VectorGrid.Protobuf(mapBaseFUAUrl, mapBaseFUATileOptions);
 
-    var mapBaseCityUrl = "https://municipalatlas.blob.core.windows.net/tiles/cities_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseCityUrl = `${tilesUrl}/cities_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseCityStyling = {
             "cities_oecd_boundaries": function (properties, zoom) {
                 return {
@@ -443,7 +446,7 @@ function clickHandler(e, variable, label, unit){
                 <div class="flex flex-col gap-1">
                     ${innerHtmlTopic}
                     <div class="font-bold px-3 text-gray-500">${label.replaceAll("<br>", " ")}</div>
-                    <div class="px-3 text-gray-500">${popupResult} ${unit}</div>
+                    <div class="px-3 text-gray-500">${popupResult}</div>
                 </div>
                 <hr />
                 <div class="flex flex-col gap-1">
@@ -478,8 +481,11 @@ function getColor(d, valMin, valMax, varScale = scaleReds) {
 function getVectorLayer(variable, label, unit, varMin, varMax, varScale = scaleReds) {
     var TileStyling = {
         "data_geo": function(properties, zoom) {
+            
+            // valPlotMap = currentSauData.data.find(row => row.pk == properties.pk)
 
             if (properties[variable] !== undefined) {
+            // if (valPlotMap[variable] !== undefined) {
                 var weight = 0.1;
                 if (zoom > 12) {
                     weight = 1.0;
@@ -487,6 +493,7 @@ function getVectorLayer(variable, label, unit, varMin, varMax, varScale = scaleR
                 return ({
                     fill: true,
                     fillColor: getColor(properties[variable], varMin, varMax, varScale),
+                    // fillColor: getColor(valPlotMap[variable], varMin, varMax, varScale),
                     fillOpacity: 0.9,
                     weight: weight, // pass the weight variable instead of a value
                     color: "#ffffff",
@@ -637,12 +644,20 @@ function getLegendCat(varLabel, categoricalColors){
 
 
 function createLayerAndLegend(id, variable, label, unit, min, max, legendVals, scale, firstLayer=false, minusLow=false, plusUp=true) {
-  const layer = getVectorLayer(variable, label, unit, min, max, scale);
+//   const layer = getVectorLayer(variable, label, unit, min, max, scale);
   const legend = getLegend(label, unit, legendVals, min, max, scale, minusLow, plusUp);
   const buttonElement = document.getElementById(`button-${id}`);
 
   if (firstLayer)  {
-    currentLayer = layer;
+    fetch(`data/sau_data/${variable}/latest.csv`)
+        .then(response => response.text())
+        .then(csvData => {
+            // Parse the CSV data using Papaparse
+            currentSauData = Papa.parse(csvData, {header: true});
+        }
+        )
+    // currentLayer = layer;
+    currentLayer = getVectorLayer(variable, label, unit, min, max, scale);
     currentLegend = legend;
     currentButton = buttonElement;
     currentButton.classList.remove('bg-white');
@@ -657,8 +672,17 @@ function createLayerAndLegend(id, variable, label, unit, min, max, legendVals, s
     map.removeControl(currentLegend);
     currentButton.classList.remove('bg-gray-100');
     currentButton.classList.add('bg-white');
+
+    fetch(`data/sau_data/${variable}/latest.csv`)
+        .then(response => response.text())
+        .then(csvData => {
+            // Parse the CSV data using Papaparse
+            currentSauData = Papa.parse(csvData, {header: true});
+        }
+        )
     
-    currentLayer = layer;
+    // currentLayer = layer;
+    currentLayer = getVectorLayer(variable, label, unit, min, max, scale);
     currentLegend = legend;
     currentButton = buttonElement;
     
