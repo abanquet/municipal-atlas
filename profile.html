@@ -97,16 +97,9 @@
                         <div id='profileSau' class="flex flex-col gap-8 break-words print:!w-full sm:w">                          
                         </div>
 
-
-                        <!-- <div id='radar-chart-container' class="flex flex-col items-center gap-8 text-center" style="width: 80%; margin:auto">
-                            <canvas id="radar-chart" class="items-center text-center" style="width: 80%;"></canvas>
-                        </div> -->
-                        <!-- <div id='radar-chart-container' class="flex justify-center items-center gap-8 text-center w-fit">
-                            
-                        </div>  -->
-                        <div  class="mx-auto flex max-w-7xl flex-col items-center gap-12 ">     
+                        <!-- <div  class="mx-auto flex max-w-7xl flex-col items-center gap-12 ">     
                             <canvas id="radar-chart" style="width:110%"></canvas> 
-                        </div>
+                        </div> -->
                         
                     </div>
                 </div>  
@@ -216,11 +209,11 @@ $.getJSON(`${dataUrl}/geo_names/tl1_names_map.json`, function(_json) {
                 var tl2_name_en = data.features[0].properties.tl2_name_en;
                 var tl3_name_en = data.features[0].properties.tl3_name_en;
 
-                radarElem = buildRadarChartData(data.features[0].properties);
-                if (radarChart) {
-                    radarChart.destroy();
-                }
-                radarChart = createRadarChart(radarElem);
+                // radarElem = buildRadarChartData(data.features[0].properties);
+                // if (radarChart) {
+                //     radarChart.destroy();
+                // }
+                // radarChart = createRadarChart(radarElem);
             })
     });
     
@@ -284,11 +277,11 @@ function updateContent() {
                         var tl2_name_en = data.features[0].properties.tl2_name_en;
                         var tl3_name_en = data.features[0].properties.tl3_name_en;
 
-                        radarElem = buildRadarChartData(data.features[0].properties);
-                        if (radarChart) {
-                            radarChart.destroy();
-                        }
-                        radarChart = createRadarChart(radarElem);
+                        // radarElem = buildRadarChartData(data.features[0].properties);
+                        // if (radarChart) {
+                        //     radarChart.destroy();
+                        // }
+                        // radarChart = createRadarChart(radarElem);
                     })
     };
     
