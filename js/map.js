@@ -359,11 +359,14 @@ function clickHandler(e, variable, label, unit){
     varListDemography = ["POP_T", "POP_CH", "NETNAT_RATE", "NETMOBMIG_RATE", "NETMOB_RATE", "NETMIG_RATE", "OLD_SH", "WORKAGE_SH", "YOUTH_SH",
                         "MIGRANT_SH", "SEX_RATIO_TOT", "BIRTH_RATE", "DEATH_RATE"];
     varListEnvironment = [
-        "GREEN_AREA_SHARE", "GREEN_AREA_CAPITA", "FOREST_CH", "SOLAR_POWER_POT", "WIND_POWER_POT"
+        "GREEN_AREA_SHARE", "GREEN_AREA_CAPITA", "FOREST_CH"
+                        ];
+
+    varListEnergy = [
+        "SOLAR_POWER_POT", "WIND_POWER_POT", "CDD_T_22C", "CDD_T_22C_CH", "HDD_T_15C", "HDD_T_15C_CH", 
                         ];
     varListClimate = [
         "AIR_TEMP2M", "AIR_TEMP2M_DIFF_1981_2010", "LST_DAY_SUMMER", "LST_NIGHT_SUMMER",
-        "CDD_T_22C", "CDD_T_22C_CH", "HDD_T_15C", "HDD_T_15C_CH", 
         "HOT_DAYS", "HOT_DAYS_DIFF_1981_2010", "TROPICAL_NIGHTS", "TROPICAL_NIGHTS_DIFF_1981_2010",
         "PRECIP_SUM", "PRECIP_SUM_DIFF_1981_2010", "EXT_PRECIP_DAYS", "EXT_PRECIP_DAYS_1981_2010",
         "SOIL_MOIST_L1_CH_1981_2018", "FIRE_TOTAL_AREA_SH", "RIVER_FLOOD_RP100_POP_SH", "COASTAL_FLOOD_RP100_POP_SH",
@@ -392,6 +395,13 @@ function clickHandler(e, variable, label, unit){
         <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
         style="background: rgb(16, 149, 76);"><i
             class="fa-fw fa-regular fa-seedling"></i></div>
+    <div class="font-bold">Environment</div>
+    </div>`}
+    else if (varListEnergy.includes(variable)) {
+        innerHtmlTopic += `<div class="flex items-center gap-1">
+        <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+        ><i
+            class="fa-fw fa-regular fa-bolt"></i></div>
     <div class="font-bold">Environment</div>
     </div>`
     } else if (varListClimate.includes(variable)) {
@@ -467,6 +477,9 @@ var scaleGreens = chroma.scale(['#ffffe0', '#e5f2cc', '#cbe5b9', '#b1d8a6', '#97
 var scalePinks = chroma.scale(['#E7C4E0', '#DDADD2', '#D396C3', '#C87FB3', '#BD68A2', '#B25290', '#A64995', '#81398E', '#673281', '#502B73', '#3A2466'])
 var scaleBlues = chroma.scale(['#ffffe0', '#eae8da', '#d5d1d3', '#c0bacc', '#aba4c5', '#958fbe', '#7f7ab7', '#6766b0', '#4d52a8'])
 var scaleOranges = chroma.scale(['#ffffe0', '#eae8da', '#d5d1d3', '#c0bacc', '#aba4c5', '#958fbe', '#7f7ab7', '#6766b0', '#4d52a8'])
+var scalePurples = chroma.scale(['#D6B9F1', '#C79DEA', '#BA82E3', '#AE67DC', '#A34CD4', '#9932CC', '#752BC0', '#5324B2', '#181996', '#132887'])
+var scaleGreenBlue = chroma.scale(['#C7D3E2', '#B1C0D6', '#9BACCA', '#8598BE', '#7083B1', '#5A6EA4', '#517199', '#49738D', '#417382', '#397276', '#316963', '#2A5D4E'])
+var scaleYellowRed = chroma.scale(['#EFE7C0', '#E7DFA6', '#E0D88D', '#D8D175', '#D0CB5D', '#C7C645', '#BAA43D', '#AD8435', '#9F652E', '#914827', '#832F20', '#741B1D'])
 
 var scaleBuRd = chroma.scale(['#00429d', '#4771b2', '#73a2c6', '#a5d5d8', '#ffffe0', '#ffbcaf', '#f4777f', '#cf3759', '#93003a'])
 var scaleRdBu = chroma.scale(['#93003a', '#cf3759', '#f4777f', '#ffbcaf', '#ffffe0', '#a5d5d8', '#73a2c6', '#4771b2', '#00429d'])

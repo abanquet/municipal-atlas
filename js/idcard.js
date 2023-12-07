@@ -7,7 +7,8 @@
 
 // // Import VectorGrid extension
 // import 'https://unpkg.com/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js';
-
+var tilesUrl = "https://raw.githubusercontent.com/abanquet/municipal-atlas-tiles/main";
+// var tilesUrl = "../oecd-municipal-atlas-tiles";
 
 function buildSauProfile(data){
     var sauname = data.launame;
@@ -340,46 +341,11 @@ function buildSauProfile(data){
             </div>`;
         }
 
-        var solarPowerPotential = data.SOLAR_POWER_POT;
-        var windPowerPotential = data.WIND_POWER_POT;
-        if (solarPowerPotential != undefined || windPowerPotential != undefined) {
-            innerHtmlEnvironment += `
-            <div class="flex flex-col gap-2">
-                <div class="flex items-start gap-2 px-3">
-                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                        style="background: rgb(16, 149, 76);"><i class="fa-fw fa-regular fa-wind-turbine"></i></div>
-                    <div class="font-bold text-lg">Renewable potential</div>
-                </div>
-                `;
-
-            if (solarPowerPotential != undefined) {
-                innerHtmlEnvironment += `
-                <div class="flex items-start gap-2 px-3">                    
-                    <div class="text-gray-600 items-center justify-center">
-                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(16, 149, 76);">${Math.round(solarPowerPotential * 10) / 10} kWh/kWp</span> 
-                        of solar power potential.
-                        </div>                     
-                </div>`;
-            }
-
-            if (windPowerPotential != undefined) {
-                innerHtmlEnvironment += `
-                <div class="flex items-start gap-2 px-3">                    
-                    <div class="text-gray-600 items-center justify-center">
-                        <span style="font-weight: bold; font-size: 1.1rem; color: rgb(16, 149, 76);">${Math.round(windPowerPotential * 10) / 10} W/m<sup>2</sup></span> 
-                        of wind power potential.
-                        </div>                     
-                </div>
-                `;
-            }
-            innerHtmlEnvironment += '</div>'
-        }
-
         // var O3 = data.O3_POP_W_MEAN;
         // var NO2 = data.NO2_POP_W_MEAN;
         // var PM25 = data.PM2_5_POP_W_MEAN;
         // var PM10 = data.PM10_POP_W_MEAN;
-        // console.log(O3);
+
         // if ((O3 != undefined) | (NO2 != undefined) | (PM25 != undefined) | (PM10 != undefined)) {
         //     innerHtmlEnvironment += `
         //     <div class="flex flex-col gap-2">
@@ -461,8 +427,154 @@ function buildSauProfile(data){
         //         </div>
         //         `;
         //     }
+        //     innerHtmlEnvironment += `</div>`;
         // }
         innerHtmlEnvironment += `</div>`;
+
+        var innerHtmlEnergy = `
+        <div id="topic-energy" class="flex flex-col gap-5 hidden">
+            <div class="flex items-center gap-2">
+                <div>
+                    <div class="text-xl font-bold sm:text-2xl">Energy</div>
+                </div>
+            </div>`;
+
+
+        // var enerCons = data.ENER_CONS;
+        // var elecCons = data.ELEC_CONS;
+        // var gasCons = data.GAS_CONS;
+        // if (enerCons != undefined || elecCons != undefined || gasCons != undefined) {
+        //     innerHtmlEnergy += `
+        //     <div class="flex flex-col gap-2">
+        //         <div class="flex items-start gap-2 px-3">
+        //             <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+        //                 ><i class="fa-fw fa-regular fa-power-off"></i></div>
+        //             <div class="font-bold text-lg">Final energy consumption</div>
+        //         </div>
+        //         `;
+
+        //     if (enerCons != undefined) {
+        //         innerHtmlEnergy += `
+        //         <div class="flex items-start gap-2 px-3">                    
+        //             <div class="text-gray-600 items-center justify-center">
+        //                 <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid">${(Math.round(enerCons)).toLocaleString('en-US').replaceAll(',', ' ')} MWh</span> 
+        //                 of total final energy consumption.
+        //                 </div>                     
+        //         </div>`;
+        //     }
+
+        //     if (elecCons != undefined) {
+        //         innerHtmlEnergy += `
+        //         <div class="flex items-start gap-2 px-3">                    
+        //             <div class="text-gray-600 items-center justify-center">
+        //                 <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid">${(Math.round(elecCons)).toLocaleString('en-US').replaceAll(',', ' ')} MWh</span> 
+        //                 of electricity consumption.
+        //                 </div>                     
+        //         </div>`;
+        //     }
+
+        //     if (gasCons != undefined) {
+        //         innerHtmlEnergy += `
+        //         <div class="flex items-start gap-2 px-3">                    
+        //             <div class="text-gray-600 items-center justify-center">
+        //                 <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid">${(Math.round(gasCons)).toLocaleString('en-US').replaceAll(',', ' ')} MWh</span> 
+        //                 of natural gas consumption.
+        //                 </div>                     
+        //         </div>`;
+        //     }
+        //     innerHtmlEnergy += '</div>'
+        // }
+        
+        var solarPowerPotential = data.SOLAR_POWER_POT;
+        var windPowerPotential = data.WIND_POWER_POT;
+        if (solarPowerPotential != undefined || windPowerPotential != undefined) {
+            innerHtmlEnergy += `
+            <div class="flex flex-col gap-2">
+                <div class="flex items-start gap-2 px-3">
+                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                        ><i class="fa-fw fa-regular fa-wind-turbine"></i></div>
+                    <div class="font-bold text-lg">Renewable potential</div>
+                </div>
+                `;
+
+            if (solarPowerPotential != undefined) {
+                innerHtmlEnergy += `
+                <div class="flex items-start gap-2 px-3">                    
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid">${Math.round(solarPowerPotential * 10) / 10} kWh/kWp</span> 
+                        of solar power potential.
+                        </div>                     
+                </div>`;
+            }
+
+            if (windPowerPotential != undefined) {
+                innerHtmlEnergy += `
+                <div class="flex items-start gap-2 px-3">                    
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid;">${Math.round(windPowerPotential * 10) / 10} W/m<sup>2</sup></span> 
+                        of wind power potential.
+                        </div>                     
+                </div>
+                `;
+            }
+            innerHtmlEnergy += '</div>'
+        }
+        var cdd = data.CDD_T_22C;
+        var cddch = data.CDD_T_22C_CH;
+        var hdd = data.HDD_T_15C;
+        var hddch = data.HDD_T_15C_CH;
+        if (cdd != undefined | cddch != undefined) {
+            innerHtmlEnergy += `
+            <div class="flex flex-col gap-2">
+                <div class="flex items-start gap-3 px-3">
+                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                        ><i class="fa-fw fa-regular fa-fan"></i></div>
+                    <div class="font-bold text-lg">Cooling Degree Days</div>
+                </div>
+                `;
+    
+            if (cdd != undefined & cddch != undefined) {
+                innerHtmlEnergy += `
+                <div class="flex items-start gap-2 px-3">                    
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid;">${(Math.round(cdd * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span> 
+                        cooling degree days per year over the past 5 years, which is 
+                        <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid;">${(Math.round(cddch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span> degree days longer than in 1981-2010.
+                    </div>                     
+                </div>`;
+            }
+    
+            innerHtmlEnergy += `
+            </div>`;
+        }
+    
+        if (hdd != undefined | hddch != undefined) {
+            innerHtmlEnergy += `
+            <div class="flex flex-col gap-2">
+                <div class="flex items-start gap-3 px-3">
+                    <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                        "><i class="fa-fw fa-regular fa-heat"></i></div>
+                    <div class="font-bold text-lg">Heating Degree Days</div>
+                </div>
+                `;
+    
+            if (hdd != undefined & hddch != undefined) {
+                innerHtmlEnergy += `
+                <div class="flex items-start gap-2 px-3">                    
+                    <div class="text-gray-600 items-center justify-center">
+                        <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid;">${(Math.round(hdd * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span> 
+                        heating degree days per year over the past 5 years, which is 
+                        <span style="font-weight: bold; font-size: 1.1rem; color: darkorchid;">${(Math.round(hddch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span>
+                        degree days lower than in 1981-2010.
+                    </div>                     
+                </div>`;
+            }
+    
+            innerHtmlEnergy += `
+            </div>`;
+        }
+
+        innerHtmlEnergy += `</div>`;
 
         var innerHtmlServices = `
         <div id="topic-services" class="flex flex-col gap-5 hidden">
@@ -538,7 +650,10 @@ function buildSauProfile(data){
     var builtvres = data['BUILT_V_RES'];
     var builtvnres = data['BUILT_V_NRES'];
     var builth = data['BUILT_H'];
-    var builtsch = data['BUILT_S_CH__T'];
+    var builtsch = data['BUILT_S__T_CH_2000_2020'];
+    var builtsresch = data['BUILT_S_RES_CH_2000_2020'];
+    var builtvch = data['BUILT_V__T_CH_2000_2020'];
+    var builtvresch = data['BUILT_V_RES_CH_2000_2020'];
     var degurbal1 = data['DEGURBA_L1'];
     var degurbal2 = data['DEGURBA_L2'];
 
@@ -614,6 +729,16 @@ function buildSauProfile(data){
             </div>`;
         }
 
+        if (builtsresch != undefined) {
+            innerHtmlGHSL += `
+            <div class="flex items-start gap-2 px-3">                    
+                <div class="text-gray-600 items-center justify-center">
+                    <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${builtsresch<0?"":"+"}${(Math.round(builtsresch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} %</span> 
+                    change in residential built-up surface from 2000 to 2020.
+                    </div>                     
+            </div>`;
+        }
+
         innerHtmlGHSL += `
         </div>`;
     }
@@ -665,6 +790,26 @@ function buildSauProfile(data){
                     <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${(Math.round(builth * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} m</span> 
                     average building height.
                 </div>                     
+            </div>`;
+        }
+
+        if (builtvch != undefined) {
+            innerHtmlGHSL += `
+            <div class="flex items-start gap-2 px-3">                    
+                <div class="text-gray-600 items-center justify-center">
+                    <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${builtvch<0?"":"+"}${(Math.round(builtvch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} %</span> 
+                    change in built-up volume from 2000 to 2020.
+                    </div>                     
+            </div>`;
+        }
+
+        if (builtvresch != undefined) {
+            innerHtmlGHSL += `
+            <div class="flex items-start gap-2 px-3">                    
+                <div class="text-gray-600 items-center justify-center">
+                    <span style="font-weight: bold; font-size: 1.1rem; color: rgb(122, 64, 43);">${builtvresch<0?"":"+"}${(Math.round(builtvresch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')} %</span> 
+                    change in residential built-up volume from 2000 to 2020.
+                    </div>                     
             </div>`;
         }
 
@@ -721,10 +866,6 @@ function buildSauProfile(data){
     var tempCh = data.AIR_TEMP2M_DIFF_1981_2010;
     var daylst = data.LST_DAY_SUMMER;
     var nightlst = data.LST_NIGHT_SUMMER;
-    var cdd = data.CDD_T_22C;
-    var cddch = data.CDD_T_22C_CH;
-    var hdd = data.HDD_T_15C;
-    var hddch = data.HDD_T_15C_CH;
     var hotDays = data.HOT_DAYS;
     var hotDaysCh = data.HOT_DAYS_DIFF_1981_2010;
     var utci32Days = data.UTCI_GT32;
@@ -853,57 +994,6 @@ function buildSauProfile(data){
                     i.e. days during which the maximum daily UTCI is higher than 46°C, which is 
                     <span style="font-weight: bold; font-size: 1.1rem; color: darkred;">${Math.round(utci46DaysCh * 10) / 10} days</span> longer than in 1981-2010.
                 </div>
-            </div>`;
-        }
-
-        innerHtmlClimate += `
-        </div>`;
-    }
-
-    if (cdd != undefined | cddch != undefined) {
-        innerHtmlClimate += `
-        <div class="flex flex-col gap-2">
-            <div class="flex items-start gap-3 px-3">
-                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                    style="background: darkred;"><i class="fa-fw fa-regular fa-fan"></i></div>
-                <div class="font-bold text-lg">Cooling Degree Days</div>
-            </div>
-            `;
-
-        if (cdd != undefined & cddch != undefined) {
-            innerHtmlClimate += `
-            <div class="flex items-start gap-2 px-3">                    
-                <div class="text-gray-600 items-center justify-center">
-                    <span style="font-weight: bold; font-size: 1.1rem; color: darkred;">${(Math.round(cdd * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span> 
-                    cooling degree days per year over the past 5 years, which is 
-                    <span style="font-weight: bold; font-size: 1.1rem; color: darkred;">${(Math.round(cddch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span> degree days longer than in 1981-2010.
-                </div>                     
-            </div>`;
-        }
-
-        innerHtmlClimate += `
-        </div>`;
-    }
-
-    if (hdd != undefined | hddch != undefined) {
-        innerHtmlClimate += `
-        <div class="flex flex-col gap-2">
-            <div class="flex items-start gap-3 px-3">
-                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                    style="background: darkred;"><i class="fa-fw fa-regular fa-heat"></i></div>
-                <div class="font-bold text-lg">Heating Degree Days</div>
-            </div>
-            `;
-
-        if (hdd != undefined & hddch != undefined) {
-            innerHtmlClimate += `
-            <div class="flex items-start gap-2 px-3">                    
-                <div class="text-gray-600 items-center justify-center">
-                    <span style="font-weight: bold; font-size: 1.1rem; color: darkred;">${(Math.round(hdd * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span> 
-                    heating degree days per year over the past 5 years, which is 
-                    <span style="font-weight: bold; font-size: 1.1rem; color: darkred;">${(Math.round(hddch * 10) / 10).toLocaleString('en-US').replaceAll(',', ' ')}</span>
-                    degree days lower than in 1981-2010.
-                </div>                     
             </div>`;
         }
 
@@ -1354,7 +1444,7 @@ function buildSauProfile(data){
     sauHtmlContent = `
     <hr />
     <div class="flex flex-col gap-8 break-words print:!w-full sm:w">
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
             <div id="button-highlights" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-highlights"
                 title="Highlights"><i class="fa-fw fa-regular fa-square-info"></i>
             </div>
@@ -1363,6 +1453,9 @@ function buildSauProfile(data){
             </div>
             <div id="button-environment" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                 title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
+            </div>
+            <div id="button-energy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                title="Energy"><i class="fa-fw fa-regular fa-bolt"></i>
             </div>
             <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                 title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
@@ -1383,6 +1476,7 @@ function buildSauProfile(data){
         ${innerHtmlHighlights}
         ${innerHtmlDemography}
         ${innerHtmlEnvironment}
+        ${innerHtmlEnergy}
         ${innerHtmlClimate}
         ${innerHtmlEcon}
         ${innerHtmlGHSL}
@@ -1395,99 +1489,8 @@ function buildSauProfile(data){
 return sauHtmlContent
 };
 
-// function buildSauProfileInit(innerHtmlInit) {
-//     sauHtmlContent = `
-//     <hr />
-//     <div class="flex flex-col gap-8 break-words print:!w-full sm:w">
-//         <div class="flex items-center gap-2">
-//             <div id="button-highlights" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-highlights"
-//                 title="Highlights"><i class="fa-fw fa-regular fa-square-info"></i>
-//             </div>
-//             <div id="button-demography" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-//                 title="Demography"><i class="fa-fw fa-regular fa-people"></i>
-//             </div>
-//             <div id="button-environment" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-//                 title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
-//             </div>
-//             <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-//                 title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
-//             </div>
-//             <div id="button-economy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-//                 title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
-//             </div>
-//             <div id="button-ghsl" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-//                 title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
-//             </div>
-//             <div id="button-services" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
-//                 title="Services"><i class="fa-fw fa-regular fa-shop"></i>
-//             </div>
-            
-//         </div>
-
-//         <div id="topic-content" class="flex flex-col gap-8">
-//         ${innerHtmlInit}
-//         </div>
-//     </div>
-//     <hr />
-//     `;
-
-//     return sauHtmlContent;
-// };
-
-// function buildSauTabProfile(innerHtmlTopic, topic) {
-//     const buttonElem = document.getElementById(`button-${topic}`);
-//     const topicContentElem = document.getElementById(`topic-content`);
-
-//     buttonElem.addEventListener('click', function () {
-//         currentButton.classList.remove(`bg-${topic}`);
-//         currentButton.classList.add(`bg-gray-700`);
-//         currentButton.classList.add(`hover:bg-gray-900`);
-//         currentTopicContent.innerHTML = "";
-
-//         currentButton = buttonElem;
-//         currentButton.classList.remove(`bg-gray-700`);
-//         currentButton.classList.remove(`hover:bg-gray-900`);
-//         currentButton.classList.add(`bg-${topic}`);
-//         currentTopicContent = topicContentElem;
-//         currentTopicContent.innerHTML = innerHtmlTopic;
-        
-//   });
-// };
-
-
-// function buildSauTabProfile(topic) {
-//     const buttonElem = document.getElementById(`button-${topic}`);
-//     const topicContentElem = document.getElementById(`topic-${topic}`);
-//     console.log(topicContentElem.classList);
-
-//     buttonElem.addEventListener('click', function () {
-//         document.getElementById(`button-${currentTopicName}`).classList.remove(`bg-${currentTopicName}`);
-//         document.getElementById(`button-${currentTopicName}`).classList.add(`bg-gray-700`);
-//         document.getElementById(`button-${currentTopicName}`).classList.add(`hover:bg-gray-900`);
-//         document.getElementById(`topic-${currentTopicName}`).classList.add(`hidden`);
-
-//         currentTopicName = topic;
-//         buttonElem.classList.remove(`bg-gray-700`);
-//         buttonElem.classList.remove(`hover:bg-gray-900`);
-//         buttonElem.classList.add(`bg-${topic}`);
-//         topicContentElem.classList.remove(`hidden`);        
-//   });
-// };
 
 function buildSauHighlights(data){
-
-    // var innerHtmlHighlights = `<hr>
-    //     <div class="flex items-center gap-2">
-    //         <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-800"
-    //             "><i
-    //                 class="fa-fw fa-regular fa-square-info"></i>
-    //         </div>
-    //         <div>
-    //             <div class="text-xl font-bold sm:text-2xl">Highlights</div>
-    //         </div>
-    //     </div>
-    //     <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-    // `;
     
     var innerHtmlHighlights = `<div class="flex items-center gap-2">
     <div>
@@ -1726,9 +1729,9 @@ function buildSauTitle(data){
                     `
     };
 
-    sauHtmlContent = `<div class="flex flex-col gap-4">
+    sauHtmlContent = `<div class="flex flex-col gap-2">
                         <div class="text-2xl font-extrabold sm:text-3xl">${sauInfo}</div>
-                        <div class="flex flex-col items-start gap-1" style="padding-left: 1em">
+                        <div class="flex flex-col items-start gap-1" style="padding-left: 0.2em">
                             ${innerHtmlTl}
                         </div>
                         
@@ -1757,7 +1760,7 @@ function buildBaseMap() {
     });
     mapBaseLabelsLayer.addTo(map);
 
-    var mapBaseTL1PlainUrl = "../oecd-municipal-atlas-data/tiles/tl1_plain_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1PlainUrl = `${tilesUrl}/tl1_plain_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseTL1PlainStyling = {
             "tl1_plain_boundaries": function (properties, zoom) {
                 return {
@@ -1784,7 +1787,7 @@ function buildBaseMap() {
         console.error("Error loading PBF file:", error);
     }
 
-    var mapBaseTL1DottedUrl = "../oecd-municipal-atlas-data/tiles/tl1_dotted_tiles/{z}/{x}/{y}.pbf";
+    var mapBaseTL1DottedUrl = `${tilesUrl}/tl1_dotted_tiles/{z}/{x}/{y}.pbf`;
     var mapBaseTL1DottedStyling = {
             "tl1_dotted_boundaries": function (properties, zoom) {
                 return {

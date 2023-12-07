@@ -45,7 +45,7 @@
                                 <img src="img/OECD_logo_new.svg.png" class="h-8 sm:h-10 w-auto" />
                             </a>
                             <div class="font-bold text-xl sm:text-2xl text-gray-700 hidden sm:flex" style="padding: 20px;">
-                                Municipal Atlas
+                                Municipal Atlas (beta)
                             </div>
                         </div>
                         
@@ -91,23 +91,23 @@
                         </div>
                         <hr />
 
-                        <div id="map-container" class="flex gap-4 justify-between print:!w-full sm:w min-h-96">
-                            <!-- <div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
-                                <div id='profileSauTitle' style="z-index: 10000" ></div>
-                            </div> -->
+                        <div id="map-container" class="flex-col gap-4 justify-between print:!w-full sm:w min-h-96">
                         </div>
-                        
-                        
-                        <!-- <div id='profileSauHighlights' class="flex flex-col gap-8 break-words print:!w-full sm:w">                          
-                        </div> -->
 
                         <div id='profileSau' class="flex flex-col gap-8 break-words print:!w-full sm:w">                          
                         </div>
 
 
-                        <div id='radar-chart-container' class="flex flex-col items-center gap-8 text-center" style="width: 80%; margin:auto">
+                        <!-- <div id='radar-chart-container' class="flex flex-col items-center gap-8 text-center" style="width: 80%; margin:auto">
                             <canvas id="radar-chart" class="items-center text-center" style="width: 80%;"></canvas>
+                        </div> -->
+                        <!-- <div id='radar-chart-container' class="flex justify-center items-center gap-8 text-center w-fit">
+                            
+                        </div>  -->
+                        <div  class="mx-auto flex max-w-7xl flex-col items-center gap-12 ">     
+                            <canvas id="radar-chart" style="width:110%"></canvas> 
                         </div>
+                        
                     </div>
                 </div>  
             </div>
@@ -122,9 +122,11 @@
 <script>
 var currentTopicName;
 var dataUrl = "https://raw.githubusercontent.com/abanquet/municipal-atlas-data/main"; 
+// var dataUrl = "../oecd-municipal-atlas-data"; 
 
 let radarChart;
 let mapProfile;
+let geojsonLayer;
 
 $.getJSON(`${dataUrl}/geo_names/tl1_names_map.json`, function(_json) {
     df_tl1 = $.map(_json, function (obj) {
@@ -179,12 +181,16 @@ $.getJSON(`${dataUrl}/geo_names/tl1_names_map.json`, function(_json) {
                 mapContainerElem.innerHTML = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
                         <div id='profileSauTitle' style="z-index: 10000" ></div>
                     </div>`;
-                if (mapProfile == undefined) {
-                    mapProfile = buildBaseMap();
-                    $('.leaflet-control-attribution').hide()
+                mapProfile = buildBaseMap();
+                $('.leaflet-control-attribution').hide()
+                
+                if (mapProfile.hasLayer(geojsonLayer)) {
+                    mapProfile.removeLayer(geojsonLayer);
                 }
-                var geojsonLayer = L.geoJSON(data).addTo(mapProfile);
+                geojsonLayer = L.geoJSON(data);
+                geojsonLayer.addTo(mapProfile);
                 mapProfile.fitBounds(geojsonLayer.getBounds());
+
                 sauProfileTitleHtml = buildSauTitle(data.features[0].properties);
                 sauProfileContentHtml = buildSauProfile(data.features[0].properties);
 
@@ -198,6 +204,7 @@ $.getJSON(`${dataUrl}/geo_names/tl1_names_map.json`, function(_json) {
                 buildTabTopic("highlights");
                 buildTabTopic("demography");
                 buildTabTopic("environment");
+                buildTabTopic("energy");
                 buildTabTopic("climate");
                 buildTabTopic("economy");
                 buildTabTopic("ghsl");
@@ -241,12 +248,17 @@ function updateContent() {
                         mapContainerElem.innerHTML = `<div id="map" class="rounded-md border border-gray-600" style="height: 400px; width: 100%; float: right; position: relative; z-index: 10">
                                 <div id='profileSauTitle' style="z-index: 10000" ></div>
                             </div>`;
-                        if (mapProfile == undefined) {
-                            mapProfile = buildBaseMap();
-                            $('.leaflet-control-attribution').hide()
+                        
+                        mapProfile = buildBaseMap();
+                        $('.leaflet-control-attribution').hide()
+
+                        if (mapProfile.hasLayer(geojsonLayer)) {
+                            mapProfile.removeLayer(geojsonLayer);
                         }
-                        var geojsonLayer = L.geoJSON(data).addTo(mapProfile);
+                        geojsonLayer = L.geoJSON(data);
+                        geojsonLayer.addTo(mapProfile);
                         mapProfile.fitBounds(geojsonLayer.getBounds());
+
                         sauProfileTitleHtml = buildSauTitle(data.features[0].properties);
                         sauProfileContentHtml = buildSauProfile(data.features[0].properties);
 
@@ -260,6 +272,7 @@ function updateContent() {
                         buildTabTopic("highlights");
                         buildTabTopic("demography");
                         buildTabTopic("environment");
+                        buildTabTopic("energy");
                         buildTabTopic("climate");
                         buildTabTopic("economy");
                         buildTabTopic("ghsl");

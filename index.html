@@ -48,7 +48,7 @@
                                 <img src="img/OECD_logo_new.svg.png" class="h-8 sm:h-10 w-auto"/>
                             </a>
                             <div class="font-bold text-xl sm:text-2xl text-gray-700 sm:flex hidden" style="padding: 20px;">
-                                Municipal Atlas
+                                Municipal Atlas (beta)
                             </div>
                         </div>
                         
@@ -74,7 +74,8 @@
                         class="z-10 flex w-full shrink-0 flex-col gap-12 overflow-auto border-gray-200 bg-white py-5 px-4 xl:w-[460px]">
                         <div class="flex flex-col gap-4 break-words print:!w-full sm:w">
                         <!-- <div class="flex flex-col gap-4 break-words print:!w-full"> -->
-                            <div class="flex items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                            <!-- <div class="flex items-center gap-2"> -->
                                 <div id="button-demography" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-demography"
                                     title="Demography"><i class="fa-fw fa-regular fa-people"></i>
                                 </div>
@@ -84,15 +85,25 @@
                                 <div id="button-climate" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                                     title="Climate"><i class="fa-fw fa-regular fa-temperature-arrow-up"></i>
                                 </div>
+                                <div id="button-energy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Energy"><i class="fa-fw fa-regular fa-bolt"></i>
+                                </div>
+                                <!-- <div id="button-transport" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Transport"><i class="fa-fw fa-regular fa-car"></i>
+                                </div> -->
                                 <div id="button-economy" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                                     title="Economy and Labour"><i class="fa-fw fa-regular fa-building-columns"></i>
                                 </div>
                                 <div id="button-ghsl" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                                     title="Territorial Organisation"><i class="fa-fw fa-regular fa-building-user"></i>
                                 </div>
+                                <!-- <div id="button-housing" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Housing"><i class="fa-fw fa-regular fa-building"></i>
+                                </div> -->
                                 <div id="button-services" class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                                     title="Services"><i class="fa-fw fa-regular fa-shop"></i>
                                 </div>
+                                
                                 
                             </div>
                     
@@ -286,26 +297,7 @@
                                            
                                         </div>
                                     </div>
-                                    <div class="flex flex-col gap-2">
-                                        <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: rgb(16, 149, 76);"><i
-                                                    class="fa-fw fa-regular fa-wind-turbine"></i></div>
-                                            <div class="font-bold">Renewable potential</div>
-                                        </div>
-                                        <div class="flex flex-col gap-2">
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-solar-power">
-                                                <div class="font-medium text-gray-600">Solar power potential</div><!---->
-                                            </div>
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-wind-power">
-                                                <div class="font-medium text-gray-600"> Wind power potential</div><!---->
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <!-- <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
                                             <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
@@ -335,9 +327,183 @@
                                                 <div class="font-medium text-gray-600">O<sub>3</sub></div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>  -->
                                 
                                 </div>
+
+                                <div id="topic-energy" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Energy</div>
+                                    </div>
+                                    
+                                    <!-- <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-power-off"></i></div>
+                                            <div class="font-bold">Final energy consumption</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-enercons">
+                                                <div class="font-medium text-gray-600">Total final energy consumption</div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-elec">
+                                                <div class="font-medium text-gray-600"> Electricity consumption</div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-gas">
+                                                <div class="font-medium text-gray-600"> Natural gas consumption</div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-wind-turbine"></i></div>
+                                            <div class="font-bold">Renewable potential</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-solar-power">
+                                                <div class="font-medium text-gray-600">Solar power potential</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-wind-power">
+                                                <div class="font-medium text-gray-600"> Wind power potential</div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-fan"></i></div>
+                                            <div class="font-bold">Cooling degree days</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-cdd">
+                                                <div class="font-medium text-gray-600" >Cooling degree days in the last 5 years</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-cdd-ch">
+                                                <div class="font-medium text-gray-600" >Change in cooling degree days compared to 1981-2010
+                                                </div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-heat"></i></div>
+                                            <div class="font-bold">Heating degree days</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-hdd">
+                                                <div class="font-medium text-gray-600" >Heating degree days in the last 5 years</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-hdd-ch">
+                                                <div class="font-medium text-gray-600" >Change in heating degree days compared to 1981-2010
+                                                </div><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                </div>
+
+                                <!-- <div id="topic-transport" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Transport</div>
+                                    </div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-transport"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-car-side"></i></div>
+                                            <div class="font-bold">Vehicles</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-veh-cap">
+                                                <div class="font-medium text-gray-600"> Passenger motor vehicles per capita</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-transport"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-car-side-bolt"></i></div>
+                                            <div class="font-bold">Hybrid and electric vehicles</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-elec-hyb-veh">
+                                                <div class="font-medium text-gray-600">Share of hybrid or electric passenger vehicles</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-transport"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-car-building"></i></div>
+                                            <div class="font-bold">Mode of transport to work</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-commut-car">
+                                                <div class="font-medium text-gray-600" >Share of people commuting by car
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-commut-public">
+                                                <div class="font-medium text-gray-600" >Share of people commuting by public transport</div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-commut-bike">
+                                                <div class="font-medium text-gray-600" >Share of people commuting by bike
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-commut-walk">
+                                                <div class="font-medium text-gray-600" >Share of people commuting walking
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                </div> -->
 
                                 <div id="topic-climate" class="flex flex-col gap-5 hidden">
                                     <div class="flex items-center gap-2">
@@ -346,8 +512,7 @@
                                     
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-temperature-arrow-up"></i></div>
                                             <div class="font-bold">Temperature trends</div>
                                         </div>
@@ -361,6 +526,27 @@
                                                 class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
                                                 id="button-temp-ch">
                                                 <div class="font-medium text-gray-600" >Change in air temperature compared to 1981-2010</div><!---->
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
+                                                    class="fa-fw fa-regular fa-city"></i></div>
+                                            <div class="font-bold">Urban Heat Island</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-uhi-day">
+                                                <div class="font-medium text-gray-600" >Daytime summer urban heat island intensity</div><!---->
+                                            </div>
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-uhi-night">
+                                                <div class="font-medium text-gray-600" >Nighttime summer urban heat island intensity</div><!---->
                                             </div>
                                             <div
                                                 class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
@@ -379,8 +565,7 @@
                                 
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-temperature-sun"></i></div>
                                             <div class="font-bold">Heat stress</div>
                                         </div>
@@ -408,52 +593,10 @@
                                             
                                         </div>
                                     </div>
+                                    
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
-                                                    class="fa-fw fa-regular fa-fan"></i></div>
-                                            <div class="font-bold">Cooling degree days</div>
-                                        </div>
-                                        <div class="flex flex-col gap-2">
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-cdd">
-                                                <div class="font-medium text-gray-600" >Cooling degree days in the last 5 years</div><!---->
-                                            </div>
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-cdd-ch">
-                                                <div class="font-medium text-gray-600" >Change in cooling degree days compared to 1981-2010
-                                                </div><!---->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
-                                                    class="fa-fw fa-regular fa-heat"></i></div>
-                                            <div class="font-bold">Heating degree days</div>
-                                        </div>
-                                        <div class="flex flex-col gap-2">
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-hdd">
-                                                <div class="font-medium text-gray-600" >Heating degree days in the last 5 years</div><!---->
-                                            </div>
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-hdd-ch">
-                                                <div class="font-medium text-gray-600" >Change in heating degree days compared to 1981-2010
-                                                </div><!---->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-cloud-showers-heavy"></i></div>
                                             <div class="font-bold">Precipitation</div>
                                         </div>
@@ -482,8 +625,7 @@
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-sun-plant-wilt"></i></div>
                                             <div class="font-bold">Droughts</div>
                                         </div>
@@ -497,8 +639,7 @@
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-fire"></i></div>
                                             <div class="font-bold">Fires</div>
                                         </div>
@@ -512,8 +653,7 @@
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-house-flood-water"></i></div>
                                             <div class="font-bold">River flooding</div>
                                         </div>
@@ -527,8 +667,7 @@
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: darkred;"><i
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-climate"><i
                                                     class="fa-fw fa-regular fa-house-tsunami"></i></div>
                                             <div class="font-bold">Coastal flooding</div>
                                         </div>
@@ -590,26 +729,7 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="flex flex-col gap-2">
-                                        <div class="flex items-start gap-2">
-                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                style="background: rgb(77, 82, 168);"><i
-                                                    class="fa-fw fa-regular fa-house"></i></div>
-                                            <div class="font-bold">Housing</div>
-                                        </div>
-                                        <div class="flex flex-col gap-2">
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-rent">
-                                                <div class="font-medium text-gray-600" >Rent per sq. m</div><!---->
-                                            </div>
-                                            <div
-                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
-                                                id="button-housing-price">
-                                                <div class="font-medium text-gray-600">Price per sq. m</div><!---->
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div id="topic-ghsl" class="flex flex-col gap-5 hidden">
@@ -642,7 +762,7 @@
                                             <div
                                                 class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
                                                 id="button-builts-dens">
-                                                <div class="font-medium text-gray-600" >Built-up surface per capita</div><!---->
+                                                <div class="font-medium text-gray-600" >Total built-up surface per capita</div><!---->
                                             </div>
                                         </div>
                                         <div class="flex flex-col gap-2">
@@ -666,6 +786,14 @@
                                                 <div class="font-medium text-gray-600" >Built-up surface growth 2000-2020</div><!---->
                                             </div>
                                         </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-res-builts-gr">
+                                                <div class="font-medium text-gray-600" >Residential built-up surface growth 2000-2020</div><!---->
+                                            </div>
+                                        </div>
+                                        
                                         
                                     </div>
                                 
@@ -704,6 +832,20 @@
                                                 <div class="font-medium text-gray-600" >Average building height</div><!---->
                                             </div>
                                         </div>
+                                        <!-- <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-builtv-gr">
+                                                <div class="font-medium text-gray-600" >Built-up volume growth 2000-2020</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-res-builtv-gr">
+                                                <div class="font-medium text-gray-600" >Residential built-up volume growth 2000-2020</div>
+                                            </div>
+                                        </div> -->
                                         
                                     </div>
                                 
@@ -730,6 +872,106 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- <div id="topic-housing" class="flex flex-col gap-5 hidden">
+                                    <div class="flex items-center gap-2">
+                                        <div class="text-lg font-bold">Housing</div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-start gap-2">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-housing"><i
+                                                    class="fa-fw fa-regular fa-house"></i></div>
+                                            <div class="font-bold">Dwelling stock</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                id="button-nb-dwellings">
+                                                <div class="font-medium text-gray-600">Number of dwellings</div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-dwellings-occup">
+                                                    <div class="font-medium text-gray-600">Share of dwellings occupied</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-dwellings-vacant">
+                                                    <div class="font-medium text-gray-600">Share of vacant dwellings</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-dwellings-own">
+                                                    <div class="font-medium text-gray-600">Share of dwellings occupied by owner</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-dwellings-rent">
+                                                    <div class="font-medium text-gray-600">Share of dwellings occupied by renter</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-dwellings-main">
+                                                    <div class="font-medium text-gray-600">Share of main residences</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-dwellings-second">
+                                                    <div class="font-medium text-gray-600">Share of secondary residences</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="flex flex-col gap-2">
+                                            <div class="flex items-start gap-2">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-housing"><i
+                                                        class="fa-fw fa-regular fa-house"></i></div>
+                                                <div class="font-bold">Housing costs</div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-rent">
+                                                    <div class="font-medium text-gray-600">Average rent</div>
+                                                </div>
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-housing-price">
+                                                    <div class="font-medium text-gray-600">Price per sq. m</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="flex flex-col gap-2">
+                                            <div class="flex items-start gap-2">
+                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-housing"><i
+                                                        class="fa-fw fa-regular fa-fireplace"></i></div>
+                                                <div class="font-bold">Main fuel source for heating</div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-heating-elec">
+                                                    <div class="font-medium text-gray-600">Electricity</div>
+                                                </div>
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-heating-gas">
+                                                    <div class="font-medium text-gray-600">Natural gas</div>
+                                                </div>
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-heating-oil">
+                                                    <div class="font-medium text-gray-600">Oil</div>
+                                                </div>
+                                                <div class="cursor-pointer justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+                                                    id="button-heating-coal">
+                                                    <div class="font-medium text-gray-600">Coal</div>
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                </div> -->
 
                                 <div id="topic-services" class="flex flex-col gap-5 hidden">
                                     <div class="flex items-center gap-2">
@@ -795,9 +1037,12 @@ var currentChartControl;
 currentTopicName = "demography";
 buildTabTopic("demography");
 buildTabTopic("environment");
+buildTabTopic("energy");
+//buildTabTopic("transport");
 buildTabTopic("climate");
 buildTabTopic("economy");
 buildTabTopic("ghsl");
+//buildTabTopic("housing");
 buildTabTopic("services");
 
 map = buildBaseMap();
@@ -806,18 +1051,19 @@ createLayerAndLegend("median-income", "MEDIAN_DISP_INC_PC_CURR_PR", "Median disp
 createLayerAndLegend("gini", "GINI", "Gini coefficient", "", 0.2, 0.5, [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5], scaleBlues, firstLayer=false,  minusLow=true);
 createLayerAndLegend("poverty", "POV_RATE_60",  "Poverty rate", "%", 5, 40, [5, 10, 15, 20, 25, 30, 35, 40], scaleBlues, firstLayer=false,  minusLow=true);
 createLayerAndLegend("unempl-rate", "UNEMP_RA_15_64", "Unemployment rate", "%", 0, 30, [0, 5, 10, 15, 20, 25, 30], scaleBlues, firstLayer=false);
-createLayerAndLegend("rent", "RENT_M2", "Rent", "€/m²", 5, 25, [5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25], scaleBlues, firstLayer=false,  minusLow=true);
-createLayerAndLegend("housing-price", "HOUSING_PRICE_M2", "Housing price", "€/m²", 0, 10000, [0, 2000, 6000, 8000, 10000], scaleBlues, firstLayer=false);
 
 createLayerAndLegend("pop-dens", "pop_density_km2", "Population density", "people/km²", 0, 10000, [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000,10000], scaleBrowns, firstLayer=false);
 createLayerAndLegend("builts-dens", "BUILT_S__T", "Built-up surface per capita", "m²/capita", 0, 600, [0, 100, 200, 300, 400, 500, 600], scaleBrowns, firstLayer=false);
 createLayerAndLegend("res-builts-dens", "BUILT_S_RES", "Residential built-up surface per capita", "m²/capita", 0, 600, [0, 100, 200, 300, 400, 500, 600], scaleBrowns, firstLayer=false);
 createLayerAndLegend("nres-builts-dens", "BUILT_S_NRES", "Non-residential built-up surface per capita", "m²/capita", 0, 400, [0, 50, 100, 150, 200, 250, 300, 350, 400], scaleBrowns, firstLayer=false);
 createLayerAndLegend("builts-gr", "BUILT_S_CH__T", "Built-up surface growth 2000-2020", "%", -80, 80, [-80, -60, -40, -20, 0, 20, 40, 60, 80], scaleBuRd, firstLayer=false,  minusLow=true);
+createLayerAndLegend("res-builts-gr", "BUILT_S_CH_RES", "Residential built-up surface growth 2000-2020", "%", -80, 80, [-80, -60, -40, -20, 0, 20, 40, 60, 80], scaleBuRd, firstLayer=false,  minusLow=true);
 createLayerAndLegend("builtv-dens", "BUILT_V__T", "Built-up volume per capita", "m³/capita", 0, 1500, [0, 300, 600, 900, 1200, 1500], scaleBrowns, firstLayer=false);
 createLayerAndLegend("res-builtv-dens", "BUILT_V_RES", "Residential built-up volume per capita", "m³/capita", 0, 1500, [0, 300, 600, 900, 1200, 1500], scaleBrowns, firstLayer=false);
 createLayerAndLegend("nres-builtv-dens", "BUILT_V_NRES", "Non-residential built-up volume per capita", "m³/capita", 0, 1000, [0, 200, 400, 600, 800, 1000], scaleBrowns, firstLayer=false);
 createLayerAndLegend("builth", "BUILT_H", "Average building height", "m", 0, 8, [0, 1, 2, 3, 4, 5, 6, 7, 8], scaleBrowns, firstLayer=false);
+// createLayerAndLegend("builtv-gr", "BUILT_V_CH__T", "Built-up volume growth 2000-2020", "%", -80, 80, [-80, -60, -40, -20, 0, 20, 40, 60, 80], scaleBuRd, firstLayer=false,  minusLow=true);
+// createLayerAndLegend("res-builtv-gr", "BUILT_V_CH_RES", "Residential built-up volume growth 2000-2020", "%", -80, 80, [-80, -60, -40, -20, 0, 20, 40, 60, 80], scaleBuRd, firstLayer=false,  minusLow=true);
 
 degurbaL1Colors = {'City': 'cornflowerblue', 
             'Town and semi-dense area': '#ff7f0e', 
@@ -850,12 +1096,10 @@ createLayerAndLegend("death", "DEATHS_RATE", "Death rate", "deaths per 1000 peop
 
 createLayerAndLegend("temp", "AIR_TEMP2M", "Average air temperature", "°C", 5, 25, [5, 10, 15, 20, 25], scaleReds, firstLayer=false,  minusLow=true);
 createLayerAndLegend("temp-ch", "AIR_TEMP2M_DIFF_1981_2010", "Average air temperature change<br>compared to 1981-2010", "°C", -3, 3, [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3], scaleBuRd, firstLayer=false, minusLow=true);
+createLayerAndLegend("uhi-day", "UHI_DAY_SUMMER", "Summer daytime<br>urban heat island", "°C", 0, 5, [0, 1, 2, 3, 4, 5], scaleReds, firstLayer=false,  minusLow=true);
+createLayerAndLegend("uhi-night", "UHI_NIGHT_SUMMER", "Summer daytime<br>urban heat island", "°C", 0, 5, [0, 1, 2, 3, 4, 5], scaleReds, firstLayer=false,  minusLow=true);
 createLayerAndLegend("lst-day", "LST_DAY_SUMMER", "Summer daytime<br>surface temperature", "°C", 20, 40, [20, 25, 30, 35, 40], scaleReds, firstLayer=false,  minusLow=true);
 createLayerAndLegend("lst-night", "LST_NIGHT_SUMMER", "Summer nighttime<br>surface temperature", "°C", 10, 30, [10, 15, 20, 25, 30], scaleReds, firstLayer=false,  minusLow=true);
-createLayerAndLegend("cdd", "CDD_T_22C", "Cooling Degree Days", "", 0, 3000, [0, 500, 1000, 1500, 2000, 2500, 3000], scaleReds, firstLayer=false);
-createLayerAndLegend("cdd-ch", "CDD_T_22C_CH", "Change in Cooling Degree Days", "", -100, 100, [-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100], scaleBuRd, firstLayer=false, minusLow=true);
-createLayerAndLegend("hdd", "HDD_T_15C", "Heating Degree Days", "", 0, 3000, [0, 500, 1000, 1500, 2000, 2500, 3000], scaleReds, firstLayer=false);
-createLayerAndLegend("hdd-ch", "HDD_T_15C_CH", "Change in Heating Degree Days", "", -500, 500, [-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500], scaleBuRd, firstLayer=false, minusLow=true);
 createLayerAndLegend("hot-days", "HOT_DAYS", "Number of hot days<br>(Tmax > 35°C)", "days", 0, 30, [0, 5, 10, 15, 20, 25, 30], scaleReds, firstLayer=false);
 createLayerAndLegend("hot-days-ch", "HOT_DAYS_DIFF_1981_2010", "Change in number of hot days", "days", -14, 14, [-14, -10, -6, -2, 2, 6, 10, 14], scaleBuRd, firstLayer=false, minusLow=true);
 createLayerAndLegend("tropical-nights", "TROPICAL_NIGHTS", "Number of tropical nights<br>(Tmin > 20°C)", "nights", 0, 50, [0, 10, 20, 30, 40, 50], scaleReds, firstLayer=false);
@@ -872,13 +1116,43 @@ createLayerAndLegend("coastal-flood", "COASTAL_FLOOD_RP100_POP_SH", "Population 
 createLayerAndLegend("green-sh", "GREEN_AREA_SHARE", "Green area share", "%", 0, 100, [0, 20, 40, 50, 60, 70, 80, 90, 100], scaleGreens, firstLayer=false);
 createLayerAndLegend("green-capita", "GREEN_AREA_CAPITA", "Green area per capita", "m²/capita", 0, 1400, [0, 200, 400, 600, 800, 1000, 1200, 1400], scaleGreens, firstLayer=false);
 createLayerAndLegend("forestch", "FOREST_CH", "Tree cover change", "%", -30, 30, [-30, -10, -5, -1, 1, 5, 10, 30], scaleRdBu, firstLayer=false, minusLow=true);
-createLayerAndLegend("solar-power", "SOLAR_POWER_POT", "Photovoltaic Power Potential", "kWh/kWp", 2, 6, [2, 3, 4, 5, 6], scaleGreens, firstLayer=false,  minusLow=true);
-createLayerAndLegend("wind-power", "WIND_POWER_POT", "Mean wind power density", "W/m²", 0, 1250, [0, 250, 500, 750, 1000, 1250], scaleGreens, firstLayer=false);
-
 // createLayerAndLegend("no2", "NO2_POP_W_MEAN", "Population exposure to NO<sub>2</sub>", "μg/m³", 0, 30, [0, 5, 10, 15, 20, 25, 30], scaleReds, firstLayer=false);
 // createLayerAndLegend("pm25", "PM2_5_POP_W_MEAN", "Population exposure to PM2.5", "μg/m³", 5, 15, [5, 7.5, 10, 12.5, 15], scaleReds, firstLayer=false);
 // createLayerAndLegend("pm10", "PM10_POP_W_MEAN", "Population exposure to PM10", "μg/m³", 0, 35, [0, 5, 10, 15, 20, 25, 30, 35], scaleReds, firstLayer=false);
 // createLayerAndLegend("o3", "O3_POP_W_MEAN", "Population exposure to O<sub>3</sub>", "μg/m³", 40, 90, [40, 50, 60, 70, 80, 90], scaleReds, firstLayer=false);
+
+// createLayerAndLegend("enercons", "ENER_CONS", "Total final energy consumption", "MWh", 0, 3000000, [0, 500000, 1000000, 1500000, 2000000, 2500000, 3000000], scalePurples, firstLayer=false);
+// createLayerAndLegend("elec", "ELEC_CONS", "Electricity consumption", "MWh", 0, 50000, [0, 10000, 20000, 30000, 40000, 50000], scalePurples, firstLayer=false);
+// createLayerAndLegend("gas", "GAS_CONS", "Natural gas consumption", "MWh", 0, 200000, [0, 25000, 50000, 75000, 100000, 125000, 150000, 175000, 200000], scalePurples, firstLayer=false);
+createLayerAndLegend("solar-power", "SOLAR_POWER_POT", "Photovoltaic Power Potential", "kWh/kWp", 2, 5, [2, 2.5, 3, 3.5, 4, 4.5, 5], scalePurples, firstLayer=false,  minusLow=true);
+createLayerAndLegend("wind-power", "WIND_POWER_POT", "Mean wind power density", "W/m²", 0, 1250, [0, 250, 500, 750, 1000, 1250], scalePurples, firstLayer=false);
+createLayerAndLegend("cdd", "CDD_T_22C", "Cooling Degree Days", "", 0, 3000, [0, 500, 1000, 1500, 2000, 2500, 3000], scalePurples, firstLayer=false);
+createLayerAndLegend("cdd-ch", "CDD_T_22C_CH", "Change in Cooling Degree Days", "", -100, 100, [-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100], scaleBuRd, firstLayer=false, minusLow=true);
+createLayerAndLegend("hdd", "HDD_T_15C", "Heating Degree Days", "", 0, 3000, [0, 500, 1000, 1500, 2000, 2500, 3000], scalePurples, firstLayer=false);
+createLayerAndLegend("hdd-ch", "HDD_T_15C_CH", "Change in Heating Degree Days", "", -500, 500, [-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500], scaleBuRd, firstLayer=false, minusLow=true);
+
+
+// createLayerAndLegend("veh-cap", "PASG_VEH_CAP", "Private motor vehicles per 1000 people", "vehicles per 1000 people", 0, 1000, [0, 200, 400, 600, 800, 1000], scaleGreenBlue, firstLayer=false);
+// createLayerAndLegend("elec-hyb-veh", "SH_ELEC_HYB_PASG_VEH", "Share of hyrbid or electric private motor vehicles", "%", 0, 20, [0, 5, 10, 15, 20], scaleGreenBlue, firstLayer=false);
+// createLayerAndLegend("commut-car", "SH_COMMUT_CAR", "Share of people commuting by car", "%", 0, 100, [0, 20, 40, 60, 80, 100], scaleGreenBlue, firstLayer=false);
+// createLayerAndLegend("commut-public", "SH_COMMUT_PUBLIC_TRANSPORT", "Share of people commuting by public transport", "%", 0, 50, [0, 10, 20, 30, 40, 50], scaleGreenBlue, firstLayer=false);
+// createLayerAndLegend("commut-bike", "SH_COMMUT_BIKE", "Share of people commuting by bike", "%", 0, 20, [0, 5, 10, 15, 20], scaleGreenBlue, firstLayer=false);
+// createLayerAndLegend("commut-walk", "SH_COMMUT_WALK", "Share of people commuting walking", "%", 0, 20, [0, 5, 10, 15, 20], scaleGreenBlue, firstLayer=false);
+
+// createLayerAndLegend("nb-dwellings", "NB_UNITS", "Number of dwellings", "", 0, 10000, [0, 2000, 4000, 6000, 8000, 10000], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("dwellings-occup", "OCCUP_SH", "Share of occupied dwellings", "%", 50, 100, [50, 60, 70, 80, 90, 100], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("dwellings-vacant", "VAC_SH", "Share of vacant dwellings", "%", 0, 25, [0, 5, 10, 15, 20, 25], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("dwellings-own", "OWN_SH", "Share of dwellings occupied by owner", "%", 0, 70, [0, 10, 20, 30, 40, 50, 60, 70], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("dwellings-rent", "RENT_SH", "Share of dwellings occupied by renter", "%", 0, 50, [0, 10, 20, 30, 40, 50 ], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("dwellings-main", "MAIN_RES_SH", "Share of main residences", "%", 0, 100, [0, 20, 40, 60, 80, 100], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("dwellings-second", "SECOND_RES_SH", "Share of secondary residences", "%", 0, 25, [0, 5, 10, 15, 20, 25], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("heating-elec", "SH_ELEC", "Share of dwellings with electricity<br>as main source of heating", "%", 0, 30, [0, 5, 10, 15, 20, 25, 30], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("heating-gas", "SH_GAS", "Share of dwellings with natural<br>gas as main source of heating", "%", 0, 30, [0, 5, 10, 15, 20, 25, 30], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("heating-oil", "SH_OIL", "Share of dwellings with oil<br>as main source of heating", "%", 0, 20, [0, 5, 10, 15, 20], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("heating-coal", "SH_COAL", "Share of dwellings with coal<br>as main source of heating", "%", 0, 20, [0, 5, 10, 15, 20], scaleYellowRed, firstLayer=false);
+// createLayerAndLegend("rent", "RENT_PRICE_T", "Average rent", "USD", 0, 1500, [0, 250, 500, 750, 1000, 1250, 1500], scaleYellowRed, firstLayer=false,  minusLow=true);
+// createLayerAndLegend("housing-price", "HOUSING_PRICE_M2", "Housing price", "€/m²", 0, 10000, [0, 2000, 6000, 8000, 10000], scaleYellowRed, firstLayer=false);
+
 
 createLayerAndLegend("download", "OOKLA_FIXED_DOWNLOAD_DEV", "Fixed download speed (deviation<br>from national average)", "%", -100, 100, [-100, -70, -40, -10, 10, 40, 70, 100], scaleRdBu, firstLayer=false, minusLow=true);
 createLayerAndLegend("upload", "OOKLA_FIXED_UPLOAD_DEV", "Fixed upload speed (deviation<br>from national average)", "%", -100, 100, [-100, -70, -40, -10, 10, 40, 70, 100], scaleRdBu, firstLayer=false, minusLow=true);
@@ -888,6 +1162,3 @@ createLayerAndLegend("upload", "OOKLA_FIXED_UPLOAD_DEV", "Fixed upload speed (de
 </body>
 
 </html>
-
-
-

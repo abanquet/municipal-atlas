@@ -91,8 +91,40 @@ sup {
 table {
     text-indent: 0;
     border-color: inherit;
-    border-collapse: collapse
+    border-collapse: collapse;
+    table-layout: fixed;
+    overflow-wrap: break-word;
 }
+.table td {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    }
+
+.table th {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    }
+
+/* table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+    table-layout: auto;
+    overflow-wrap: break-word;
+}
+  
+.table td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    }
+.table th {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    } */
 
 button,
 input,
@@ -977,6 +1009,10 @@ strong {
     max-width: 80rem
 }
 
+.w-14xl {
+    width: 160
+}
+
 .max-w-2xl {
     max-width: 42rem
 }
@@ -1181,7 +1217,9 @@ strong {
 .overflow-y-auto {
     overflow-y: auto
 }
-
+.overflow-x-auto {
+    overflow-x: auto
+}
 .whitespace-nowrap {
     white-space: nowrap
 }
@@ -1307,6 +1345,18 @@ strong {
     background-color: rgb(16, 149, 76)
 }
 
+.bg-energy {
+    background-color: darkorchid
+}
+
+.bg-transport {
+    background-color: rgb(90,110,164)
+}
+
+.bg-housing {
+    background-color: rgb(199,198,69)
+}
+
 .bg-ghsl {
     background-color: rgb(122, 64, 43)
 }
@@ -1317,6 +1367,34 @@ strong {
 
 .bg-services {
     background-color: rgb(255, 130, 0)
+}
+
+.text-demography {
+    color: rgb(178, 82, 144)
+}
+
+.text-climate {
+    color: darkred
+}
+
+.text-environment {
+    color: rgb(16, 149, 76)
+}
+
+.text-energy {
+    color: darkorchid
+}
+
+.text-ghsl {
+    color: rgb(122, 64, 43)
+}
+
+.text-economy {
+    color: rgb(77, 82, 168)
+}
+
+.text-services {
+    color: rgb(255, 130, 0)
 }
 
 .bg-gray-100 {
@@ -2488,3 +2566,9 @@ background-color: #f2f2f2; /* Set a background color for the map container */
     border-color:rgb(160, 160, 160);
     border-width: 1px;
 }
+
+.button-list-container {
+    overflow-x: auto; /* Enable horizontal scrolling if content exceeds the screen width */
+    white-space: nowrap; /* Prevent buttons from wrapping to the next line */
+    max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+  }

@@ -30,7 +30,9 @@ function createRadarChart(radarElem) {
             },
             
         },
+
         plugins: {
+            
             tooltip: {
                 enabled: true,
                 // mode: 'index',
@@ -43,8 +45,10 @@ function createRadarChart(radarElem) {
                         var datasetUnit = radarElem.radarUnits[tooltipItem.dataIndex];
                         return `${sauname}: ${Math.round(datasetValue * 10) / 10} ${datasetUnit}`;
                     },
+
                 },
             },
+            
         },
     };
 
@@ -178,7 +182,7 @@ function buildRadarChartData(data) {
     // }
     
     if (data.AIR_TEMP2M_DIFF_1981_2010 != undefined) {
-        radarLabels.push('Air temperature change');
+        radarLabels.push(['Air temperature', 'change']);
         radarUnits.push('°C');
         radarSauData.push(data.AIR_TEMP2M_DIFF_1981_2010);
         radarSauDataNorm.push(normalizeData(data.AIR_TEMP2M_DIFF_1981_2010, -3, 3));
@@ -190,7 +194,7 @@ function buildRadarChartData(data) {
     // }
     
     if (data.LST_NIGHT_SUMMER != undefined) {
-        radarLabels.push('Summer nighttime surface temperature');
+        radarLabels.push(['Summer nighttime', 'surface temperature']);
         radarUnits.push('°C');
         radarSauData.push(data.LST_NIGHT_SUMMER);
         radarSauDataNorm.push(normalizeData(data.LST_NIGHT_SUMMER, 10, 30));
@@ -296,19 +300,19 @@ function buildRadarChartData(data) {
     //     radarSauDataNorm.push(normalizeData(data.COASTAL_FLOOD_RP100_POP_SH, 0, 60));
     // }
     
-    // if (data.GREEN_AREA_SHARE != undefined) {
-    //     radarLabels.push('Green area share');
-    //     radarUnits.push('%');
-    //     radarSauData.push(data.GREEN_AREA_SHARE);
-    //     radarSauDataNorm.push(normalizeData(data.GREEN_AREA_SHARE, 0, 100));
-    // }
-    
-    if (data.GREEN_AREA_CAPITA != undefined) {
-        radarLabels.push('Green area per capita');
-        radarUnits.push('m²/cap.');
-        radarSauData.push(data.GREEN_AREA_CAPITA);
-        radarSauDataNorm.push(normalizeData(data.GREEN_AREA_CAPITA, 0, 1400));
+    if (data.GREEN_AREA_SHARE != undefined) {
+        radarLabels.push('Green areas');
+        radarUnits.push('%');
+        radarSauData.push(data.GREEN_AREA_SHARE);
+        radarSauDataNorm.push(normalizeData(data.GREEN_AREA_SHARE, 0, 100));
     }
+    
+    // if (data.GREEN_AREA_CAPITA != undefined) {
+    //     radarLabels.push('Green area per capita');
+    //     radarUnits.push('m²/cap.');
+    //     radarSauData.push(data.GREEN_AREA_CAPITA);
+    //     radarSauDataNorm.push(normalizeData(data.GREEN_AREA_CAPITA, 0, 1400));
+    // }
     
     if (data.FOREST_CH != undefined) {
         radarLabels.push('Tree cover change');
@@ -360,7 +364,7 @@ function buildRadarChartData(data) {
     // }
     
     if (data.OOKLA_FIXED_DOWNLOAD_DEV != undefined) {
-        radarLabels.push('Internet download speed');
+        radarLabels.push(['Internet download', 'speed']);
         radarUnits.push('%');
         radarSauData.push(data.OOKLA_FIXED_DOWNLOAD_DEV);
         radarSauDataNorm.push(normalizeData(data.OOKLA_FIXED_DOWNLOAD_DEV, -100, 100));
@@ -374,14 +378,14 @@ function buildRadarChartData(data) {
     // }
 
     if (data.MEDIAN_DISP_INC_PC_CURR_PR != undefined) {
-        radarLabels.push('Median disposable income');
+        radarLabels.push(['Median disposable', 'income']);
         radarUnits.push('€');
         radarSauData.push(data.MEDIAN_DISP_INC_PC_CURR_PR);
         radarSauDataNorm.push(normalizeData(data.MEDIAN_DISP_INC_PC_CURR_PR, 10000, 50000));
     }
     
     if (data.GINI != undefined) {
-        radarLabels.push('Gini index');
+        radarLabels.push('Gini');
         radarUnits.push('');
         radarSauData.push(data.GINI);
         radarSauDataNorm.push(normalizeData(data.GINI, 0.2, 0.5)); 

@@ -31,12 +31,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
 
 
 </head>
 
 <body>
-    <div id="app" data-v-app="">
+    <div id="app" data-v-app="" >
 
         <div class="relative flex min-h-screen flex-col bg-white">
             <nav class="top-0 border-b border-gray-200 bg-gray-100 sm:sticky sm:z-20 sm:shadow-lg print:!hidden">
@@ -48,7 +49,7 @@
                             </a>
                             <div class="font-bold text-xl sm:text-2xl text-gray-700 hidden sm:flex"
                                 style="padding: 20px;">
-                                Municipal Atlas
+                                Municipal Atlas (beta)
                             </div>
                         </div>
 
@@ -85,7 +86,7 @@
                         </div>
                         <hr />
                         <div class="flex flex-col gap-8 break-words print:!w-full sm:w">
-                            <div class="flex items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
                                 <div id="button-geography"
                                     class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-highlights"
                                     title="Geographies"><i class="fa-fw fa-regular fa-globe-stand"></i>
@@ -97,6 +98,10 @@
                                 <div id="button-environment"
                                     class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                                     title="Environment"><i class="fa-fw fa-regular fa-seedling"></i>
+                                </div>
+                                <div id="button-energy"
+                                    class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
+                                    title="Energy"><i class="fa-fw fa-regular fa-bolt"></i>
                                 </div>
                                 <div id="button-climate"
                                     class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
@@ -114,8 +119,8 @@
                                     class="cursor-pointer flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl text-white bg-gray-700 hover:bg-gray-900"
                                     title="Services"><i class="fa-fw fa-regular fa-shop"></i>
                                 </div>
-
                             </div>
+                            
 
                             <div class="flex flex-col gap-8">
                                 <div id='topic-geography' class="flex flex-col gap-8 break-words print:!w-full sm:w">
@@ -171,16 +176,19 @@
                                             and the population density.
                                         </div>
 
-                                        <div id="table-container"
-                                            class="flex flex-col text-gray-500 items-center justify-center gap-3">
+                                        <div id="table-geography-container" class="flex flex-wrap text-gray-500 text-xs items-center justify-center gap-3">
+                                        </div>
+
+                                        <!-- <div id="table-container"
+                                            class="flex flex-col text-gray-500 text-xs items-center justify-center gap-3">
                                             <table class="table items-center justify-center gap-3"
-                                                style="border-collapse: collapse;">
+                                                >
                                                 <tr style="border-bottom: 1px solid #ddd;">
                                                     <th style="padding: 8px; text-align: left;">Country</th>
                                                     <th style="padding: 8px; text-align: left;">Geographical level</th>
                                                     <!-- <th style="padding: 8px; text-align: left;">Number of units</th>
                                                                 <th style="padding: 8px; text-align: left;">Area (km2)</th>
-                                                                <th style="padding: 8px; text-align: left;">Population</th> -->
+                                                                <th style="padding: 8px; text-align: left;">Population</th>
                                                 </tr>
                                                 <tr style="border-bottom: 1px solid #ddd;">
                                                     <td style="padding: 8px;">Italy</td>
@@ -358,7 +366,7 @@
                                                 </tr>
 
                                             </table>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 
@@ -575,9 +583,45 @@
                                                 href="https://doi.org/10.24381/cds.006f2c9a"><u>10.24381/cds.006f2c9a</u></a>
                                         </div>
 
-                                        <div class="flex items-start gap-3 px-3">
+                                        <!-- <div class="flex items-start gap-3 px-3">
                                             <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
                                                 style="background: rgb(16, 149, 76);"><i
+                                                    class="fa-fw fa-regular fa-fog"></i>
+                                            </div>
+                                            <div class="font-bold">Air pollution</div>
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            Plume Labs by AccuWeather: Accurate Historical, Live, and Forecast Air Quality Data., 
+                                             <a class="text-gray-800 transition hover:text-shift-blue"
+                                                href="https:plumelabs.com/en/forecast-api/"><u>plumelabs.com/en/forecast-api/</u></a>. Accessed 13 Oct. 2023.
+                                        </div> -->
+                                        
+                                    </div>
+                                </div>
+
+                                <div id="topic-energy" class="flex flex-col gap-8 hidden">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-xl font-bold sm:text-2xl">Energy</div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <!-- <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-power-off"></i></div>
+                                            <div class="font-bold">Final energy consumption</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            The final energy consumption is the total energy consumed by end users. It excludes the energy used in the energy sector itself. End users can be private households, agriculture, industry, transport, services.
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            National Statistical Offices and national energy agencies.
+                                        </div> -->
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
                                                     class="fa-fw fa-regular fa-wind-turbine"></i></div>
                                             <div class="font-bold">Renewable potential</div>
                                         </div>
@@ -648,6 +692,75 @@
                                                         href="https://globalwindatlas.info"><u>https://globalwindatlas.info</u></a>,
                                                 </li>
                                             </ul>
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i class="fa-fw fa-regular fa-fan"></i>
+                                            </div>
+                                            <div class="font-bold text-lg">Cooling Degree Days</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            A Cooling Degree Days (CDD) is a measure of how hot the temperature was
+                                            during a period
+                                            of days,
+                                            which serves to quantify the demand for energy needed to cool buidlings.
+                                            It is defined as the sum of the difference between the daily mean
+                                            temperature and the
+                                            reference
+                                            temperature of 22°C for days during which the mean temperature is higher
+                                            than 22°C.
+                                            Cooling Degree
+                                            Days are assessed based on ERA5-Land using the average annual air
+                                            temperature at 2
+                                            meters height.
+                                        </div>
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                            present.
+                                            Copernicus Climate
+                                            Change Service (C3S) Climate Data Store (CDS),
+                                            doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
+                                        </div>
+
+                                        <div class="flex items-start gap-3 px-3">
+                                            <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white bg-energy"
+                                                ><i
+                                                    class="fa-fw fa-regular fa-heat"></i>
+                                            </div>
+                                            <div class="font-bold text-lg">Heating Degree Days</div>
+                                        </div>
+                                        <div class="text-gray-500 px-6">
+                                            A Heating Degree Days (HDD) is a measure of how cold the temperature was
+                                            during a period
+                                            of days,
+                                            which serves to quantify the demand for energy needed to heat buidlings.
+                                            It is defined as the sum of the difference between the reference
+                                            temperature
+                                            of 15°C
+                                            daily and the
+                                            mean temperature for days during which the mean temperature is lower
+                                            than
+                                            15°C. Heating
+                                            Degree Days
+                                            are assessed based on ERA5-Land using the average annual air temperature
+                                            at
+                                            2 meters
+                                            height.
+                                        </div>
+
+                                        <div class="font-bold px-6">Source</div>
+                                        <div class="text-gray-500 px-10">
+                                            Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
+                                            present.
+                                            Copernicus Climate
+                                            Change Service (C3S) Climate Data Store (CDS),
+                                            doi: <a class="text-gray-800 transition hover:text-shift-blue"
+                                                href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -786,75 +899,6 @@
                                                     href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.553b7518</u></a>
                                                 (Accessed on 01-08-2023)
                                             </div>
-                                            <div class="text-gray-500 px-10">
-                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
-                                                present.
-                                                Copernicus Climate
-                                                Change Service (C3S) Climate Data Store (CDS),
-                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
-                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-
-                                            </div>
-
-                                            <div class="flex items-start gap-3 px-3">
-                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                    style="background: darkred;"><i class="fa-fw fa-regular fa-fan"></i>
-                                                </div>
-                                                <div class="font-bold text-lg">Cooling Degree Days</div>
-                                            </div>
-                                            <div class="text-gray-500 px-6">
-                                                A Cooling Degree Days (CDD) is a measure of how hot the temperature was
-                                                during a period
-                                                of days,
-                                                which serves to quantify the demand for energy needed to cool buidlings.
-                                                It is defined as the sum of the difference between the daily mean
-                                                temperature and the
-                                                reference
-                                                temperature of 22°C for days during which the mean temperature is higher
-                                                than 22°C.
-                                                Cooling Degree
-                                                Days are assessed based on ERA5-Land using the average annual air
-                                                temperature at 2
-                                                meters height.
-                                            </div>
-                                            <div class="font-bold px-6">Source</div>
-                                            <div class="text-gray-500 px-10">
-                                                Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
-                                                present.
-                                                Copernicus Climate
-                                                Change Service (C3S) Climate Data Store (CDS),
-                                                doi: <a class="text-gray-800 transition hover:text-shift-blue"
-                                                    href="https://doi.org/10.24381/cds.68d2bb30"><u>10.24381/cds.68d2bb30</u></a>
-
-                                            </div>
-
-                                            <div class="flex items-start gap-3 px-3">
-                                                <div class="flex h-6 w-6 items-center justify-center rounded-full text-xs text-white"
-                                                    style="background: darkred;"><i
-                                                        class="fa-fw fa-regular fa-heat"></i>
-                                                </div>
-                                                <div class="font-bold text-lg">Heating Degree Days</div>
-                                            </div>
-                                            <div class="text-gray-500 px-6">
-                                                A Heating Degree Days (HDD) is a measure of how cold the temperature was
-                                                during a period
-                                                of days,
-                                                which serves to quantify the demand for energy needed to heat buidlings.
-                                                It is defined as the sum of the difference between the reference
-                                                temperature
-                                                of 15°C
-                                                daily and the
-                                                mean temperature for days during which the mean temperature is lower
-                                                than
-                                                15°C. Heating
-                                                Degree Days
-                                                are assessed based on ERA5-Land using the average annual air temperature
-                                                at
-                                                2 meters
-                                                height.
-                                            </div>
-
-                                            <div class="font-bold px-6">Source</div>
                                             <div class="text-gray-500 px-10">
                                                 Muñoz Sabater, J., (2019): ERA5-Land monthly averaged data from 1981 to
                                                 present.
@@ -1249,17 +1293,23 @@
    
 
     <script type="text/javascript" src="./js/tabs.js"></script>
+    <script type="text/javascript" src="./js/methodo_tables.js"></script>
     <script>
+        // var dataUrl = "https://raw.githubusercontent.com/abanquet/municipal-atlas-data/main"; 
+        var dataUrl = "../oecd-municipal-atlas-data";
         var currentTopicName;
 
         currentTopicName = "geography";
         buildTabTopic("geography");
         buildTabTopic("demography");
         buildTabTopic("environment");
+        buildTabTopic("energy");
         buildTabTopic("climate");
         buildTabTopic("economy");
         buildTabTopic("ghsl");
         buildTabTopic("services");
+
+        loadExcelTable(`${dataUrl}/geo_characteristics.xlsx`, 'table-geography-container')
 
     </script>
 </body>
