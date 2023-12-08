@@ -10,7 +10,8 @@ function buildBaseMap() {
             maxZoom: 12,
             zoomControl: true,
             zoom: 7,
-    });
+            attributionControl: false
+    }); 
 
     var fuaData;
     fetch('data/data_fua.csv')
@@ -87,6 +88,9 @@ function buildBaseMap() {
         vectorTileLayerStyles: mapBaseTL1PlainStyling,
         attribution: "Source of administrative boundaries: National Statistical Offices and FAO Global Administrative Unit Layers (GAUL). This map is for illustrative purposes and is without prejudice to the status of or sovereignty over any territory covered by this map."
     };
+
+    
+
     try {
         var mapBaseTL1PlainLayer = new L.VectorGrid.Protobuf(mapBaseTL1PlainUrl, mapBaseTL1PlainTileOptions);
         mapBaseTL1PlainLayer.setZIndex(12).addTo(map);
@@ -231,7 +235,7 @@ function buildBaseMap() {
         // position: 'topright',
         showMarker: false,
     });
-    map.addControl(mapSearch);
+    map.addControl(mapSearch);    
 
     map.on('geosearch/showlocation', function(event) {
         var lat = event.location.y;
